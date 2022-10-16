@@ -10,9 +10,9 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
   imports: [CommonModule, MatSidenavModule, HeaderComponent, SidebarComponent],
   template: `
     <div class="container-wrapper">
-      <app-header></app-header>
+      <app-header (toggleSidenav)="sidenav.toggle()"></app-header>
       <mat-sidenav-container autosize class="sidenav-container">
-        <mat-sidenav [opened]="true" mode="side" class="sidenav">
+        <mat-sidenav #sidenav [opened]="true" mode="side" class="sidenav">
           <app-sidebar></app-sidebar>
         </mat-sidenav>
 

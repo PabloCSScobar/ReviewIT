@@ -1,11 +1,15 @@
 @use "@angular/material" as mat;
+@use "../../../styles/variables.scss";
+
 .sidenav-container {
+  height: calc(100% - #{variables.$toolbar-height-desktop}) !important;
+}
+.container-wrapper {
   height: 100%;
 }
-
 .sidenav {
   position: absolute;
-  width: 240px;
+  width: variables.$sidenav-width;
   overflow: hidden;
 
   @include mat.elevation(2);

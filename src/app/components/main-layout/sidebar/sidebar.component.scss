@@ -1,4 +1,6 @@
+@use "../../../styles/variables.scss";
+
 .sidebar-main {
-  height: 100%;
   overflow: auto;
+  height: calc(100% - #{variables.$toolbar-height-desktop});
 }
