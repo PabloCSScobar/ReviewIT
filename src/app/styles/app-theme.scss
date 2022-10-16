@@ -1,0 +1,10 @@
+@use "@angular/material" as mat;
+
+@use "../components/main-layout/sidebar/sidebar-theme";
+
+@include mat.core();
+
+@mixin theme($theme) {
+  @include mat.all-component-themes($theme);
+  @include sidebar-theme.theme($theme);
+}

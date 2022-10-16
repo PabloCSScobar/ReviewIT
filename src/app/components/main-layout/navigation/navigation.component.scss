@@ -1,0 +1,16 @@
+@use "@angular/material" as mat;
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  position: absolute;
+  width: 240px;
+  overflow: hidden;
+
+  @include mat.elevation(2);
+
+  &.mat-drawer-side {
+    border-width: 0;
+  }
+}
