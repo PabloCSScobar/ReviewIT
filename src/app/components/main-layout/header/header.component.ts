@@ -3,11 +3,18 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import { LogoComponent } from '../logo/logo.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, MatToolbarModule, MatButtonModule, MatIconModule],
+  imports: [
+    CommonModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    LogoComponent,
+  ],
   template: ` <mat-toolbar class="main-header" color="primary">
     <button
       mat-icon-button
@@ -16,7 +23,7 @@ import { CommonModule } from '@angular/common';
     >
       <mat-icon>menu</mat-icon>
     </button>
-    Header
+    <app-logo></app-logo>
   </mat-toolbar>`,
   styleUrls: ['./header.component.scss'],
 })

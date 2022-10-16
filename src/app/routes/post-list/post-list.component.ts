@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavigationComponent } from '../../components/main-layout/navigation/navigation.component';
 
 @Component({
-  selector: 'app-post-list',
+  selector: 'app-post-list-container',
   standalone: true,
   imports: [CommonModule, NavigationComponent],
   template: `
@@ -14,7 +14,7 @@ import { NavigationComponent } from '../../components/main-layout/navigation/nav
   `,
   styles: [],
 })
-export class PostListComponent implements OnInit {
+export class PostListContainerComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
