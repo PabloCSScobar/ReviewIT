@@ -16,7 +16,14 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
           <app-sidebar></app-sidebar>
         </mat-sidenav>
 
-        <mat-sidenav-content> test content </mat-sidenav-content>
+        <mat-sidenav-content>
+          <div class="content-wrapper">
+            <div class="main-content">
+              <ng-content select="[main-content]"></ng-content>
+            </div>
+            <ng-content select="[rightnav-content]"></ng-content>
+          </div>
+        </mat-sidenav-content>
       </mat-sidenav-container>
     </div>
   `,

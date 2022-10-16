@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { NavigationComponent } from './components/main-layout/navigation/navigation.component';
+import { PostListComponent } from './routes/post-list/post-list.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: NavigationComponent,
+    component: PostListComponent,
   },
 ];
