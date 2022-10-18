@@ -21,7 +21,9 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
             <div class="main-content">
               <ng-content select="[main-content]"></ng-content>
             </div>
-            <ng-content select="[rightnav-content]"></ng-content>
+            <div class="side-content">
+              <ng-content select="[rightnav-content]"></ng-content>
+            </div>
           </div>
         </mat-sidenav-content>
       </mat-sidenav-container>
