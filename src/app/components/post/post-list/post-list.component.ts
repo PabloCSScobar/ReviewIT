@@ -1,11 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PostListViewComponent } from '../post-list-view/post-list-view.component';
 
 @Component({
   selector: 'app-post-list',
   standalone: true,
-  imports: [CommonModule],
-  template: ` <p *ngFor="let post of posts">{{ post | json }}</p> `,
+  imports: [CommonModule, PostListViewComponent],
+  template: `
+    <div *ngFor="let post of posts">
+      <app-post-list-view [post]="post"></app-post-list-view>
+    </div>
+  `,
   styles: [],
 })
 export class PostListComponent {

@@ -1,0 +1,38 @@
+<div *ngIf="post" class="post">
+  <div class="post-stats">
+    <div class="post-rank mat-small">
+      <span data-testid="post-rank" class="rank-label">
+        Project rank: {{ post.rank }}
+      </span>
+      <span class="material-icons rank-icon"> star </span>
+    </div>
+    <!-- <app-post-list-item-answer
+      [answers]="post.answers"
+      [top_answer]="post.has_top_answer"
+    ></app-post-list-item-answer> -->
+    <!-- <div class="post-answers mat-small">{{ post.answers }} answers</div> -->
+    <div data-testid="post-visits" class="post-views mat-small">
+      {{ post.visits }} visits
+    </div>
+  </div>
+  <div class="post-details">
+    <div data-testid="post-title">
+      <a data-testid="post-details-link" class="post-title mat-subheading-1">{{
+        post.title
+      }}</a>
+    </div>
+    <div data-testid="post-page-url" class="page-url mat-caption">
+      Page URL: {{ post.page_url }}
+    </div>
+    <div data-testid="post-repo-url" class="page-url mat-caption">
+      Repo URL: {{ post.repo_url }}
+    </div>
+  </div>
+  <div class="post-bottom-row">
+    <!-- <app-tag-list [tags]="post.categories"></app-tag-list>
+    <app-last-activity [activity]="post.last_activity"></app-last-activity> -->
+  </div>
+</div>
+<div *ngIf="!post" data-testid="post-no-data" class="mat-caption">
+  Problem with access to the element.
+</div>
