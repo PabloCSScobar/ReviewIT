@@ -1,11 +1,17 @@
-<div *ngIf="post" class="post">
-  <div class="post-stats">
-    <app-star-rank [rank]="post.rank" label="Project rank"></app-star-rank>
-
-    <div data-testid="post-visits" class="post-views mat-small">
-      {{ post.visits }} visits
-    </div>
-  </div>
+<div class="post">
+  <app-post-stats>
+    <app-star-rank
+      post-rank
+      [rank]="post.rank"
+      label="Project rank"
+    ></app-star-rank>
+    <app-post-answers-amount
+      post-answers-amount
+      [hasTopAnswer]="post.has_top_answer"
+      [answers]="post.answers"
+    ></app-post-answers-amount>
+    <div post-visits class="post-views mat-small">{{ post.visits }} visits</div>
+  </app-post-stats>
   <div class="post-details">
     <div data-testid="post-title">
       <a data-testid="post-details-link" class="post-title mat-subheading-1">{{
@@ -21,9 +27,8 @@
   </div>
   <div class="post-bottom-row">
     <app-tag-list [tags]="post.categories"></app-tag-list>
-    <!-- <app-last-activity [activity]="post.last_activity"></app-last-activity> -->
+    <app-post-activity
+      [activity]="post.author_last_activity"
+    ></app-post-activity>
   </div>
-</div>
-<div *ngIf="!post" data-testid="post-no-data" class="mat-caption">
-  Problem with access to the element.
 </div>

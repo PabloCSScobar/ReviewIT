@@ -54,7 +54,7 @@ export class PostListContainerComponent implements OnInit {
             'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortFlat&accessoriesType=Round&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=BlazerSweater&eyeType=WinkWacky&eyebrowType=AngryNatural&mouthType=Concerned&skinColor=Yellow',
         },
         created: '02.14.2022',
-        type: 'answered',
+        type: 'created',
       },
       post_last_activity: {
         author: {
@@ -65,7 +65,7 @@ export class PostListContainerComponent implements OnInit {
             'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortFlat&accessoriesType=Round&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=BlazerSweater&eyeType=WinkWacky&eyebrowType=AngryNatural&mouthType=Concerned&skinColor=Yellow',
         },
         created: '02.14.2022',
-        type: 'answered',
+        type: 'created',
       },
       rank: 4.2,
       title: 'My new special Project',
@@ -109,7 +109,7 @@ export class PostListContainerComponent implements OnInit {
             'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortFlat&accessoriesType=Round&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=BlazerSweater&eyeType=WinkWacky&eyebrowType=AngryNatural&mouthType=Concerned&skinColor=Yellow',
         },
         created: '02.14.2022',
-        type: 'answered',
+        type: 'created',
       },
       post_last_activity: {
         author: {
@@ -120,7 +120,7 @@ export class PostListContainerComponent implements OnInit {
             'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortFlat&accessoriesType=Round&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=BlazerSweater&eyeType=WinkWacky&eyebrowType=AngryNatural&mouthType=Concerned&skinColor=Yellow',
         },
         created: '02.14.2022',
-        type: 'answered',
+        type: 'created',
       },
       rank: 4.2,
       title: 'My new special Project 2',
