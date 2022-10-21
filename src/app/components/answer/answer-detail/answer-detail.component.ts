@@ -17,11 +17,11 @@ import { AnswerReviewedCategoryComponent } from '../answer-reviewed-category/ans
     AnswerReviewedCategoryComponent,
   ],
   template: `<div *ngIf="answer" class="answer-wrapper">
+    <mat-divider></mat-divider>
     <div class="answer-header">
       <app-star-rank [rank]="answer.rank" label="Overall rank"></app-star-rank>
       <div *ngIf="answer.is_top_answer" class="top-answer">Top Review</div>
     </div>
-    <mat-divider></mat-divider>
     <div data-testid="answer-description" class="answer-description">
       {{ answer.description }}
     </div>
@@ -39,6 +39,7 @@ import { AnswerReviewedCategoryComponent } from '../answer-reviewed-category/ans
         padding: 1em 2.3em;
       }
       .answer-header {
+        padding-top: 0.5em;
         display: flex;
         align-items: center;
         gap: 1.4em;
@@ -50,7 +51,6 @@ import { AnswerReviewedCategoryComponent } from '../answer-reviewed-category/ans
         padding: 1px 7px;
         border: 1px solid #6abab1;
         border-radius: 3px;
-        margin-bottom: 5px;
       }
       .answer-description {
         margin-top: 1em;
