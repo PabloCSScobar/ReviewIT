@@ -37,7 +37,6 @@ export class PostListContainerComponent implements OnInit {
       ],
       created: '02.12.2020',
       has_top_answer: true,
-      description: 'Lorem test impsum test',
       author: {
         id: 1,
         username: 'Jan Kowalski',
@@ -92,7 +91,6 @@ export class PostListContainerComponent implements OnInit {
       ],
       created: '02.12.2020',
       has_top_answer: true,
-      description: 'Lorem test impsum test',
       author: {
         id: 1,
         username: 'Jan Kowalski',

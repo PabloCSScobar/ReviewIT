@@ -1,0 +1,35 @@
+<div *ngIf="post" class="post">
+  <div class="post-header">
+    <div data-testid="post-title" class="post-title mat-title">
+      {{ post.title }}
+    </div>
+    <app-post-stats>
+      <app-star-rank
+        post-rank
+        [rank]="post.rank"
+        label="Project rank"
+      ></app-star-rank>
+      <div post-visits class="post-views mat-small">
+        {{ post.visits }} visits
+      </div>
+    </app-post-stats>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="post-content">
+    <div data-testid="post-description" class="post-description">
+      {{ post.description }}
+    </div>
+    <div data-testid="post-page-url" class="page-url mat-caption">
+      Page URL: {{ post.page_url }}
+    </div>
+    <div data-testid="post-repo-url" class="page-url mat-caption">
+      Repo URL: {{ post.repo_url }}
+    </div>
+  </div>
+  <div class="post-bottom-row">
+    <app-tag-list [tags]="post.categories"></app-tag-list>
+    <app-post-activity
+      [activity]="post.author_last_activity"
+    ></app-post-activity>
+  </div>
+</div>
