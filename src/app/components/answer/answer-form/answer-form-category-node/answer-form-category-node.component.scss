@@ -1,0 +1,41 @@
+.full-width-field {
+  width: 100%;
+}
+.review-node {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.thumb {
+  font-size: 20px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.thumb-up.active,
+.thumb-up:hover {
+  color: #6abab1;
+}
+.thumb-down.active,
+.thumb-down:hover {
+  color: #f44336;
+}
+
+[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* IMAGE STYLES */
+[type="radio"] + span {
+  cursor: pointer;
+}
+.node-type {
+  display: flex;
+}
+
+.remove-category-node-button-icon {
+  font-size: 16px;
+}

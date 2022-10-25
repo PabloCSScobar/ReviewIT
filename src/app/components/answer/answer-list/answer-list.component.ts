@@ -31,6 +31,6 @@ import { AnswerDetailComponent } from '../answer-detail/answer-detail.component'
   ],
 })
 export class AnswerListComponent {
-  @Input() answers!: Answer[] | null;
+  @Input() answers!: Answer[];
   constructor() {}
 }

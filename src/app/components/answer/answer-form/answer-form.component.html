@@ -1,0 +1,76 @@
+<div class="form-wrapper">
+  <div class="answer-header mat-h2">Add your review</div>
+  <form [formGroup]="answerForm" (submit)="submit()">
+    <!-- summary input  -->
+    <mat-form-field appearance="standard" class="full-width-field">
+      <mat-label>Summary</mat-label>
+      <input
+        formControlName="description"
+        data-testid="post-description"
+        matInput
+        required
+      />
+    </mat-form-field>
+
+    <!-- categories  -->
+    <div
+      class="reviewed_categories-wrapper"
+      formArrayName="reviewed_categories"
+    >
+      <!-- categories list  -->
+      <div class="row">
+        <mat-form-field appearance="standard" class="full-width-field">
+          <mat-label>Add category to review.</mat-label>
+          <mat-select
+            #available_categories
+            [disableRipple]="true"
+            [disabled]="availableCategories.length === 0"
+            [value]="availableCategories[0] && availableCategories[0].id"
+          >
+            <mat-option
+              *ngFor="let category of availableCategories"
+              [value]="category.id"
+              >{{ category.name }}</mat-option
+            >
+          </mat-select>
+          <mat-hint>
+            You can only rewiew categories included by author of the project
+          </mat-hint>
+        </mat-form-field>
+
+        <div>
+          <button
+            data-testid="add-category-button"
+            mat-icon-button
+            type="button"
+            color="primary"
+            class="add-category-button"
+            [disabled]="
+              availableCategories.length === 0 || !available_categories.value
+            "
+            (click)="addCategoryToReview(available_categories.value)"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <app-answer-form-category
+        *ngFor="let categoryForm of reviewedCategories.controls; let i = index"
+        [category]="selectedCategories[i]"
+        [categoryForm]="castToGroup(categoryForm)"
+        (remove)="removeCategory(i, selectedCategories[i].id)"
+      ></app-answer-form-category>
+    </div>
+    <!-- submit button -->
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      class="add-review-button"
+    >
+      <mat-icon>add</mat-icon>
+      Add review
+    </button>
+  </form>
+</div>

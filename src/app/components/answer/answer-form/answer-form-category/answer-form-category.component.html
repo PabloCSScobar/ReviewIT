@@ -1,0 +1,40 @@
+<div class="category-form" [formGroup]="categoryForm">
+  <div class="category-header">
+    <div class="category-rank-wrapper">
+      <div class="category-name">
+        {{ category.name }}
+      </div>
+      <div class="rank-input">
+        <app-star-input formControlName="rank"></app-star-input>
+      </div>
+    </div>
+    <button
+      data-testid="remove-category-button"
+      mat-icon-button
+      class="remove-category-button"
+      type="button"
+      (click)="removeCategory()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div class="category-content">
+    <div class="category-nodes" formArrayName="review_nodes">
+      <app-answer-form-category-node
+        *ngFor="let node of reviewNodes.controls; let j = index"
+        [categoryNodeForm]="castToGroup(node)"
+        (remove)="removeCategoryNodeFromCategory(j)"
+      ></app-answer-form-category-node>
+      <button
+        mat-stroked-button
+        color="accent"
+        class="add-category-node-button"
+        type="button"
+        (click)="addCategoryNodeToCategory()"
+      >
+        <mat-icon>add</mat-icon>
+        Add Category Node
+      </button>
+    </div>
+  </div>
+</div>
