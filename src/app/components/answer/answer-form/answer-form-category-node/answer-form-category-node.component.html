@@ -1,0 +1,44 @@
+<div class="review-node" [formGroup]="categoryNodeForm">
+  <div class="node-type">
+    <label>
+      <input value="pro" type="radio" name="type" formControlName="type" />
+      <mat-icon
+        [ngClass]="{
+          active: categoryNodeForm.value.type === 'pro'
+        }"
+        class="thumb thumb-up"
+      >
+        thumb_up_alt
+      </mat-icon>
+    </label>
+    <label>
+      <input value="con" type="radio" name="type" formControlName="type" />
+      <mat-icon
+        [ngClass]="{
+          active: categoryNodeForm.value.type === 'con'
+        }"
+        class="thumb thumb-down"
+      >
+        thumb_down_alt
+      </mat-icon>
+    </label>
+  </div>
+  <mat-form-field appearance="standard" class="full-width-field">
+    <mat-label>Description</mat-label>
+    <textarea
+      formControlName="description"
+      matInput
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="5"
+    ></textarea>
+  </mat-form-field>
+  <button
+    data-testid="remove-category-node-button"
+    mat-icon-button
+    class="remove-category-node-button"
+    (click)="removeCategoryNodeFromCategory()"
+  >
+    <mat-icon class="remove-category-node-button-icon">remove</mat-icon>
+  </button>
+</div>

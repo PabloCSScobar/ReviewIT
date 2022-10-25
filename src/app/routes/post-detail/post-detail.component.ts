@@ -7,6 +7,7 @@ import { Observable, map, switchMap, of } from 'rxjs';
 import { PostDetail } from '../../components/post/models/post';
 import { PostService } from '../../components/post/services/post.service';
 import { AnswerListComponent } from '../../components/answer/answer-list/answer-list.component';
+import { AnswerFormComponent } from '../../components/answer/answer-form/answer-form.component';
 
 @Component({
   selector: 'app-post-detail',
@@ -16,13 +17,13 @@ import { AnswerListComponent } from '../../components/answer/answer-list/answer-
     NavigationComponent,
     PostDetailViewComponent,
     AnswerListComponent,
+    AnswerFormComponent,
   ],
   template: ` <app-navigation>
-    <div main-content>
-      <app-post-detail-view [post]="post$ | async"></app-post-detail-view>
-      <app-answer-list
-        [answers]="(post$ | async)?.answers ?? []"
-      ></app-answer-list>
+    <div main-content *ngIf="post$ | async as post">
+      <app-post-detail-view [post]="post"></app-post-detail-view>
+      <app-answer-list [answers]="post.answers"></app-answer-list>
+      <app-answer-form [post]="post"></app-answer-form>
     </div>
     <div rightnav-content>Rightnav content</div>
   </app-navigation>`,

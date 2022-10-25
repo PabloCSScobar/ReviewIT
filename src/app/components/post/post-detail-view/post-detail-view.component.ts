@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostDetail } from '../models/post';
-import { StarRankComponent } from '../../shared/star-rank/star-rank.component';
+import { StarRankComponent } from '../../star-rank/star-rank.component';
 import { TagListComponent } from '../../tag/tag-list/tag-list.component';
 import { PostActivityComponent } from '../post-activity/post-activity.component';
 import { PostAnswersAmountComponent } from '../post-answers-amount/post-answers-amount.component';
 import { PostStatsComponent } from '../post-stats/post-stats.component';
-import { MatDivider, MatDividerModule } from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-post-detail-view',
@@ -24,5 +24,5 @@ import { MatDivider, MatDividerModule } from '@angular/material/divider';
   styleUrls: ['./post-detail-view.component.scss'],
 })
 export class PostDetailViewComponent {
-  @Input() post!: PostDetail | null;
+  @Input() post!: PostDetail;
 }

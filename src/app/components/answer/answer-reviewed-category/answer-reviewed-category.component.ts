@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReviewedCategory } from '../models/reviewed-category';
-import { StarRankComponent } from '../../shared/star-rank/star-rank.component';
+import { StarRankComponent } from '../../star-rank/star-rank.component';
 import { AnswerReviewedCategoryNodeComponent } from '../answer-reviewed-category-node/answer-reviewed-category-node.component';
 
 @Component({

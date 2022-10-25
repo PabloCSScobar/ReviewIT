@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Post } from '../models/post';
 import { TagListComponent } from '../../tag/tag-list/tag-list.component';
-import { StarRankComponent } from '../../shared/star-rank/star-rank.component';
+import { StarRankComponent } from '../../star-rank/star-rank.component';
 import { PostStatsComponent } from '../post-stats/post-stats.component';
 import { PostAnswersAmountComponent } from '../post-answers-amount/post-answers-amount.component';
 import { PostActivityComponent } from '../post-activity/post-activity.component';
