@@ -1,18 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-sidemenu',
   standalone: true,
-  imports: [CommonModule, MatListModule],
+  imports: [CommonModule, MatListModule, MatButtonModule],
   template: `<mat-nav-list>
-    <a mat-list-item href="#"> Item 1 </a>
-    <a mat-list-item href="#"> Item 2 </a>
-    <a mat-list-item href="#"> Item 3 </a>
-    <a mat-list-item href="#"> Item 4 </a>
+    <div class="new-project-button-wrapper">
+      <button mat-raised-button color="primary">Add new project</button>
+    </div>
+    <a mat-list-item href="#"> All projects </a>
   </mat-nav-list>`,
-  styles: [],
+  styles: [
+    `
+      .new-project-button-wrapper {
+        padding-left: 1em;
+        margin-bottom: 0.5em;
+      }
+    `,
+  ],
 })
 export class SidemenuComponent implements OnInit {
   constructor() {}
