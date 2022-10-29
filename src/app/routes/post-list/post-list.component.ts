@@ -3,14 +3,25 @@ import { CommonModule } from '@angular/common';
 import { NavigationComponent } from '../../components/main-layout/navigation/navigation.component';
 import { PostListComponent } from '../../components/post/post-list/post-list.component';
 import { Post } from '../../components/post/models/post';
+import { PostSearchInputComponent } from '../../components/post/post-search-input/post-search-input.component';
 
 @Component({
   selector: 'app-post-list-container',
   standalone: true,
-  imports: [CommonModule, NavigationComponent, PostListComponent],
+  imports: [
+    CommonModule,
+    NavigationComponent,
+    PostListComponent,
+    PostSearchInputComponent,
+  ],
   template: `
     <app-navigation>
-      <div main-content><app-post-list [posts]="posts"></app-post-list></div>
+      <div main-content>
+        <app-post-search-input
+          (newSearch)="search($event)"
+        ></app-post-search-input>
+        <app-post-list [posts]="posts"></app-post-list>
+      </div>
       <div rightnav-content>Rightnav content</div>
     </app-navigation>
   `,
@@ -129,5 +140,8 @@ export class PostListContainerComponent implements OnInit {
   ];
   constructor() {}
 
+  search(term: string) {
+    console.log(term);
+  }
   ngOnInit(): void {}
 }
