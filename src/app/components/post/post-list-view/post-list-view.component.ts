@@ -6,6 +6,7 @@ import { StarRankComponent } from '../../star-rank/star-rank.component';
 import { PostStatsComponent } from '../post-stats/post-stats.component';
 import { PostAnswersAmountComponent } from '../post-answers-amount/post-answers-amount.component';
 import { PostActivityComponent } from '../post-activity/post-activity.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-post-list-view',
@@ -17,6 +18,7 @@ import { PostActivityComponent } from '../post-activity/post-activity.component'
     PostStatsComponent,
     PostAnswersAmountComponent,
     PostActivityComponent,
+    RouterModule,
   ],
   templateUrl: './post-list-view.component.html',
   styleUrls: ['./post-list-view.component.scss'],

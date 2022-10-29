@@ -6,6 +6,11 @@ import { PostListContainerComponent } from './routes/post-list/post-list.compone
 export const routes: Routes = [
   {
     path: '',
+    redirectTo: '/posts',
+    pathMatch: 'full',
+  },
+  {
+    path: 'posts',
     component: PostListContainerComponent,
   },
   {

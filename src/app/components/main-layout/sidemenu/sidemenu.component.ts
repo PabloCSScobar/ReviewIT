@@ -2,16 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sidemenu',
   standalone: true,
-  imports: [CommonModule, MatListModule, MatButtonModule],
+  imports: [CommonModule, MatListModule, MatButtonModule, RouterModule],
   template: `<mat-nav-list>
     <div class="new-project-button-wrapper">
-      <button mat-raised-button color="primary">Add new project</button>
+      <button [routerLink]="['/posts/new']" mat-raised-button color="primary">
+        Add new project
+      </button>
     </div>
-    <a mat-list-item href="#"> All projects </a>
+    <a [routerLink]="['/posts']" mat-list-item> All projects </a>
   </mat-nav-list>`,
   styles: [
     `
