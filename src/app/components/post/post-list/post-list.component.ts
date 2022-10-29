@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostListViewComponent } from '../post-list-view/post-list-view.component';
+import { Post } from '../models/post';
 
 @Component({
   selector: 'app-post-list',
@@ -14,6 +15,6 @@ import { PostListViewComponent } from '../post-list-view/post-list-view.componen
   styles: [],
 })
 export class PostListComponent {
-  @Input() posts!: any[];
+  @Input() posts!: Post[];
   constructor() {}
 }
