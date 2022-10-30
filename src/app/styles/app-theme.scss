@@ -1,6 +1,6 @@
 @use "@angular/material" as mat;
 
-@use "../components/main-layout/sidebar/sidebar-theme";
+@use "../components/main-layout/sidebar/sidebar.component" as sidebar-theme;
 
 @include mat.core();
 

@@ -19,7 +19,6 @@ import { MatDividerModule } from '@angular/material/divider';
     <app-sidemenu></app-sidemenu>
   </div>`,
   styleUrls: ['./sidebar.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class SidebarComponent implements OnInit {
   constructor() {}

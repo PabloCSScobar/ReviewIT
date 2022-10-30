@@ -1,4 +1,17 @@
 @use "../../../styles/variables.scss";
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@mixin theme($theme) {
+  $background: map.get($theme, background);
+  $foreground: map.get($theme, foreground);
+
+  .sidebar-main {
+    color: mat.get-color-from-palette($foreground, text);
+    background: mat.get-color-from-palette($background, dialog);
+    border-bottom: 1px solid mat.get-color-from-palette($foreground, divider);
+  }
+}
 
 .sidebar-main {
   overflow: auto;
