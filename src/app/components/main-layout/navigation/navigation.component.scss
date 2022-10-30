@@ -21,8 +21,15 @@
 .content-wrapper {
   display: flex;
 }
+.main-content-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 .main-content {
-  flex: 2;
+  width: 1000px;
+  max-width: 1000px;
 }
 .side-content {
   padding: 2em;
