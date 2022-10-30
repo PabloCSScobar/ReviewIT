@@ -63,7 +63,7 @@ import {
       .search-wrapper {
         box-sizing: border-box;
         width: 100%;
-        padding: 2em;
+        padding: 0.5em 2em;
       }
       .search {
         width: 100%;

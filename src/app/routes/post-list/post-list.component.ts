@@ -13,6 +13,7 @@ import { PostsFilter } from '../../components/post/models/post-filters';
 import { MOCK_POSTS } from '../../components/post/models/posts_mock';
 import { Post } from '../../components/post/models/post';
 import { combineLatest, Observable, of, startWith, switchMap } from 'rxjs';
+import { PostCategoryFiltersTabComponent } from '../../components/post/post-category-filters-tab/post-category-filters-tab.component';
 
 @Component({
   selector: 'app-post-list-container',
@@ -23,15 +24,16 @@ import { combineLatest, Observable, of, startWith, switchMap } from 'rxjs';
     PostListComponent,
     PostSearchInputComponent,
     PostFiltersBarComponent,
+    PostCategoryFiltersTabComponent,
   ],
   template: `
     <app-navigation>
       <div main-content>
         <app-post-search-input></app-post-search-input>
         <app-post-filters-bar></app-post-filters-bar>
+        <app-post-category-filters-tab></app-post-category-filters-tab>
         <app-post-list [posts]="(posts$ | async)!"></app-post-list>
       </div>
-      <div rightnav-content>Rightnav content</div>
     </app-navigation>
   `,
   styles: [],
@@ -41,15 +43,18 @@ export class PostListContainerComponent implements AfterViewInit {
   posts$!: Observable<Post[]>;
   @ViewChild(PostSearchInputComponent) searchInput!: PostSearchInputComponent;
   @ViewChild(PostFiltersBarComponent) filterInput!: PostFiltersBarComponent;
+  @ViewChild(PostCategoryFiltersTabComponent)
+  categoryInput!: PostCategoryFiltersTabComponent;
   constructor(private cd: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
     this.posts$ = combineLatest([
       this.searchInput.newSearch.pipe(startWith('')),
       this.filterInput.newFilter.pipe(startWith(PostsFilter.LATEST)),
+      this.categoryInput.categoryChanged.pipe(startWith(null)),
     ]).pipe(
-      switchMap((term, postFilter) => {
-        console.log(term, postFilter);
+      switchMap(([term, postFilter, categoryFilter]) => {
+        console.log(term, postFilter, categoryFilter);
         return of(this.posts); //todo api call;
       })
     );
