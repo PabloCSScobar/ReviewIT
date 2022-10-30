@@ -81,6 +81,6 @@ export class PostFormComponent {
   }
 
   submit() {
-    console.log(this.postForm.value);
+    console.log(this.postForm);
   }
 }
