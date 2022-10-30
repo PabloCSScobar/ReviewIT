@@ -1,10 +1,13 @@
 @use "@angular/material" as mat;
 
 @use "../components/main-layout/sidebar/sidebar.component" as sidebar-theme;
+@use "../components/post/post-filters-bar/post-filters-bar.component" as
+  post-filters-theme;
 
 @include mat.core();
 
 @mixin theme($theme) {
   @include mat.all-component-themes($theme);
   @include sidebar-theme.theme($theme);
+  @include post-filters-theme.theme($theme);
 }

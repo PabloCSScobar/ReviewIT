@@ -1,0 +1,24 @@
+// @use "../../../styles/variables.scss";
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $primary: map.get($color-config, primary);
+
+  .filter-item.active {
+    background-color: mat.get-color-from-palette($primary);
+  }
+}
+
+.filter-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding-left: 2em;
+}
+.filter-item {
+  padding: 2px 8px;
+  cursor: pointer;
+  border-radius: 5px;
+}

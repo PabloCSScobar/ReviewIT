@@ -58,24 +58,7 @@ import { PostsFilter } from '../models/post-filters';
       </div>
     </div>
   `,
-  styles: [
-    `
-      .filter-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5px;
-        padding-left: 2em;
-      }
-      .filter-item {
-        padding: 2px 8px;
-        cursor: pointer;
-        border-radius: 5px;
-      }
-      .filter-item.active {
-        background-color: #e1ecf4;
-      }
-    `,
-  ],
+  styleUrls: ['./post-filters-bar.component.scss'],
 })
 export class PostFiltersBarComponent {
   filters = PostsFilter;
