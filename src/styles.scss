@@ -8,6 +8,11 @@
   $config: mat.define-typography-config();
 
   @include app-theme.theme($theme);
+
+  --tag-background: #e1ecf4;
+  --tag-foreground: #39739d;
+
+  --top-answer-color: #2f6f44;
 }
 .theme-dark {
   $primary: mat.define-palette(mat.$blue-palette, 700, 300, 900);
@@ -15,6 +20,11 @@
   $theme: mat.define-dark-theme($primary, $accent);
 
   @include app-theme.theme($theme);
+
+  --tag-background: #3d4951;
+  --tag-foreground: #9cc1db;
+
+  --top-answer-color: #93d0a7;
 }
 
 html,

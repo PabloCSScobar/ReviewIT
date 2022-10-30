@@ -25,7 +25,6 @@ import { CommonModule } from '@angular/common';
     `
       .post-answers {
         padding: 2px 5px;
-        border: 1px solid #2a9d8f;
         border-radius: 3px;
         display: flex;
         align-items: center;
@@ -33,11 +32,11 @@ import { CommonModule } from '@angular/common';
       }
       .top-answer-icon {
         font-size: 14px;
-        color: var(--fg);
+        color: var(--top-answer-color);
       }
       .top-answer {
-        background-color: #6abab1;
-        color: black;
+        border: 1px solid var(--top-answer-color);
+        color: var(--top-answer-color);
       }
       .no-answer {
         border: 1px solid black;

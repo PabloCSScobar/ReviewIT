@@ -12,7 +12,8 @@ import { CommonModule } from '@angular/common';
       .tag {
         padding: 2px 4px;
         border-radius: 2px;
-        background-color: #e1ecf4;
+        background-color: var(--tag-background);
+        color: var(--tag-foreground);
       }
     `,
   ],

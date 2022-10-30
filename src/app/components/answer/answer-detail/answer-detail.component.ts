@@ -47,9 +47,9 @@ import { AnswerReviewedCategoryComponent } from '../answer-reviewed-category/ans
 
       .top-answer {
         width: fit-content;
-        color: #6abab1;
+        color: var(--top-answer-color);
         padding: 1px 7px;
-        border: 1px solid #6abab1;
+        border: 1px solid var(--top-answer-color);
         border-radius: 3px;
       }
       .answer-description {

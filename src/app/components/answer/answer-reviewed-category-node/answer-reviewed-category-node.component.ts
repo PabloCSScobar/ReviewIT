@@ -32,7 +32,7 @@ import { ReviewCategoryNode } from '../../post/models/post-category-node';
   styles: [
     `
       .pro-node-icon {
-        color: #6abab1;
+        color: var(--top-answer-color);
       }
       .con-node-icon {
         color: #f44336;
