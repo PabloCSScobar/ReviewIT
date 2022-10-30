@@ -12,7 +12,6 @@ import { PostFormComponent } from '../../components/post/post-form/post-form.com
       <div main-content>
         <app-post-form></app-post-form>
       </div>
-      <div rightnav-content>Rightnav content</div>
     </app-navigation>
   `,
   styles: [],

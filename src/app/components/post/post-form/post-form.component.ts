@@ -51,6 +51,22 @@ export class PostFormComponent {
       id: 2,
       name: 'SEO',
     },
+    {
+      id: 3,
+      name: 'Accessibility',
+    },
+    {
+      id: 4,
+      name: 'RWD',
+    },
+    {
+      id: 5,
+      name: 'Code Quality',
+    },
+    {
+      id: 6,
+      name: 'Performance',
+    },
   ]);
 
   constructor(

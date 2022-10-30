@@ -25,7 +25,6 @@ import { AnswerFormComponent } from '../../components/answer/answer-form/answer-
       <app-answer-list [answers]="post.answers"></app-answer-list>
       <app-answer-form [post]="post"></app-answer-form>
     </div>
-    <div rightnav-content>Rightnav content</div>
   </app-navigation>`,
   styles: [],
 })
