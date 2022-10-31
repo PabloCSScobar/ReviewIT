@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,6 +25,7 @@ import { FlexSpacerComponent } from '../../shared/flex-spacer/flex-spacer.compon
         mat-icon-button
         (click)="toggleSidenav.emit()"
         class="matero-toolbar-button"
+        *ngIf="menuIconVisible"
       >
         <mat-icon>menu</mat-icon>
       </button>
@@ -36,6 +37,7 @@ import { FlexSpacerComponent } from '../../shared/flex-spacer/flex-spacer.compon
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  @Input() menuIconVisible!: boolean | null;
   @Output() toggleSidenav = new EventEmitter<void>();
 
   constructor() {}
