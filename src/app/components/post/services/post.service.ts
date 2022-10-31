@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { PostDetail } from '../models/post';
+import { Post, PostDetail } from '../models/post';
+import { MOCK_POSTS } from '../models/posts_mock';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostService {
+  private POST_LIST_MOCK: Post[] = MOCK_POSTS;
   private MOCK_POST_DETAL: PostDetail = {
     id: 1,
     categories: [
@@ -167,6 +169,20 @@ export class PostService {
     ],
   };
   constructor() {}
+
+  getPosts(
+    page: number,
+    searchedTerm: string,
+    postFilter: string,
+    categoryFilter: string | null
+  ): Observable<Post[]> {
+    console.log(
+      `searching posts page:${[
+        page,
+      ]} with searchFilter: ${searchedTerm}, postFilter: ${postFilter} and categoryFilter: ${categoryFilter}`
+    );
+    return of(this.POST_LIST_MOCK);
+  }
 
   getPostDetails(postId: number): Observable<PostDetail> {
     return of(this.MOCK_POST_DETAL);

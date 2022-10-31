@@ -14,6 +14,8 @@ import { MOCK_POSTS } from '../../components/post/models/posts_mock';
 import { Post } from '../../components/post/models/post';
 import { combineLatest, Observable, of, startWith, switchMap } from 'rxjs';
 import { PostCategoryFiltersTabComponent } from '../../components/post/post-category-filters-tab/post-category-filters-tab.component';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { PostService } from '../../components/post/services/post.service';
 
 @Component({
   selector: 'app-post-list-container',
@@ -25,6 +27,7 @@ import { PostCategoryFiltersTabComponent } from '../../components/post/post-cate
     PostSearchInputComponent,
     PostFiltersBarComponent,
     PostCategoryFiltersTabComponent,
+    MatPaginatorModule,
   ],
   template: `
     <app-navigation>
@@ -33,6 +36,13 @@ import { PostCategoryFiltersTabComponent } from '../../components/post/post-cate
         <app-post-filters-bar></app-post-filters-bar>
         <app-post-category-filters-tab></app-post-category-filters-tab>
         <app-post-list [posts]="(posts$ | async)!"></app-post-list>
+        <mat-paginator
+          class="posts-paginator"
+          [length]="100"
+          [pageSize]="10"
+          aria-label="Select page"
+        >
+        </mat-paginator>
       </div>
     </app-navigation>
   `,
@@ -41,22 +51,38 @@ import { PostCategoryFiltersTabComponent } from '../../components/post/post-cate
 export class PostListContainerComponent implements AfterViewInit {
   posts = MOCK_POSTS;
   posts$!: Observable<Post[]>;
+  @ViewChild(MatPaginator) pagination!: MatPaginator;
   @ViewChild(PostSearchInputComponent) searchInput!: PostSearchInputComponent;
   @ViewChild(PostFiltersBarComponent) filterInput!: PostFiltersBarComponent;
   @ViewChild(PostCategoryFiltersTabComponent)
   categoryInput!: PostCategoryFiltersTabComponent;
-  constructor(private cd: ChangeDetectorRef) {}
+
+  initPaginationEvent = {
+    previousPageIndex: 0,
+    pageIndex: 1,
+    pageSize: 10,
+    length: 100,
+  };
+  constructor(
+    private cd: ChangeDetectorRef,
+    private postService: PostService
+  ) {}
 
   ngAfterViewInit(): void {
     this.posts$ = combineLatest([
+      this.pagination.page.pipe(startWith(this.initPaginationEvent)),
       this.searchInput.newSearch.pipe(startWith('')),
       this.filterInput.newFilter.pipe(startWith(PostsFilter.LATEST)),
       this.categoryInput.categoryChanged.pipe(startWith(null)),
     ]).pipe(
-      switchMap(([term, postFilter, categoryFilter]) => {
-        console.log(term, postFilter, categoryFilter);
-        return of(this.posts); //todo api call;
-      })
+      switchMap(([pagEvent, searchedTerm, postFilter, categoryFilter]) =>
+        this.postService.getPosts(
+          pagEvent.pageIndex,
+          searchedTerm,
+          postFilter,
+          categoryFilter
+        )
+      )
     );
     this.cd.detectChanges();
   }

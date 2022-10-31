@@ -25,7 +25,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
           [matTooltip]="category.name"
           matTooltipPosition="below"
           [color]="selectedCategory == category.name ? 'primary' : ''"
-          aria-label="Example icon button with a menu icon"
         >
           <mat-icon>{{ category.icon }}</mat-icon>
         </button>
@@ -52,11 +51,11 @@ export class PostCategoryFiltersTabComponent {
     { name: 'Performance', icon: 'speed' },
   ];
   selectedCategory: string | null = null;
-  @Output() categoryChanged: EventEmitter<string> = new EventEmitter();
+  @Output() categoryChanged: EventEmitter<string | null> = new EventEmitter();
   constructor() {}
 
   toggleFIlter(category: string) {
     this.selectedCategory = category == this.selectedCategory ? null : category;
-    this.categoryChanged.emit(category);
+    this.categoryChanged.emit(this.selectedCategory);
   }
 }
