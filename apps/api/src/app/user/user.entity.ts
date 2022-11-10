@@ -12,5 +12,8 @@ export class User {
   username: string;
 
   @Column()
+  password: string;
+
+  @Column()
   avatar_link: string;
 }
