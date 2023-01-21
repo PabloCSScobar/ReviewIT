@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { ReviewedCategory } from '../../post/entities/reviewed-category.entity';
 
 @Entity()
 export class PostCategory {
@@ -7,4 +8,10 @@ export class PostCategory {
 
   @Column({ unique: true })
   name: string;
+
+  @ManyToOne(
+    () => ReviewedCategory,
+    (revievedCategory) => revievedCategory.category
+  )
+  reviewedCategories: ReviewedCategory[];
 }

@@ -19,13 +19,13 @@ export class Post {
   created: Date;
 
   @Column()
-  repo_url: string;
+  repoUrl: string;
 
   @Column('text')
   description: string;
 
   @Column()
-  page_url: string;
+  pageUrl: string;
 
   @Column('int', { default: 0 })
   visits: number;

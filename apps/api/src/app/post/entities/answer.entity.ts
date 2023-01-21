@@ -3,9 +3,11 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
+import { ReviewedCategory } from './reviewed-category.entity';
 @Entity()
 export class Answer {
   @PrimaryGeneratedColumn()
@@ -18,8 +20,11 @@ export class Answer {
   description: string;
 
   @Column()
-  is_top_answer: boolean;
+  isTopAnswer: boolean;
 
   @ManyToOne(() => User, (user) => user.answers)
   author: User;
+
+  @OneToMany(() => ReviewedCategory, (category) => category.answer)
+  reviewedCategories: ReviewedCategory[];
 }

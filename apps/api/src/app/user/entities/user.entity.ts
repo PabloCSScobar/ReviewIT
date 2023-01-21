@@ -17,7 +17,7 @@ export class User {
   password: string;
 
   @Column()
-  avatar_link: string;
+  avatarLink: string;
 
   @OneToMany((type) => Post, (post) => post.author)
   posts: Post[];
