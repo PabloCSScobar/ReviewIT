@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { PostCategoryService } from './post-category.service';
 import { PostCategoryController } from './post-category.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PostCategory } from './entities/post-category';
+import { PostCategory } from './entities/post-category.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([PostCategory])],

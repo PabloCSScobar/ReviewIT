@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreatePostCategoryDto } from './dto/create-post-category.dto';
 import { UpdatePostCategoryDto } from './dto/update-post-category.dto';
-import { PostCategory } from './entities/post-category';
+import { PostCategory } from './entities/post-category.entity';
 
 @Injectable()
 export class PostCategoryService {

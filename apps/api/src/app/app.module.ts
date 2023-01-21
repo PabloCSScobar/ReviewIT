@@ -8,7 +8,7 @@ import { UserModule } from './user/user.module';
 import { PostModule } from './post/post.module';
 import { PostCategoryModule } from './post-category/post-category.module';
 import { Post } from './post/entities/post.entity';
-import { PostCategory } from './post-category/entities/post-category';
+import { PostCategory } from './post-category/entities/post-category.entity';
 import { Answer } from './post/entities/answer.entity';
 
 @Module({
