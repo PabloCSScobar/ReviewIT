@@ -15,6 +15,7 @@ export class PostService {
     @InjectRepository(PostCategory)
     private postCategoryRepository: Repository<PostCategory>
   ) {}
+
   async create(createPostDto: CreatePostDto) {
     const categoriesIds = createPostDto.categories;
     const author = await this.userRepository.findOneBy({ id: 1 });
@@ -36,15 +37,14 @@ export class PostService {
     return this.postRepository.find({ relations: ['author', 'categories'] });
   }
 
-  findOne(id: number) {
-    return this.postRepository.findOne({
+  async findOne(id: number) {
+    const post = await this.postRepository.findOne({
       where: { id },
       relations: ['author', 'categories'],
     });
-  }
+    if (!post) throw new HttpException('Post not found', HttpStatus.NOT_FOUND);
 
-  update(id: number, updatePostDto: UpdatePostDto) {
-    return `This action updates a #${id} post`;
+    return post;
   }
 
   remove(id: number) {

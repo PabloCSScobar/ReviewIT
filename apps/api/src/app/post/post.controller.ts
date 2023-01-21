@@ -30,11 +30,6 @@ export class PostController {
     return this.postService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
-    return this.postService.update(+id, updatePostDto);
-  }
-
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.postService.remove(+id);
