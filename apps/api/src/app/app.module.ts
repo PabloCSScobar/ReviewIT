@@ -20,7 +20,7 @@ import { Answer } from './post/entities/answer.entity';
       username: 'test',
       password: 'test',
       database: 'reviewit',
-      entities: [User, Post, PostCategory, Answer],
+      entities: [__dirname + '/../**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
     UserModule,
