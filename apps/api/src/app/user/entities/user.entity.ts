@@ -19,7 +19,7 @@ export class User {
   @Column()
   avatarLink: string;
 
-  @OneToMany((type) => Post, (post) => post.author)
+  @OneToMany(() => Post, (post) => post.author)
   posts: Post[];
 
   @OneToMany(() => Answer, (answer) => answer.author)

@@ -1,6 +1,6 @@
 export class CreatePostDto {
-  repo_url: string;
-  page_url: string;
+  repoUrl: string;
+  pageUrl: string;
   description: string;
   categories: number[];
 }

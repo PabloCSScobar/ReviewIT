@@ -23,7 +23,7 @@ export class UserService {
     const newUser = this.usersRepository.create({
       ...user,
       reputation: 0,
-      avatar_link:
+      avatarLink:
         'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortFlat&accessoriesType=Blank&hairColor=Blonde&facialHairType=MoustacheMagnum&facialHairColor=Brown&clotheType=ShirtScoopNeck&clotheColor=Black&eyeType=Squint&eyebrowType=UpDown&mouthType=Default&skinColor=Light',
     });
     return await this.usersRepository.save(newUser);
