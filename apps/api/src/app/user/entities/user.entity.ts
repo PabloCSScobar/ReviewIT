@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Answer } from '../../post/entities/answer.entity';
 import { Post } from '../../post/entities/post.entity';
 
 @Entity()
@@ -19,5 +20,8 @@ export class User {
   avatar_link: string;
 
   @OneToMany((type) => Post, (post) => post.author)
-  posts: Post;
+  posts: Post[];
+
+  @OneToMany(() => Answer, (answer) => answer.author)
+  answers: Answer[];
 }

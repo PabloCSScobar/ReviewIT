@@ -9,6 +9,7 @@ import { PostModule } from './post/post.module';
 import { PostCategoryModule } from './post-category/post-category.module';
 import { Post } from './post/entities/post.entity';
 import { PostCategory } from './post-category/entities/post-category';
+import { Answer } from './post/entities/answer.entity';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { PostCategory } from './post-category/entities/post-category';
       username: 'test',
       password: 'test',
       database: 'reviewit',
-      entities: [User, Post, PostCategory],
+      entities: [User, Post, PostCategory, Answer],
       synchronize: true,
     }),
     UserModule,
