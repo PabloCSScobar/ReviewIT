@@ -10,7 +10,7 @@ export class User {
   @Column()
   reputation: number;
 
-  @Column()
+  @Column({ unique: true })
   username: string;
 
   @Column()

@@ -12,7 +12,9 @@ import { PostCategory } from './post-category/entities/post-category.entity';
 import { Answer } from './post/entities/answer.entity';
 import { ReviewedCategory } from './post/entities/reviewed-category.entity';
 import { ReviewedCategoryNode } from './post/entities/reviewed-category-node.entity';
-
+import { AuthModule } from './auth/auth.module';
+import { AuthService } from './auth/auth.service';
+import { JwtService } from '@nestjs/jwt';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -35,8 +37,9 @@ import { ReviewedCategoryNode } from './post/entities/reviewed-category-node.ent
     UserModule,
     PostModule,
     PostCategoryModule,
+    AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [],
 })
 export class AppModule {}
