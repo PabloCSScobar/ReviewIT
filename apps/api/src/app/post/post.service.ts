@@ -38,8 +38,15 @@ export class PostService {
     return await this.postRepository.save(newPost);
   }
 
-  findAll() {
-    return this.postRepository.find({ relations: ['author', 'categories'] });
+  async findAll() {
+    const posts = await this.postRepository.find({
+      relations: ['author', 'categories'],
+    });
+    posts.map((post) => {
+      post.hasTopAnswer = post.getHasTopAnswer();
+      post.answers_amount = post.getAnswersAmount();
+    });
+    return posts;
   }
 
   async findOne(id: number) {
@@ -48,7 +55,8 @@ export class PostService {
       relations: ['author', 'categories'],
     });
     if (!post) throw new HttpException('Post not found', HttpStatus.NOT_FOUND);
-
+    post.hasTopAnswer = post.getHasTopAnswer();
+    post.answers_amount = post.getAnswersAmount();
     return post;
   }
 
