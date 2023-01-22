@@ -4,7 +4,6 @@ import { In, Repository } from 'typeorm';
 import { PostCategory } from '../post-category/entities/post-category.entity';
 import { User } from '../user/entities/user.entity';
 import { CreatePostDto } from './dto/create-post.dto';
-import { UpdatePostDto } from './dto/update-post.dto';
 import { Post } from './entities/post.entity';
 
 @Injectable()
@@ -15,6 +14,12 @@ export class PostService {
     @InjectRepository(PostCategory)
     private postCategoryRepository: Repository<PostCategory>
   ) {}
+
+  async getPostById(id: number) {
+    const post = await this.postRepository.findOneBy({ id });
+    if (!post) throw new HttpException('Post Not found', HttpStatus.NOT_FOUND);
+    return post;
+  }
 
   async create(createPostDto: CreatePostDto) {
     const categoriesIds = createPostDto.categories;

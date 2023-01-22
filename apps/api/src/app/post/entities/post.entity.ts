@@ -5,10 +5,12 @@ import {
   JoinTable,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
 import { PostCategory } from '../../post-category/entities/post-category.entity';
+import { Answer } from './answer.entity';
 
 @Entity()
 export class Post {
@@ -32,6 +34,9 @@ export class Post {
 
   @ManyToOne((type) => User, (user) => user.posts)
   author: User;
+
+  @OneToMany(() => Answer, (answer) => answer.post)
+  answers: Answer[];
 
   @ManyToMany((type) => PostCategory)
   @JoinTable()
