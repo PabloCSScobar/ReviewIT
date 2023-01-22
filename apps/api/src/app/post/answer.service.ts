@@ -50,7 +50,7 @@ export class AnswerService {
   }
 
   async getAnswers(postId: number) {
-    return await this.answerRepository.find({
+    const answers = await this.answerRepository.find({
       where: { post: { id: postId } },
       relations: [
         'author',
@@ -59,6 +59,13 @@ export class AnswerService {
         'reviewedCategories.reviewCategoryNodes',
       ],
     });
+    answers.map((answer) => {
+      answer.rank = this.calculateAnswerRankBasedOnReviewedCategories(
+        answer.reviewedCategories
+      );
+    });
+
+    return answers;
   }
 
   deleteAnswer(answerId: number) {
@@ -70,9 +77,9 @@ export class AnswerService {
   ) {
     let rank = 0;
     reviewedCategories.forEach((category) => {
-      rank += category.reviewCategoryNodes.length;
+      rank += category.rank;
     });
-    return rank;
+    return rank / reviewedCategories.length;
   }
 
   async markAnswerAsTop(answerId: number) {

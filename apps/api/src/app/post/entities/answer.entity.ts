@@ -31,4 +31,6 @@ export class Answer {
 
   @OneToMany(() => ReviewedCategory, (category) => category.answer)
   reviewedCategories: ReviewedCategory[];
+
+  rank: number;
 }
