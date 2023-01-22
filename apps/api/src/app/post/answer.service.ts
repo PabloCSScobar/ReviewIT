@@ -52,12 +52,27 @@ export class AnswerService {
   async getAnswers(postId: number) {
     return await this.answerRepository.find({
       where: { post: { id: postId } },
-      relations: ['author', 'reviewedCategories'],
+      relations: [
+        'author',
+        'reviewedCategories',
+        'reviewedCategories.category',
+        'reviewedCategories.reviewCategoryNodes',
+      ],
     });
   }
 
   deleteAnswer(answerId: number) {
     return this.answerRepository.delete(answerId);
+  }
+
+  calculateAnswerRankBasedOnReviewedCategories(
+    reviewedCategories: ReviewedCategory[]
+  ) {
+    let rank = 0;
+    reviewedCategories.forEach((category) => {
+      rank += category.reviewCategoryNodes.length;
+    });
+    return rank;
   }
 
   async markAnswerAsTop(answerId: number) {
