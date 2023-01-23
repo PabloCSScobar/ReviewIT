@@ -27,9 +27,13 @@ export class AnswerService {
     private postService: PostService
   ) {}
 
-  async create(postId: number, createAnswerDto: CreateAnswerDto) {
+  async create(
+    postId: number,
+    createAnswerDto: CreateAnswerDto,
+    authorId: number
+  ) {
     const post = await this.postService.getPostById(postId);
-    const author = await this.userRepository.findOneBy({ id: 1 });
+    const author = await this.userRepository.findOneBy({ id: authorId });
     if (!author)
       throw new HttpException('User Not found', HttpStatus.BAD_REQUEST);
 

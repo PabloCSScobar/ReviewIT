@@ -6,12 +6,14 @@ import {
   Param,
   Delete,
   UseGuards,
+  Request,
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { AnswerService } from './answer.service';
 import { CreateAnswerDto } from './dto/create-answer.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { RequestWithUser } from '../user/user-request.type';
 
 @UseGuards(JwtAuthGuard)
 @Controller('posts')
@@ -22,8 +24,12 @@ export class PostController {
   ) {}
 
   @Post()
-  create(@Body() createPostDto: CreatePostDto) {
-    return this.postService.create(createPostDto);
+  create(
+    @Request() req: RequestWithUser,
+    @Body() createPostDto: CreatePostDto
+  ) {
+    const authorId = req.user.userId;
+    return this.postService.create(createPostDto, authorId);
   }
 
   @Get()
@@ -42,8 +48,13 @@ export class PostController {
   }
 
   @Post(':id/answers')
-  addAnswer(@Param('id') id: string, @Body() createAnswerDto: CreateAnswerDto) {
-    return this.answerService.create(+id, createAnswerDto);
+  addAnswer(
+    @Request() req: RequestWithUser,
+    @Param('id') id: string,
+    @Body() createAnswerDto: CreateAnswerDto
+  ) {
+    const authorId = req.user.userId;
+    return this.answerService.create(+id, createAnswerDto, authorId);
   }
 
   @Post(':id/answers/:answerId/mark_as_top')

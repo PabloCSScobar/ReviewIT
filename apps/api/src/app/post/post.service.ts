@@ -21,9 +21,11 @@ export class PostService {
     return post;
   }
 
-  async create(createPostDto: CreatePostDto) {
+  async create(createPostDto: CreatePostDto, authorId: number) {
     const categoriesIds = createPostDto.categories;
-    const author = await this.userRepository.findOneBy({ id: 1 });
+    const author = await this.userRepository.findOneBy({
+      id: authorId,
+    });
     if (!author)
       throw new HttpException('User Not found', HttpStatus.BAD_REQUEST);
     const categories = await this.postCategoryRepository.find({
