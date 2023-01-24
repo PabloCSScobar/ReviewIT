@@ -45,7 +45,7 @@ export class Post {
   @JoinTable()
   categories: PostCategory[];
 
-  answers_amount: number;
+  answersAmount: number;
 
   hasTopAnswer: boolean;
 
