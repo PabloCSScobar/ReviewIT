@@ -22,6 +22,6 @@ export class PostService {
   }
 
   getPostDetails(postId: number): Observable<PostDetail> {
-    return this.http.get<PostDetail>(`${this.apiUrl}posts/${postId}}`);
+    return this.http.get<PostDetail>(`${this.apiUrl}posts/${postId}`);
   }
 }
