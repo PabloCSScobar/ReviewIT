@@ -1,5 +1,4 @@
-import { PostActivity } from '../../post/models/post-activity';
-import { PostCategory } from '../../post/models/post-category';
+import { PostUser } from '../../post/models/post-user';
 import { ReviewedCategory } from './reviewed-category';
 
 export type Answer = {
@@ -8,6 +7,6 @@ export type Answer = {
   description: string;
   is_top_answer: boolean;
   rank: number;
-  author_last_activity: PostActivity;
+  author: PostUser;
   reviewed_categories: ReviewedCategory[];
 };

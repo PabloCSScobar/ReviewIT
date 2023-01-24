@@ -30,7 +30,8 @@ import { AnswerReviewedCategoryComponent } from '../answer-reviewed-category/ans
       [category]="category"
     ></app-answer-reviewed-category>
     <app-post-activity
-      [activity]="answer.author_last_activity"
+      [author]="answer.author"
+      [created]="answer.created"
     ></app-post-activity>
   </div>`,
   styles: [
