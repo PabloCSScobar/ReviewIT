@@ -7,15 +7,13 @@ export type Post = {
   id: number;
   created: string;
   title: string;
-  page_url: string;
-  repo_url: string;
+  pageUrl: string;
+  repoUrl: string;
   rank: number;
   visits: number;
-  has_top_answer: boolean;
+  hasTopAnswer: boolean;
   author: PostUser;
-  author_last_activity: PostActivity;
-  post_last_activity: PostActivity;
-  answers: number;
+  answersAmount: number;
   categories: PostCategory[];
 };
 

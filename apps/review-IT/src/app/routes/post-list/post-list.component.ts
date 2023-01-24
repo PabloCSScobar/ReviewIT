@@ -10,7 +10,6 @@ import { PostListComponent } from '../../components/post/post-list/post-list.com
 import { PostSearchInputComponent } from '../../components/post/post-search-input/post-search-input.component';
 import { PostFiltersBarComponent } from '../../components/post/post-filters-bar/post-filters-bar.component';
 import { PostsFilter } from '../../components/post/models/post-filters';
-import { MOCK_POSTS } from '../../components/post/models/posts_mock';
 import { Post } from '../../components/post/models/post';
 import { combineLatest, Observable, of, startWith, switchMap } from 'rxjs';
 import { PostCategoryFiltersTabComponent } from '../../components/post/post-category-filters-tab/post-category-filters-tab.component';
@@ -49,7 +48,6 @@ import { PostService } from '../../components/post/services/post.service';
   styles: [],
 })
 export class PostListContainerComponent implements AfterViewInit {
-  posts = MOCK_POSTS;
   posts$!: Observable<Post[]>;
   @ViewChild(MatPaginator) pagination!: MatPaginator;
   @ViewChild(PostSearchInputComponent) searchInput!: PostSearchInputComponent;
