@@ -11,7 +11,7 @@ import { PostUser } from '../../post/models/post-user';
     <div class="user-panel">
       <img
         class="user-panel-avatar"
-        [src]="user.avatar_link"
+        [src]="user.avatarLink"
         alt="avatar"
         width="64"
       />
@@ -83,7 +83,7 @@ export class UserPanelComponent implements OnInit {
     id: 1,
     username: 'Jan Kowalski',
     reputation: 1200,
-    avatar_link:
+    avatarLink:
       'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortFlat&accessoriesType=Round&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=BlazerSweater&eyeType=WinkWacky&eyebrowType=AngryNatural&mouthType=Concerned&skinColor=Yellow',
   };
   constructor() {}

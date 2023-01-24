@@ -12,7 +12,7 @@ import { PostUser } from '../../post/models/post-user';
         <img
           data-testid="avatar"
           class="user-avatar"
-          [src]="user.avatar_link"
+          [src]="user.avatarLink"
           alt="user avatar"
         />
       </div>
