@@ -46,7 +46,7 @@ export class PostService {
     });
     posts.map((post) => {
       post.hasTopAnswer = post.getHasTopAnswer();
-      post.answers_amount = post.getAnswersAmount();
+      post.answersAmount = post.getAnswersAmount();
     });
     return posts;
   }
@@ -58,7 +58,7 @@ export class PostService {
     });
     if (!post) throw new HttpException('Post not found', HttpStatus.NOT_FOUND);
     post.hasTopAnswer = post.getHasTopAnswer();
-    post.answers_amount = post.getAnswersAmount();
+    post.answersAmount = post.getAnswersAmount();
     return post;
   }
 

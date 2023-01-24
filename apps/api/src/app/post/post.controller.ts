@@ -15,7 +15,6 @@ import { CreateAnswerDto } from './dto/create-answer.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { RequestWithUser } from '../user/user-request.type';
 
-@UseGuards(JwtAuthGuard)
 @Controller('posts')
 export class PostController {
   constructor(

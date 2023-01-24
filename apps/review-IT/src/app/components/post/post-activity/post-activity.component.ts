@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostActivity } from '../models/post-activity';
 import { UserInlineInfoComponent } from '../../user/user-inline-info/user-inline-info.component';
+import { Post } from '../models/post';
+import { PostUser } from '../models/post-user';
 
 @Component({
   selector: 'app-post-activity',
@@ -9,10 +11,10 @@ import { UserInlineInfoComponent } from '../../user/user-inline-info/user-inline
   imports: [CommonModule, UserInlineInfoComponent],
   template: `
     <div class="last-user-activity">
-      <app-user-inline-info [user]="activity.author"></app-user-inline-info>
-      <span class="activity-type mat-small">{{ activity.type }}</span>
+      <app-user-inline-info [user]="author"></app-user-inline-info>
+      <span class="activity-type mat-small">created</span>
       <div class="activity-time mat-small">
-        {{ activity.created }}
+        {{ created }}
       </div>
     </div>
   `,
@@ -33,7 +35,8 @@ import { UserInlineInfoComponent } from '../../user/user-inline-info/user-inline
   ],
 })
 export class PostActivityComponent implements OnInit {
-  @Input() activity!: PostActivity;
+  @Input() author: PostUser;
+  @Input() created: string;
   constructor() {}
 
   ngOnInit(): void {}

@@ -20,16 +20,17 @@
       {{ post.description }}
     </div>
     <div data-testid="post-page-url" class="page-url mat-caption">
-      Live Page URL: {{ post.page_url }}
+      Live Page URL: {{ post.pageUrl }}
     </div>
     <div data-testid="post-repo-url" class="page-url mat-caption">
-      Repository URL: {{ post.repo_url }}
+      Repository URL: {{ post.repoUrl }}
     </div>
   </div>
   <div class="post-bottom-row">
     <app-tag-list [tags]="post.categories"></app-tag-list>
     <app-post-activity
-      [activity]="post.author_last_activity"
+      [author]="post.author"
+      [created]="post.created"
     ></app-post-activity>
   </div>
 </div>
