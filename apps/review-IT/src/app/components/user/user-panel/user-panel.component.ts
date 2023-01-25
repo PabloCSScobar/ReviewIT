@@ -1,14 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { PostUser } from '../../post/models/post-user';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-user-panel',
   standalone: true,
   imports: [CommonModule, MatIconModule],
   template: `
-    <div class="user-panel">
+    <div class="user-panel" *ngIf="loggedUser$ | async as user">
       <img
         class="user-panel-avatar"
         [src]="user.avatarLink"
@@ -42,8 +43,8 @@ import { PostUser } from '../../post/models/post-user';
         padding: 16px 0;
       }
       .user-panel-avatar {
-        width: 64px;
-        height: 64px;
+        width: 100px;
+        height: 100px;
         margin-bottom: 8px;
         border-radius: 50rem;
       }
@@ -78,15 +79,7 @@ import { PostUser } from '../../post/models/post-user';
     `,
   ],
 })
-export class UserPanelComponent implements OnInit {
-  user: PostUser = {
-    id: 1,
-    username: 'Jan Kowalski',
-    reputation: 1200,
-    avatarLink:
-      'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortFlat&accessoriesType=Round&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=BlazerSweater&eyeType=WinkWacky&eyebrowType=AngryNatural&mouthType=Concerned&skinColor=Yellow',
-  };
-  constructor() {}
-
-  ngOnInit(): void {}
+export class UserPanelComponent {
+  private userService = inject(UserService);
+  loggedUser$ = this.userService.getMe();
 }
