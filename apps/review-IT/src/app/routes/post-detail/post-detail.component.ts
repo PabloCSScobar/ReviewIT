@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationComponent } from '../../components/main-layout/navigation/navigation.component';
 import { PostDetailViewComponent } from '../../components/post/post-detail-view/post-detail-view.component';
@@ -28,17 +28,11 @@ import { AnswerFormComponent } from '../../components/answer/answer-form/answer-
   </app-navigation>`,
   styles: [],
 })
-export class PostDetailComponent implements OnInit {
-  post$!: Observable<PostDetail>;
-  constructor(
-    private route: ActivatedRoute,
-    private postService: PostService
-  ) {}
-
-  ngOnInit(): void {
-    this.post$ = this.route.paramMap.pipe(
-      map((params) => Number(params.get('id')!)),
-      switchMap((postId) => this.postService.getPostDetails(postId))
-    );
-  }
+export class PostDetailComponent {
+  private route = inject(ActivatedRoute);
+  private postService = inject(PostService);
+  post$: Observable<PostDetail> = this.route.paramMap.pipe(
+    map((params) => +params.get('id')!),
+    switchMap((postId) => this.postService.getPostDetails(postId))
+  );
 }
