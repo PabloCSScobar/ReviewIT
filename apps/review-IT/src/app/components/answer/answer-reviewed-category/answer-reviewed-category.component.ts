@@ -20,7 +20,7 @@ import { AnswerReviewedCategoryNodeComponent } from '../answer-reviewed-category
           [label]="category.category.name"
         ></app-star-rank>
       </div>
-      <ng-container *ngFor="let node of category.review_nodes">
+      <ng-container *ngFor="let node of category.reviewCategoryNodes">
         <app-answer-reviewed-category-node
           [node]="node"
         ></app-answer-reviewed-category-node>
@@ -36,6 +36,5 @@ import { AnswerReviewedCategoryNodeComponent } from '../answer-reviewed-category
   ],
 })
 export class AnswerReviewedCategoryComponent {
-  @Input() category!: ReviewedCategory;
-  constructor() {}
+  @Input() category: ReviewedCategory;
 }

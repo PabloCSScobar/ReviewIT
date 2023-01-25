@@ -20,13 +20,13 @@ import { AnswerReviewedCategoryComponent } from '../answer-reviewed-category/ans
     <mat-divider></mat-divider>
     <div class="answer-header">
       <app-star-rank [rank]="answer.rank" label="Overall rank"></app-star-rank>
-      <div *ngIf="answer.is_top_answer" class="top-answer">Top Review</div>
+      <div *ngIf="answer.isTopAnswer" class="top-answer">Top Review</div>
     </div>
     <div data-testid="answer-description" class="answer-description">
       {{ answer.description }}
     </div>
     <app-answer-reviewed-category
-      *ngFor="let category of answer.reviewed_categories"
+      *ngFor="let category of answer.reviewedCategories"
       [category]="category"
     ></app-answer-reviewed-category>
     <app-post-activity
@@ -60,6 +60,5 @@ import { AnswerReviewedCategoryComponent } from '../answer-reviewed-category/ans
   ],
 })
 export class AnswerDetailComponent {
-  @Input() answer!: Answer;
-  constructor() {}
+  @Input() answer: Answer;
 }

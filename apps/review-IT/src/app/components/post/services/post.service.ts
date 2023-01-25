@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Post, PostDetail } from '../models/post';
 import { environment as env } from '../../../../environments/environment';
@@ -8,9 +8,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class PostService {
+  private http = inject(HttpClient);
   private apiUrl = env.apiUrl;
-
-  constructor(private http: HttpClient) {}
 
   getPosts(
     page: number,
