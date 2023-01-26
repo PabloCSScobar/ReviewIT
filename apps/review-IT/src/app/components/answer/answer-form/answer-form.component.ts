@@ -8,10 +8,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { PostCategory } from '../../post/models/post-category';
+import { PostCategory } from '../../../models/post-category';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { PostDetail } from '../../post/models/post';
+import { PostDetail } from '../../../models/post';
 import { MatIconModule } from '@angular/material/icon';
 import { AnswerFormCategoryComponent } from './answer-form-category/answer-form-category.component';
 import { castAbstractControlToFormGroup } from '../../shared/form-utils/form-utils';

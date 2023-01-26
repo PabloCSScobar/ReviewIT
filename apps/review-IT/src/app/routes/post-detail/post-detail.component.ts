@@ -4,12 +4,12 @@ import { NavigationComponent } from '../../components/main-layout/navigation/nav
 import { PostDetailViewComponent } from '../../components/post/post-detail-view/post-detail-view.component';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, map, switchMap, of, shareReplay } from 'rxjs';
-import { PostDetail } from '../../components/post/models/post';
+import { PostDetail } from '../../models/post';
 import { PostService } from '../../components/post/services/post.service';
 import { AnswerListComponent } from '../../components/answer/answer-list/answer-list.component';
 import { AnswerFormComponent } from '../../components/answer/answer-form/answer-form.component';
 import { AnswerService } from '../../services/answer.service';
-import { Answer } from '../../components/answer/models/answer';
+import { Answer } from '../../models/answer';
 
 @Component({
   selector: 'app-post-detail',

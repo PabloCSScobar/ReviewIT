@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReviewedCategory } from '../models/reviewed-category';
+import { ReviewedCategory } from '../../../models/reviewed-category';
 import { StarRankComponent } from '../../star-rank/star-rank.component';
 import { AnswerReviewedCategoryNodeComponent } from '../answer-reviewed-category-node/answer-reviewed-category-node.component';
 

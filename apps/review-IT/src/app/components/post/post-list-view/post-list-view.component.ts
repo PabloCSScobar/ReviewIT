@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Post } from '../models/post';
+import { Post } from '../../../models/post';
 import { TagListComponent } from '../../tag/tag-list/tag-list.component';
 import { StarRankComponent } from '../../star-rank/star-rank.component';
 import { PostStatsComponent } from '../post-stats/post-stats.component';
@@ -23,9 +23,6 @@ import { RouterModule } from '@angular/router';
   templateUrl: './post-list-view.component.html',
   styleUrls: ['./post-list-view.component.scss'],
 })
-export class PostListViewComponent implements OnInit {
+export class PostListViewComponent {
   @Input() post!: Post;
-  constructor() {}
-
-  ngOnInit(): void {}
 }

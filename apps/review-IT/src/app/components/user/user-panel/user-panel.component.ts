@@ -1,7 +1,6 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { PostUser } from '../../post/models/post-user';
 import { UserService } from '../../../services/user.service';
 
 @Component({

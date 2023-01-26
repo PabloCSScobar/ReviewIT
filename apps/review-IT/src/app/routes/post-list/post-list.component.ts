@@ -9,8 +9,8 @@ import { NavigationComponent } from '../../components/main-layout/navigation/nav
 import { PostListComponent } from '../../components/post/post-list/post-list.component';
 import { PostSearchInputComponent } from '../../components/post/post-search-input/post-search-input.component';
 import { PostFiltersBarComponent } from '../../components/post/post-filters-bar/post-filters-bar.component';
-import { PostsFilter } from '../../components/post/models/post-filters';
-import { Post } from '../../components/post/models/post';
+import { PostsFilter } from '../../models/post-filters';
+import { Post } from '../../models/post';
 import { combineLatest, Observable, of, startWith, switchMap } from 'rxjs';
 import { PostCategoryFiltersTabComponent } from '../../components/post/post-category-filters-tab/post-category-filters-tab.component';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';

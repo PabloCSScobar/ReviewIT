@@ -1,4 +1,4 @@
-import { PostUser } from '../../post/models/post-user';
+import { PostUser } from './post-user';
 import { ReviewedCategory } from './reviewed-category';
 
 export type Answer = {

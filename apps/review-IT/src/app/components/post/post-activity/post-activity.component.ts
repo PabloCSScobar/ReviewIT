@@ -1,9 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PostActivity } from '../models/post-activity';
 import { UserInlineInfoComponent } from '../../user/user-inline-info/user-inline-info.component';
-import { Post } from '../models/post';
-import { PostUser } from '../models/post-user';
+import { PostUser } from '../../../models/post-user';
 
 @Component({
   selector: 'app-post-activity',
@@ -34,10 +32,7 @@ import { PostUser } from '../models/post-user';
     `,
   ],
 })
-export class PostActivityComponent implements OnInit {
+export class PostActivityComponent {
   @Input() author: PostUser;
   @Input() created: string;
-  constructor() {}
-
-  ngOnInit(): void {}
 }

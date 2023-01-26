@@ -1,4 +1,4 @@
-import { Answer } from '../../answer/models/answer';
+import { Answer } from './answer';
 import { PostActivity } from './post-activity';
 import { PostCategory } from './post-category';
 import { PostUser } from './post-user';

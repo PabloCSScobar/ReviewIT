@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Answer } from '../models/answer';
+import { Answer } from '../../../models/answer';
 import { PostActivityComponent } from '../../post/post-activity/post-activity.component';
 import { StarRankComponent } from '../../star-rank/star-rank.component';
 import { MatDividerModule } from '@angular/material/divider';

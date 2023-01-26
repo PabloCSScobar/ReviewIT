@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReviewCategoryNode } from '../../post/models/post-category-node';
+import { ReviewCategoryNode } from '../../../models/post-category-node';
 
 @Component({
   selector: 'app-answer-reviewed-category-node',
@@ -54,5 +54,4 @@ import { ReviewCategoryNode } from '../../post/models/post-category-node';
 })
 export class AnswerReviewedCategoryNodeComponent {
   @Input() node!: ReviewCategoryNode;
-  constructor() {}
 }

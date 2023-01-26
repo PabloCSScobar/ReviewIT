@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment as env } from '../../environments/environment';
-import { PostUser } from '../components/post/models/post-user';
+import { PostUser } from '../models/post-user';
 
 @Injectable({
   providedIn: 'root',

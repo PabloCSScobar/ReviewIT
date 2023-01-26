@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PostsFilter } from '../models/post-filters';
+import { PostsFilter } from '../../../models/post-filters';
 
 @Component({
   selector: 'app-post-filters-bar',
@@ -64,7 +64,6 @@ export class PostFiltersBarComponent {
   filters = PostsFilter;
   selectedFilter: PostsFilter = PostsFilter.LATEST;
   @Output() newFilter: EventEmitter<PostsFilter> = new EventEmitter();
-  constructor() {}
 
   changeFilter(filter: PostsFilter) {
     this.newFilter.next(filter);

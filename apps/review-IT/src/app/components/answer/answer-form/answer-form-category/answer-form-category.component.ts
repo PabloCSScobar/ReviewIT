@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   AbstractControl,
 } from '@angular/forms';
-import { PostCategory } from '../../../post/models/post-category';
+import { PostCategory } from '../../../../models/post-category';
 import {
   castAbstractControlToFormArray,
   castAbstractControlToFormGroup,

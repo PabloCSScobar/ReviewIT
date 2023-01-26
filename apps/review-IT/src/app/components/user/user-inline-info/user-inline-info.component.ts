@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PostUser } from '../../post/models/post-user';
+import { PostUser } from '../../../models/post-user';
 
 @Component({
   selector: 'app-user-inline-info',
@@ -26,12 +26,6 @@ import { PostUser } from '../../post/models/post-user';
   `,
   styles: [
     `
-      /* .username {
-        color: var(--accent);
-      }
-      .user-reputation {
-        color: var(--primary);
-      } */
       .user-avatar {
         width: 16px;
         height: 16px;
