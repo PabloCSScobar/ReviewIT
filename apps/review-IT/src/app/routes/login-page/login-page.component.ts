@@ -42,7 +42,7 @@ import { RouterModule } from '@angular/router';
         flex-direction: column;
         justify-content: space-around;
         min-height: 100vh;
-        background: #e91e63;
+        background: #DDD;
       }
       .header {
         display: flex;
