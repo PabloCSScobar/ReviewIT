@@ -26,7 +26,7 @@ import { MatIconModule } from '@angular/material/icon';
           <input
             matInput
             name="username"
-            placeholder="Nazwa użytkownika"
+            placeholder="Username"
             required
             formControlName="username"
           />
@@ -35,7 +35,7 @@ import { MatIconModule } from '@angular/material/icon';
           <input
             matInput
             name="password"
-            placeholder="Hasło"
+            placeholder="Password"
             [type]="hide ? 'password' : 'text'"
             required
             autocomplete="off"
@@ -45,16 +45,38 @@ import { MatIconModule } from '@angular/material/icon';
             hide ? 'visibility_off' : 'visibility'
           }}</mat-icon>
         </mat-form-field>
-        <button mat-raised-button color="primary" type="submit">Zaloguj</button>
+        <button class="submit-button" mat-raised-button color="primary" type="submit">Sign in</button>
         <p class="register-link">
-          <a [routerLink]="['/auth/register']"
-            >Nie masz jeszcze konta? Zarejestruj się!</a
+        New on ReviewIT?<a [routerLink]="['/auth/register']"
+            >Create an account</a
           >
         </p>
       </form>
     </div>
   `,
-  styles: [``],
+  styles: [
+    `
+    .form-wrapper { 
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 400px;
+      justify-content: center;
+    }
+    .login-form mat-form-field, .login-form .submit-button {
+      width: 100%;
+    }
+    .login-form mat-form-field {
+    }
+
+  `
+  ],
 })
 export class LoginFormComponent {
   private fb = inject(FormBuilder);
