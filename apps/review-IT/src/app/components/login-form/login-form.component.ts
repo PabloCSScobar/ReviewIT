@@ -68,6 +68,7 @@ import { MatIconModule } from '@angular/material/icon';
       max-width: 400px;
       justify-content: center;
       padding: 2em;
+      margin:1em;
       background-color: #161b22;
       border-radius: 10px;
     }
