@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ThemeToggleComponent } from '../../components/theme/theme-toggle.component';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `<div class="login-page">
-    <div class="banner"></div>
+    <div class="banner">
+    </div>
     <div class="content-wrapper">
+      <div class="top-bar">
+      </div>
       <div class="header">
         <img
           class="logo-img"
@@ -23,54 +27,47 @@ import { RouterModule } from '@angular/router';
   </div>`,
   styles: [
     `
+      .content-wrapper {
+        width: 100%;
+        height: 100vh;
+        display: grid;
+        grid-template-rows: 30px 60px 1fr;
+        grid-template-columns: 1fr;
+        background-color: #0c111a;
+      }
       .login-page {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr minmax(500px, 45%);
       }
       .banner {
-        display: none;
+        display: flex;
         width: 100%;
-        background-image: url('../../../assets/auth-background.png');
+        background-image: url('../../../assets/auth-background.webp');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         min-height: 100vh;
       }
-      .content-wrapper {
+      .banner img {
         width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        min-height: 100vh;
-        background: #DDD;
+        height: auto;
       }
+
       .header {
         display: flex;
         justify-content: center;
       }
       .logo-img {
-        display: block;
-        max-width: 90%;
-
-        /* max-width:400px; */
-        /* max-height:70px; */
         width: auto;
-        height: auto;
+        height: 40px;
       }
-      .header-span {
-        font-weight: 400;
-        color: #1b313a;
-      }
-      .form {
-        width: 100%;
+      .form-wrapper {
         height: 100%;
-      }
-
-      @media screen and (min-width: 800px) {
-        .banner {
-          display: flex;
-        }
-      }
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       }
     `,
   ],
 })

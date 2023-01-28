@@ -20,8 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
   ],
   template: `
-    <div class="form-wrapper">
-      <form [formGroup]="loginForm" class="login-form" (ngSubmit)="login()">
+      <form [formGroup]="loginForm" class="login-form theme-dark" (ngSubmit)="login()">
         <mat-form-field appearance="fill">
           <input
             matInput
@@ -47,19 +46,19 @@ import { MatIconModule } from '@angular/material/icon';
         </mat-form-field>
         <button class="submit-button" mat-raised-button color="primary" type="submit">Sign in</button>
         <p class="register-link">
-        New on ReviewIT?<a [routerLink]="['/auth/register']"
+        New on ReviewIT? <a [routerLink]="['/auth/register']"
             >Create an account</a
           >
         </p>
       </form>
-    </div>
   `,
   styles: [
     `
-    .form-wrapper { 
+    :host {
       width: 100%;
       display: flex;
-      justify-content: center;
+      justify-content:center;
+      color: white;
     }
     .login-form {
       display: flex;
@@ -68,11 +67,15 @@ import { MatIconModule } from '@angular/material/icon';
       width: 100%;
       max-width: 400px;
       justify-content: center;
+      padding: 2em;
+      background-color: #424242;
+      border-radius: 10px;
     }
     .login-form mat-form-field, .login-form .submit-button {
       width: 100%;
     }
-    .login-form mat-form-field {
+    .register-link {
+      margin-top: 1em;
     }
 
   `
