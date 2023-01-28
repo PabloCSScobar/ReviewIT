@@ -67,7 +67,17 @@ import { ThemeToggleComponent } from '../../components/theme/theme-toggle.compon
         display: flex;
         justify-content: center;
         align-items: center;
-       }
+      }
+      @media (max-width: 1024px) {
+        .login-page {
+          grid-template-columns: 1fr;
+        }
+        .banner {
+          display: none;
+        }
+
+      }
+
     `,
   ],
 })
