@@ -21,7 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   template: `
       <form [formGroup]="loginForm" class="login-form theme-dark" (ngSubmit)="login()">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <input
             matInput
             name="username"
@@ -30,7 +30,7 @@ import { MatIconModule } from '@angular/material/icon';
             formControlName="username"
           />
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <input
             matInput
             name="password"
@@ -45,8 +45,8 @@ import { MatIconModule } from '@angular/material/icon';
           }}</mat-icon>
         </mat-form-field>
         <button class="submit-button" mat-raised-button color="primary" type="submit">Sign in</button>
-        <p class="register-link">
-        New on ReviewIT? <a [routerLink]="['/auth/register']"
+        <p class="register-message">
+        New on ReviewIT? <a class="register-link" [routerLink]="['/auth/register']"
             >Create an account</a
           >
         </p>
@@ -68,14 +68,19 @@ import { MatIconModule } from '@angular/material/icon';
       max-width: 400px;
       justify-content: center;
       padding: 2em;
-      background-color: #424242;
+      background-color: #161b22;
       border-radius: 10px;
     }
     .login-form mat-form-field, .login-form .submit-button {
       width: 100%;
     }
-    .register-link {
+    .register-message {
       margin-top: 1em;
+
+    }
+    .register-link {
+      text-decoration: none;
+      color: #1976d2;
     }
 
   `
