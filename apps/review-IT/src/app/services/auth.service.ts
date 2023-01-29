@@ -20,7 +20,7 @@ export class AuthService {
   currentUser$ =new BehaviorSubject<User | null>(null);
 
   login(credentials: Credentials) {
-    this.http.post<Token>(`${this.API_URL}/auth/login`, credentials)
+    this.http.post<Token>(`${this.API_URL}auth/login`, credentials)
     .pipe(
       tap(token => this.setToken(token.access_token)),
       ).subscribe(
