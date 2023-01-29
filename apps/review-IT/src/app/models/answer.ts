@@ -1,4 +1,4 @@
-import { PostUser } from './post-user';
+import { User } from './user';
 import { ReviewedCategory } from './reviewed-category';
 
 export type Answer = {
@@ -7,6 +7,6 @@ export type Answer = {
   description: string;
   isTopAnswer: boolean;
   rank: number;
-  author: PostUser;
+  author: User;
   reviewedCategories: ReviewedCategory[];
 };

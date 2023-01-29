@@ -14,7 +14,7 @@ import { Post } from '../../models/post';
 import { combineLatest, Observable, of, startWith, switchMap } from 'rxjs';
 import { PostCategoryFiltersTabComponent } from '../../components/post/post-category-filters-tab/post-category-filters-tab.component';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { PostService } from '../../components/post/services/post.service';
+import { PostService } from '../../services/post.service';
 
 @Component({
   selector: 'app-post-list-container',

@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { RouterModule } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -89,14 +90,15 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class LoginFormComponent {
   private fb = inject(FormBuilder);
+  private authService = inject(AuthService);
   hide = true;
 
-  loginForm = this.fb.group({
+  loginForm = this.fb.nonNullable.group({
     username: [''],
     password: [''],
   });
 
   login() {
-    console.log('login');
+    this.authService.login(this.loginForm.getRawValue());
   }
 }
