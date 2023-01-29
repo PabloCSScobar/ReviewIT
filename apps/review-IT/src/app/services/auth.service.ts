@@ -32,7 +32,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('Token');
-    this.router.navigate(['login']);
+    this.router.navigate(['auth', 'login']);
   }
 
   setToken(token: string) {
