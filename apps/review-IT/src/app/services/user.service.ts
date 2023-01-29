@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment as env } from '../../environments/environment';
-import { PostUser } from '../models/post-user';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +17,6 @@ export class UserService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.TEMPORARY_TOKEN}`,
     });
-    return this.http.get<PostUser>(`${this.apiUrl}users/me`, { headers });
+    return this.http.get<User>(`${this.apiUrl}users/me`, { headers });
   }
 }
