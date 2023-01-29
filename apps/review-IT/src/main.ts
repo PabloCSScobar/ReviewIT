@@ -6,7 +6,8 @@ import { routes } from './app/app-routing.module';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './app/interceptors/auth.interceptor';
 
 if (environment.production) {
   enableProdMode();
@@ -17,7 +18,12 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(
       RouterModule.forRoot(routes),
       BrowserAnimationsModule,
-      HttpClientModule
+      HttpClientModule,
     ),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    }
   ],
 });
