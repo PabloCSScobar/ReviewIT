@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { LogoComponent } from '../logo/logo.component';
 import { ThemeToggleComponent } from '../../theme/theme-toggle.component';
 import { FlexSpacerComponent } from '../../shared/flex-spacer/flex-spacer.component';
+import { LogoutButtonComponent } from '../../auth/logout-button/logout-button.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +20,8 @@ import { FlexSpacerComponent } from '../../shared/flex-spacer/flex-spacer.compon
     LogoComponent,
     ThemeToggleComponent,
     FlexSpacerComponent,
+    LogoutButtonComponent,
+    MatDividerModule
   ],
   template: ` <mat-toolbar class="main-header" color="primary">
     <div class="flex-row">
@@ -32,6 +36,8 @@ import { FlexSpacerComponent } from '../../shared/flex-spacer/flex-spacer.compon
       <app-logo></app-logo>
       <app-flex-spacer></app-flex-spacer>
       <app-theme-toggle></app-theme-toggle>
+      <mat-divider></mat-divider>
+      <app-logout-button></app-logout-button>
     </div>
   </mat-toolbar>`,
   styleUrls: ['./header.component.scss'],
