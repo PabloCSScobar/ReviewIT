@@ -15,6 +15,8 @@ import { ReviewedCategoryNode } from './post/entities/reviewed-category-node.ent
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
 import { JwtService } from '@nestjs/jwt';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from './auth/jwt-auth.guard';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -40,6 +42,6 @@ import { JwtService } from '@nestjs/jwt';
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [],
+  providers: [{provide: APP_GUARD, useClass: JwtAuthGuard}],
 })
 export class AppModule {}
