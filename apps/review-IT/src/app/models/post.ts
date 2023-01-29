@@ -1,7 +1,6 @@
 import { Answer } from './answer';
-import { PostActivity } from './post-activity';
 import { PostCategory } from './post-category';
-import { PostUser } from './post-user';
+import { User } from './user';
 
 export type Post = {
   id: number;
@@ -12,7 +11,7 @@ export type Post = {
   rank: number;
   visits: number;
   hasTopAnswer: boolean;
-  author: PostUser;
+  author: User;
   answersAmount: number;
   categories: PostCategory[];
 };

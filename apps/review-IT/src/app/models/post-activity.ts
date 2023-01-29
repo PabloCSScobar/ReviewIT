@@ -1,9 +1,9 @@
-import { PostUser } from './post-user';
+import { User } from './user';
 
 export type PostActivity = {
   type: ActivityType;
   created: string;
-  author: PostUser;
+  author: User;
 };
 
 export type ActivityType = 'created' | 'answered' | 'modified';

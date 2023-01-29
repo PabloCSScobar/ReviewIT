@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserInlineInfoComponent } from '../../user/user-inline-info/user-inline-info.component';
-import { PostUser } from '../../../models/post-user';
+import { User } from '../../../models/user';
 import { TimeAgoPipe } from '../../../pipes/time-ago.pipe';
 @Component({
   selector: 'app-post-activity',
@@ -33,6 +33,6 @@ import { TimeAgoPipe } from '../../../pipes/time-ago.pipe';
   ],
 })
 export class PostActivityComponent {
-  @Input() author: PostUser;
+  @Input() author: User;
   @Input() created: string;
 }

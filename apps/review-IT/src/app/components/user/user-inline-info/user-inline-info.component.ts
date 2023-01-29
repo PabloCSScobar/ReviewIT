@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PostUser } from '../../../models/post-user';
+import { User } from '../../../models/user';
 
 @Component({
   selector: 'app-user-inline-info',
@@ -40,7 +40,7 @@ import { PostUser } from '../../../models/post-user';
   ],
 })
 export class UserInlineInfoComponent implements OnInit {
-  @Input() user!: PostUser;
+  @Input() user!: User;
   constructor() {}
 
   ngOnInit(): void {}
