@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
-import { Observable, shareReplay } from 'rxjs';
-import { Post, PostDetail } from '../models/post';
+import { Observable } from 'rxjs';
+import { Post, PostCreate, PostDetail } from '../models/post';
 import { environment as env } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { PostCategory } from '../models/post-category';
@@ -19,6 +19,10 @@ export class PostService {
     categoryFilter: string | null
   ): Observable<Post[]> {
     return this.http.get<Post[]>(this.apiUrl + 'posts');
+  }
+
+  createPost(post: PostCreate): Observable<Post> {
+    return this.http.post<Post>(`${this.apiUrl}posts`, post);
   }
 
   getPostDetails(postId: number): Observable<PostDetail> {

@@ -23,7 +23,7 @@
     <mat-form-field appearance="standard">
       <mat-label>Website URL</mat-label>
       <input
-        formControlName="page_url"
+        formControlName="pageUrl"
         data-testid="post-website-url"
         matInput
         required
@@ -33,7 +33,7 @@
     <mat-form-field appearance="standard">
       <mat-label>Repository URL</mat-label>
       <input
-        formControlName="repo_url"
+        formControlName="repoUrl"
         data-testid="post-repository-url"
         matInput
         required
@@ -48,7 +48,7 @@
         multiple
         required
       >
-        <mat-option *ngFor="let category of postCategories$ | async as list">{{
+        <mat-option *ngFor="let category of postCategories$ | async" [value]="category.id">{{
           category.name
         }}</mat-option>
       </mat-select>
