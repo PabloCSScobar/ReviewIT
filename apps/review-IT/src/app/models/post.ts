@@ -16,6 +16,14 @@ export type Post = {
   categories: PostCategory[];
 };
 
+export type PostCreate = {
+  title: string;
+  description: string;
+  pageUrl: string;
+  repoUrl: string;
+  categories: number[];
+}
+
 export type PostDetail = Omit<Post, 'answers'> & {
   answers: Answer[];
   description: string;
