@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   JoinTable,
   ManyToMany,
   ManyToOne,
@@ -38,7 +39,7 @@ export class Post {
   @ManyToOne(() => User, (user) => user.posts)
   author: User;
 
-  @OneToMany(() => Answer, (answer) => answer.post)
+  @OneToMany(() => Answer, (answer) => answer.post, { eager: true })
   answers: Answer[];
 
   @ManyToMany(() => PostCategory)
