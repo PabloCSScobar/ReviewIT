@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 import { Post, PostDetail } from '../models/post';
 import { environment as env } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { PostCategory } from '../models/post-category';
 
 @Injectable({
   providedIn: 'root',
@@ -23,4 +24,9 @@ export class PostService {
   getPostDetails(postId: number): Observable<PostDetail> {
     return this.http.get<PostDetail>(`${this.apiUrl}posts/${postId}`);
   }
+
+  getPostCategories(): Observable<PostCategory[]> {
+    return this.http.get<PostCategory[]>(`${this.apiUrl}post-categories`);
+  }
+
 }
