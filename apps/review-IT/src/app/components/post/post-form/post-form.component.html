@@ -48,7 +48,7 @@
         multiple
         required
       >
-        <mat-option *ngFor="let category of postCategories$ | async as list">{{
+        <mat-option *ngFor="let category of postCategories$ | async" [value]="category.id">{{
           category.name
         }}</mat-option>
       </mat-select>
