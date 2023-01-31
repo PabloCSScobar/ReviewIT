@@ -24,8 +24,5 @@ import { CommonModule } from '@angular/common';
     `,
   ],
 })
-export class PostStatsComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+export class PostStatsComponent {
 }

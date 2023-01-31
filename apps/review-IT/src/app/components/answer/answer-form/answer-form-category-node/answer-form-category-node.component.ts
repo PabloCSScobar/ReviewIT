@@ -23,7 +23,6 @@ import { MatInputModule } from '@angular/material/input';
 export class AnswerFormCategoryNodeComponent {
   @Input() categoryNodeForm!: FormGroup;
   @Output() remove: EventEmitter<any> = new EventEmitter();
-  constructor() {}
 
   removeCategoryNodeFromCategory() {
     this.remove.emit();

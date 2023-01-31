@@ -52,7 +52,6 @@ export class PostCategoryFiltersTabComponent {
   ];
   selectedCategory: string | null = null;
   @Output() categoryChanged: EventEmitter<string | null> = new EventEmitter();
-  constructor() {}
 
   toggleFIlter(category: string) {
     this.selectedCategory = category == this.selectedCategory ? null : category;
