@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment as env } from '../../environments/environment';
-import { Answer } from '../models/answer';
+import { Answer, AnswerCreate } from '../models/answer';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +10,12 @@ import { Answer } from '../models/answer';
 export class AnswerService {
   private http = inject(HttpClient);
   private apiUrl = env.apiUrl;
-
+  
   getAnswers(postId: number): Observable<Answer[]> {
     return this.http.get<Answer[]>(`${this.apiUrl}posts/${postId}/answers`);
+  }
+
+  createAnswer(newAnswer: AnswerCreate): Observable<Answer> {
+    return this.http.post<Answer>(`${this.apiUrl}answers`, newAnswer);
   }
 }
