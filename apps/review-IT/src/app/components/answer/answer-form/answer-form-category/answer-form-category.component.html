@@ -19,7 +19,7 @@
     </button>
   </div>
   <div class="category-content">
-    <div class="category-nodes" formArrayName="review_nodes">
+    <div class="category-nodes" formArrayName="reviewCategoryNodes">
       <app-answer-form-category-node
         *ngFor="let node of reviewNodes.controls; let j = index"
         [categoryNodeForm]="castToGroup(node)"

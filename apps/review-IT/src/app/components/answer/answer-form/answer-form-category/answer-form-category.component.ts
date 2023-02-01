@@ -47,14 +47,14 @@ export class AnswerFormCategoryComponent {
 
   get reviewNodes() {
     return castAbstractControlToFormArray(
-      this.categoryForm!.get('review_nodes')!
+      this.categoryForm!.get('reviewCategoryNodes')!
     );
   }
 
   addCategoryNodeToCategory() {
     const categoryNode = this.fb.group({
       type: ['pro', Validators.required],
-      description: ['', Validators.minLength(5)],
+      description: ['', Validators.required],
     });
     this.reviewNodes.push(categoryNode);
   }

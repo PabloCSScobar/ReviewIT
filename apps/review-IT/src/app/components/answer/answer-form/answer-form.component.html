@@ -15,14 +15,14 @@
     <!-- categories  -->
     <div
       class="reviewed_categories-wrapper"
-      formArrayName="reviewed_categories"
+      formArrayName="reviewedCategories"
     >
       <!-- categories list  -->
       <div class="row">
         <mat-form-field appearance="standard" class="full-width-field">
           <mat-label>Add category to review.</mat-label>
           <mat-select
-            #available_categories
+            #availableCategoriesSelect
             [disableRipple]="true"
             [disabled]="availableCategories.length === 0"
             [value]="availableCategories[0] && availableCategories[0].id"
@@ -46,9 +46,9 @@
             color="primary"
             class="add-category-button"
             [disabled]="
-              availableCategories.length === 0 || !available_categories.value
+              availableCategories.length === 0 || !availableCategoriesSelect.value
             "
-            (click)="addCategoryToReview(available_categories.value)"
+            (click)="addCategoryToReview(availableCategoriesSelect.value)"
           >
             <mat-icon>add</mat-icon>
           </button>
