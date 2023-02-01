@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   AbstractControl,
@@ -16,6 +16,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { AnswerFormCategoryComponent } from './answer-form-category/answer-form-category.component';
 import { castAbstractControlToFormGroup } from '../../shared/form-utils/form-utils';
 import { MatButtonModule } from '@angular/material/button';
+import { AnswerService } from '../../../services/answer.service';
+import { ReviewedCategoryCreate } from '../../../models/reviewed-category';
+import { AnswerCreate, AnswerCreateForm } from '../../../models/answer';
 
 @Component({
   selector: 'app-answer-form',
@@ -34,39 +37,42 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./answer-form.component.scss'],
 })
 export class AnswerFormComponent {
-  _post!: PostDetail;
-  availableCategories!: PostCategory[];
+  private fb = inject(FormBuilder);
+  private answerService = inject(AnswerService);
+
+  categoriesToReview: PostCategory[];;
+  availableCategories: PostCategory[];
   selectedCategories: PostCategory[] = [];
-  @Input() set post(value: PostDetail) {
-    this._post = value;
-    this.availableCategories = value.categories;
-  }
-
-  constructor(private fb: FormBuilder) {}
-
-  answerForm = this.fb.group({
+  answerForm = this.fb.nonNullable.group({
     description: ['', Validators.required],
-    reviewed_categories: this.fb.array([]),
+    reviewedCategories: this.fb.array([]),
   });
 
-  submit() {
-    this.answerForm.markAllAsTouched();
-    // if (this.answerForm.valid)
-    console.log(this.answerForm.value);
+  @Input() set post(value: PostDetail) {
+    this.categoriesToReview = [...value.categories];
+    this.availableCategories = [...value.categories];
   }
 
   get reviewedCategories() {
-    return this.answerForm.get('reviewed_categories') as FormArray;
+    return this.answerForm.get('reviewedCategories') as FormArray;
+  }
+
+  submit() {
+    const answer: AnswerCreate = {
+      description: this.answerForm.get('description')!.value,
+      reviewedCategories: this.reviewedCategories.value,
+    }
+    this.answerService.createAnswer(answer).subscribe(console.log);
   }
 
   addCategoryToReview(categoryId: number) {
     const reviewedCategory = this.fb.group({
       rank: [1, Validators.required],
       category: [categoryId, Validators.required],
-      review_nodes: this.fb.array([
+      reviewCategoryNodes: this.fb.array([
         this.fb.group({
           type: ['pro'],
-          description: [''],
+          description: ['', Validators.required],
         }),
       ]),
     });
@@ -103,7 +109,7 @@ export class AnswerFormComponent {
   }
 
   getCategoryFromId(categoryId: number) {
-    return this._post.categories.filter((item) => item.id === categoryId)[0];
+    return this.categoriesToReview.filter((item) => item.id === categoryId)[0];
   }
 
   castToGroup(control: AbstractControl) {
