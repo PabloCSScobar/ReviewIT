@@ -1,5 +1,6 @@
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { PostCategory } from './post-category';
-import { ReviewCategoryNode } from './post-category-node';
+import { ReviewCategoryNode, ReviewCategoryNodeCreateForm } from './post-category-node';
 
 export type ReviewedCategory = {
   id?: number;
@@ -7,3 +8,15 @@ export type ReviewedCategory = {
   reviewCategoryNodes: ReviewCategoryNode[];
   rank: number;
 };
+
+export type ReviewedCategoryCreate = {
+  category: number;
+  rank: number;
+  reviewCategoryNodes: Omit<ReviewCategoryNode, 'id'>[];
+}
+
+export type ReviewedCategoryCreateForm = {
+  category: FormControl<number>;
+  rank: FormControl<number>;
+  reviewCategoryNodes: FormArray<FormGroup<ReviewCategoryNodeCreateForm>>;
+}

@@ -1,5 +1,6 @@
 import { User } from './user';
-import { ReviewedCategory } from './reviewed-category';
+import { ReviewedCategory, ReviewedCategoryCreate, ReviewedCategoryCreateForm } from './reviewed-category';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 export type Answer = {
   id: number;
@@ -10,3 +11,13 @@ export type Answer = {
   author: User;
   reviewedCategories: ReviewedCategory[];
 };
+
+export type AnswerCreateForm = {
+  description: FormControl<string>;
+  reviewedCategories: FormArray<FormGroup<ReviewedCategoryCreateForm>>;
+}
+
+export type AnswerCreate = {
+  description: string;
+  reviewedCategories: ReviewedCategoryCreate[];
+}
