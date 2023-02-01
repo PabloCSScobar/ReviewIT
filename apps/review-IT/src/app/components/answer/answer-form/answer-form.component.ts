@@ -17,8 +17,7 @@ import { AnswerFormCategoryComponent } from './answer-form-category/answer-form-
 import { castAbstractControlToFormGroup } from '../../shared/form-utils/form-utils';
 import { MatButtonModule } from '@angular/material/button';
 import { AnswerService } from '../../../services/answer.service';
-import { ReviewedCategoryCreate } from '../../../models/reviewed-category';
-import { AnswerCreate, AnswerCreateForm } from '../../../models/answer';
+import { AnswerCreate } from '../../../models/answer';
 
 @Component({
   selector: 'app-answer-form',
