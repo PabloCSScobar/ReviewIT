@@ -39,6 +39,8 @@ export class AnswerFormComponent {
   private fb = inject(FormBuilder);
   private answerService = inject(AnswerService);
 
+
+  _post: PostDetail;
   categoriesToReview: PostCategory[];;
   availableCategories: PostCategory[];
   selectedCategories: PostCategory[] = [];
@@ -48,6 +50,7 @@ export class AnswerFormComponent {
   });
 
   @Input() set post(value: PostDetail) {
+    this._post = value;
     this.categoriesToReview = [...value.categories];
     this.availableCategories = [...value.categories];
   }
@@ -61,7 +64,7 @@ export class AnswerFormComponent {
       description: this.answerForm.get('description')!.value,
       reviewedCategories: this.reviewedCategories.value,
     }
-    this.answerService.createAnswer(answer).subscribe(console.log);
+    this.answerService.createAnswer(answer, this._post.id).subscribe((answer)=> console.log(answer));
   }
 
   addCategoryToReview(categoryId: number) {

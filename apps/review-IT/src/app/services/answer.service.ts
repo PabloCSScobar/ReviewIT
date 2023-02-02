@@ -15,7 +15,7 @@ export class AnswerService {
     return this.http.get<Answer[]>(`${this.apiUrl}posts/${postId}/answers`);
   }
 
-  createAnswer(newAnswer: AnswerCreate): Observable<Answer> {
-    return this.http.post<Answer>(`${this.apiUrl}answers`, newAnswer);
+  createAnswer(newAnswer: AnswerCreate, postId: number): Observable<Answer> {
+    return this.http.post<Answer>(`${this.apiUrl}posts/${postId}/answers`, newAnswer);
   }
 }
