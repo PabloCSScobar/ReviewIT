@@ -32,30 +32,28 @@ import {
   ],
   template: `
     <div class="search-wrapper">
-      <form data-testid="post-search-form">
-        <mat-form-field class="search" appearance="outline">
-          <mat-label>Search...</mat-label>
-          <input
-            matInput
-            [formControl]="searchTerm"
-            data-testid="post-search-input"
-          />
-          <button mat-icon-button matPrefix data-testid="post-search-button">
-            <mat-icon>search</mat-icon>
-          </button>
-          <button
-            *ngIf="searchTerm.value"
-            matSuffix
-            mat-icon-button
-            type="button"
-            aria-label="Clear"
-            data-testid="clear-search-input"
-            (click)="searchTerm.setValue('')"
-          >
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
-      </form>
+      <mat-form-field class="search" appearance="outline">
+        <mat-label>Search...</mat-label>
+        <input
+          matInput
+          [formControl]="searchTerm"
+          data-testid="post-search-input"
+        />
+        <button mat-icon-button matPrefix data-testid="post-search-button">
+          <mat-icon>search</mat-icon>
+        </button>
+        <button
+          *ngIf="searchTerm.value"
+          matSuffix
+          mat-icon-button
+          type="button"
+          aria-label="Clear"
+          data-testid="clear-search-input"
+          (click)="searchTerm.setValue('')"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
     </div>
   `,
   styles: [
