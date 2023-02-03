@@ -7,6 +7,7 @@ import {
   Delete,
   UseGuards,
   Request,
+  Query,
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -32,8 +33,8 @@ export class PostController {
   }
 
   @Get()
-  findAll() {
-    return this.postService.findAll();
+  findAll(@Query('searchedTerm') searchedTerm: string, @Query('postFilter') postFilter: string, @Query('categoryFilter') categoryFilter: string) {
+    return this.postService.findAll(searchedTerm, postFilter, categoryFilter);
   }
 
   @Get(':id')
