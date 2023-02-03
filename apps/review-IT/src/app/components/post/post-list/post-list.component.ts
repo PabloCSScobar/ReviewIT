@@ -8,7 +8,7 @@ import { Post } from '../../../models/post';
   standalone: true,
   imports: [CommonModule, PostListViewComponent],
   template: `
-    <div *ngFor="let post of posts">
+    <div *ngFor="let post of posts; trackBy: postTrackBy">
       <app-post-list-view [post]="post"></app-post-list-view>
     </div>
   `,
@@ -16,5 +16,8 @@ import { Post } from '../../../models/post';
 })
 export class PostListComponent {
   @Input() posts!: Post[];
-  constructor() {}
+
+  postTrackBy(index: number, post: Post) {
+    return post.id;
+  }
 }
