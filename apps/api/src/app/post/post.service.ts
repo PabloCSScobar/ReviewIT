@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
+import { In, Like, Repository } from 'typeorm';
 import { PostCategory } from '../post-category/entities/post-category.entity';
 import { User } from '../user/entities/user.entity';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -40,10 +40,19 @@ export class PostService {
     return await this.postRepository.save(newPost);
   }
 
-  async findAll() {
-    const posts = await this.postRepository.find({
-      relations: ['author', 'categories'],
-    });
+  async findAll(searchedTerm: string, postFilter: string, categoryFilter: string) {
+    let query = this.postRepository.createQueryBuilder('post')
+    .leftJoinAndSelect('post.author', 'author')
+    .leftJoinAndSelect('post.categories', 'categories');
+    console.log(searchedTerm, postFilter, categoryFilter);
+    if (searchedTerm) {
+      query = query.where('post.title LIKE :searchedTerm OR post.description LIKE :searchedTerm', { searchedTerm: `%${searchedTerm}%` });
+    }
+    if (categoryFilter) {
+      query = query.andWhere('EXISTS (SELECT 1 FROM post.categories category WHERE category.name LIKE :categoryFilter)', { categoryFilter: `%${categoryFilter}%` });
+    }
+    
+    const posts = await query.getMany();
     posts.map((post) => {
       post.hasTopAnswer = post.getHasTopAnswer();
       post.answersAmount = post.getAnswersAmount();
