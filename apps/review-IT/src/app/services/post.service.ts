@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Post, PostCreate, PostDetail } from '../models/post';
 import { environment as env } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { PostCategory } from '../models/post-category';
 
 @Injectable({
@@ -17,7 +17,11 @@ export class PostService {
     postFilter: string,
     categoryFilter: string | null
   ): Observable<Post[]> {
-    return this.http.get<Post[]>(this.apiUrl + 'posts');
+    const params = new HttpParams()
+                  .set('searchedTerm', searchedTerm)
+                  .set('postFilter', postFilter)
+                  .set('categoryFilter', categoryFilter || '');
+    return this.http.get<Post[]>(this.apiUrl + 'posts', { params });
   }
 
   createPost(post: PostCreate): Observable<Post> {
