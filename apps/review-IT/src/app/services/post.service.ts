@@ -13,7 +13,6 @@ export class PostService {
   private apiUrl = env.apiUrl;
 
   getPosts(
-    page: number,
     searchedTerm: string,
     postFilter: string,
     categoryFilter: string | null
