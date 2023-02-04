@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Post } from '../../post/entities/post.entity';
 import { ReviewedCategory } from '../../post/entities/reviewed-category.entity';
 
@@ -11,6 +11,7 @@ export class PostCategory {
   name: string;
 
   @ManyToMany(() => Post, post => post.categories)
+  @JoinColumn({ name: 'postId'})
   posts: Post[];
 
   @ManyToOne(
