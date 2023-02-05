@@ -2,7 +2,7 @@
   <p class="post-header mat-h2">Add a new project to review</p>
   <mat-divider></mat-divider>
   <form (ngSubmit)="submit()" [formGroup]="postForm">
-    <mat-form-field appearance="standard">
+    <mat-form-field>
       <mat-label>Title</mat-label>
       <input
         formControlName="title"
@@ -11,7 +11,7 @@
         required
       />
     </mat-form-field>
-    <mat-form-field appearance="standard">
+    <mat-form-field>
       <mat-label>Description</mat-label>
       <textarea
         formControlName="description"
@@ -20,7 +20,7 @@
         required
       ></textarea>
     </mat-form-field>
-    <mat-form-field appearance="standard">
+    <mat-form-field>
       <mat-label>Website URL</mat-label>
       <input
         formControlName="pageUrl"
@@ -30,7 +30,7 @@
       />
       <mat-icon matSuffix>home</mat-icon>
     </mat-form-field>
-    <mat-form-field appearance="standard">
+    <mat-form-field>
       <mat-label>Repository URL</mat-label>
       <input
         formControlName="repoUrl"
@@ -40,7 +40,7 @@
       />
       <mat-icon svgIcon="github" matSuffix></mat-icon>
     </mat-form-field>
-    <mat-form-field appearance="standard">
+    <mat-form-field>
       <mat-label>Categories to be reviewed</mat-label>
       <mat-select
         formControlName="categories"
