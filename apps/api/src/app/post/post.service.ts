@@ -64,7 +64,10 @@ export class PostService {
       where: { id },
       relations: ['author', 'categories'],
     });
+    this.postRepository.save
     if (!post) throw new HttpException('Post not found', HttpStatus.NOT_FOUND);
+    post.visits +=1;
+    await this.postRepository.save(post);
     post.hasTopAnswer = post.getHasTopAnswer();
     post.answersAmount = post.getAnswersAmount();
     return post;
