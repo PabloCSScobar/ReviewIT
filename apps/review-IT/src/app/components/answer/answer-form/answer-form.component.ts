@@ -16,7 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AnswerFormCategoryComponent } from './answer-form-category/answer-form-category.component';
 import { castAbstractControlToFormGroup } from '../../shared/form-utils/form-utils';
 import { MatButtonModule } from '@angular/material/button';
-import { AnswerService } from '../../../services/answer.service';
+import { AnswerService } from '../../../data-access/answer.service';
 import { AnswerCreate } from '../../../models/answer';
 
 @Component({

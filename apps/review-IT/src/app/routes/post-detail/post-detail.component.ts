@@ -5,10 +5,10 @@ import { PostDetailViewComponent } from '../../components/post/post-detail-view/
 import { ActivatedRoute } from '@angular/router';
 import { Observable, map, switchMap, of, shareReplay } from 'rxjs';
 import { PostDetail } from '../../models/post';
-import { PostService } from '../../services/post.service';
+import { PostService } from '../../data-access/post.service';
 import { AnswerListComponent } from '../../components/answer/answer-list/answer-list.component';
 import { AnswerFormComponent } from '../../components/answer/answer-form/answer-form.component';
-import { AnswerService } from '../../services/answer.service';
+import { AnswerService } from '../../data-access/answer.service';
 import { Answer } from '../../models/answer';
 
 @Component({
