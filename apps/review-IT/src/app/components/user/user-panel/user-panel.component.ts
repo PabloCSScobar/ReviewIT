@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { UserService } from '../../../services/user.service';
+import { UserService } from '../../../data-access/user.service';
 
 @Component({
   selector: 'app-user-panel',

@@ -24,7 +24,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
           mat-mini-fab
           [matTooltip]="category.name"
           matTooltipPosition="below"
-          [color]="selectedCategory == category.name ? 'primary' : ''"
+          [color]="selectedCategory == category.name ? 'primary' : 'basic'"
         >
           <mat-icon>{{ category.icon }}</mat-icon>
         </button>

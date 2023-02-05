@@ -13,7 +13,7 @@ import { PostsFilter } from '../../models/post-filters';
 import { Post } from '../../models/post';
 import { combineLatest, Observable, startWith, switchMap } from 'rxjs';
 import { PostCategoryFiltersTabComponent } from '../../components/post/post-category-filters-tab/post-category-filters-tab.component';
-import { PostService } from '../../services/post.service';
+import { PostService } from '../../data-access/post.service';
 
 @Component({
   selector: 'app-post-list-container',
