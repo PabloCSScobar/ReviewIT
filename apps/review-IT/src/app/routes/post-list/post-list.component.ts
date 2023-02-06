@@ -12,9 +12,8 @@ import { PostSearchInputComponent } from '../../components/post/post-search-inpu
 import { PostFiltersBarComponent } from '../../components/post/post-filters-bar/post-filters-bar.component';
 import { PostsFilter } from '../../models/post-filters';
 import { Post } from '../../models/post';
-import { combineLatest, Observable, startWith, Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { combineLatest, Observable, startWith, Subject, takeUntil, tap } from 'rxjs';
 import { PostCategoryFiltersTabComponent } from '../../components/post/post-category-filters-tab/post-category-filters-tab.component';
-import { PostService } from '../../data-access/services/post.service';
 import { AppState } from '../../data-access/state/app.state';
 import { select, Store } from '@ngrx/store';
 import { selectPostList } from '../../data-access/selectors/post.selectors';
@@ -43,7 +42,6 @@ import { LoadPosts } from '../../data-access/actions/post.actions';
   `,
 })
 export class PostListContainerComponent implements AfterViewInit, OnDestroy {
-  private postService = inject(PostService);
   private store = inject(Store<AppState>);
   posts$: Observable<Post[]> = this.store.pipe(select(selectPostList));
 
