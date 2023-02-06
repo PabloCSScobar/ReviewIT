@@ -8,6 +8,11 @@ import { environment } from './environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './app/interceptors/auth.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { appReducers } from './app/data-access/reducers/app.reducers';
+import { PostEffects } from './app/data-access/effects/post.effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 if (environment.production) {
   enableProdMode();
@@ -19,6 +24,9 @@ bootstrapApplication(AppComponent, {
       RouterModule.forRoot(routes),
       BrowserAnimationsModule,
       HttpClientModule,
+      StoreModule.forRoot(appReducers),
+      EffectsModule.forRoot([PostEffects]),
+      StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     ),
     {
       provide: HTTP_INTERCEPTORS,

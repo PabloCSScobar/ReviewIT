@@ -14,7 +14,7 @@ import { PostCategory } from '../../../models/post-category';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { PostService } from '../../../data-access/post.service';
+import { PostService } from '../../../data-access/services/post.service';
 import { Router } from '@angular/router';
 
 @Component({
