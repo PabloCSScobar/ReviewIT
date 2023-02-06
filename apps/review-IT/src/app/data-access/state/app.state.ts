@@ -3,11 +3,11 @@ import { PostState, initialState as InitialPostState  } from './post.state';
 
 export interface AppState {
     router?: RouterReducerState;
-    post: PostState;
+    posts: PostState;
 }
 
 export const initialAppState: AppState = {
-    post: InitialPostState
+    posts: InitialPostState
 };
 
 export function getInitialState(): AppState {

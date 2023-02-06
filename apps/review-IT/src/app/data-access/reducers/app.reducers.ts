@@ -4,7 +4,7 @@ import  { AppState } from '../state/app.state';
 import { postReducer } from './post.reducers';
 
 
-export const appReducer: ActionReducerMap<AppState, any> = {
+export const appReducers: ActionReducerMap<AppState, any> = {
     router: routerReducer,
-    post: postReducer
+    posts: postReducer
 };
