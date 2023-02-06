@@ -14,6 +14,7 @@ export enum PostActionTypes {
 
 export class LoadPosts implements Action {
     readonly type = PostActionTypes.LoadPosts;
+    constructor(public payload: {searchedTerm: string, postFilter: string, categoryFilter: string | null }) {}
 }
 
 export class LoadPostsSuccess implements Action {

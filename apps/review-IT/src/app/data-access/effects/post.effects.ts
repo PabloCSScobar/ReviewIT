@@ -10,8 +10,9 @@ import { LoadPosts, LoadPostsSuccess } from '../actions/post.actions';
 @Injectable()
 export class PostEffects {
     loadPosts$ = createEffect(() => this.actions$.pipe(
-        ofType(PostActionTypes.LoadPosts),
-        switchMap(() => this.postService.getPosts('', '', '')),
+        ofType<LoadPosts>(PostActionTypes.LoadPosts),
+        map(action => action.payload),
+        switchMap((p) => this.postService.getPosts(p.searchedTerm, p.postFilter, p.categoryFilter)),
         map((posts: Post[]) => new LoadPostsSuccess(posts))
     ));
 
