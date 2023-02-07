@@ -14,11 +14,11 @@ import { PostCategory } from '../../../models/post-category.model';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { PostService } from '../../../data-access/services/post.service';
 import { AppState } from '../../../data-access/state/app.state';
 import { Store } from '@ngrx/store';
-import { AddPost } from '../../../data-access/actions/post.actions';
+import { AddPost, LoadPostCategories } from '../../../data-access/actions/post.actions';
 import { PostCreate } from '../../../models/post.model';
+import { selectPostCategories } from '../../../data-access/selectors/post.selectors';
 
 @Component({
   selector: 'app-post-form',
@@ -37,11 +37,14 @@ import { PostCreate } from '../../../models/post.model';
   styleUrls: ['./post-form.component.scss'],
 })
 export class PostFormComponent {
-  private postService = inject(PostService);
   private fb = inject(FormBuilder);
   private store = inject(Store<AppState>)
   
-  postCategories$: Observable<PostCategory[]> = this.postService.getPostCategories();
+  postCategories$: Observable<PostCategory[]> = this.store.select(selectPostCategories).pipe(
+    tap(categories => {
+      if(!categories.length) this.store.dispatch(new LoadPostCategories());
+    })
+  )
 
   postForm: FormGroup = this.fb.group({
     title: ['', Validators.required],
