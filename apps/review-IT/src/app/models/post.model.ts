@@ -1,6 +1,6 @@
-import { Answer } from './answer';
-import { PostCategory } from './post-category';
-import { User } from './user';
+import { Answer } from './answer.model';
+import { PostCategory } from './post-category.model';
+import { User } from './user.model';
 
 export type Post = {
   id: number;

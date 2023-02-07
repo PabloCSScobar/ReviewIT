@@ -1,6 +1,6 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { PostCategory } from './post-category';
-import { ReviewCategoryNode, ReviewCategoryNodeCreateForm } from './post-category-node';
+import { PostCategory } from './post-category.model';
+import { ReviewCategoryNode, ReviewCategoryNodeCreateForm } from './post-category-node.model';
 
 export type ReviewedCategory = {
   id?: number;
