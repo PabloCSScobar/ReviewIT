@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { PostService } from '../services/post.service';
 import { Post } from '../../models/post.model';
-import { AddPost, AddPostSuccess, LoadPostDetail, LoadPostDetailSuccess, PostActionTypes } from '../actions/post.actions';
+import { AddAnswer, AddAnswerSuccess, AddPost, AddPostSuccess, LoadPostDetail, LoadPostDetailSuccess, PostActionTypes } from '../actions/post.actions';
 import { LoadPosts, LoadPostsSuccess } from '../actions/post.actions';
 import { forkJoin } from 'rxjs';
 import { AnswerService } from '../services/answer.service';
@@ -40,6 +40,12 @@ export class PostEffects {
         })
     ), { dispatch: false });
     
+    addAnswer$ = createEffect(() => this.actions$.pipe(
+        ofType<AddAnswer>(PostActionTypes.AddAnswer),
+        map(action => action.payload),
+        switchMap(({answer, postId}) => this.answerService.createAnswer(answer, postId)),
+        map((answer) => new AddAnswerSuccess(answer))
+    ));
 
 
     constructor(

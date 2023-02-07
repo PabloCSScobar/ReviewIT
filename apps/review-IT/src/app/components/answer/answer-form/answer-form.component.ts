@@ -18,6 +18,9 @@ import { castAbstractControlToFormGroup } from '../../shared/form-utils/form-uti
 import { MatButtonModule } from '@angular/material/button';
 import { AnswerService } from '../../../data-access/services/answer.service';
 import { AnswerCreate } from '../../../models/answer.model';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../data-access/state/app.state';
+import { AddAnswer } from '../../../data-access/actions/post.actions';
 
 @Component({
   selector: 'app-answer-form',
@@ -37,8 +40,7 @@ import { AnswerCreate } from '../../../models/answer.model';
 })
 export class AnswerFormComponent {
   private fb = inject(FormBuilder);
-  private answerService = inject(AnswerService);
-
+  private store = inject(Store<AppState>);
 
   _post: PostDetail;
   categoriesToReview: PostCategory[];;
@@ -64,7 +66,7 @@ export class AnswerFormComponent {
       description: this.answerForm.get('description')!.value,
       reviewedCategories: this.reviewedCategories.value,
     }
-    this.answerService.createAnswer(answer, this._post.id).subscribe((answer)=> console.log(answer));
+    this.store.dispatch(new AddAnswer({answer, postId: this._post.id}))
   }
 
   addCategoryToReview(categoryId: number) {
