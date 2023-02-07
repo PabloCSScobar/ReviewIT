@@ -1,8 +1,10 @@
 import { Answer } from '../../models/answer.model';
+import { PostCategory } from '../../models/post-category.model';
 import { Post, PostDetail } from '../../models/post.model';
 
 export type PostState = {
     posts: Post[];
+    postCategories: PostCategory[];
     selectedPost: PostDetail | null;
     loading: boolean;
     error: string | null;
@@ -11,6 +13,7 @@ export type PostState = {
 
 export const initialState: PostState = {
     posts: [],
+    postCategories: [],
     selectedPost: null,
     loading: false,
     error: null,

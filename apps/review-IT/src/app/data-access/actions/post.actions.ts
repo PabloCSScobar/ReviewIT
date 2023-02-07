@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Answer, AnswerCreate } from '../../models/answer.model';
+import { PostCategory } from '../../models/post-category.model';
 import { Post, PostCreate, PostDetail } from '../../models/post.model';
 
 
@@ -16,6 +17,9 @@ export enum PostActionTypes {
     AddAnswer = '[Post] Add Answer',
     AddAnswerSuccess = '[Post] Add Answer Success',
     AddAnswerFail = '[Post] Add Answer Fail',
+    LoadPostCategories = '[Post] Load Post Categories',
+    LoadPostCategoriesSuccess = '[Post] Load Post Categories Success',
+    LoadPostCategoriesFail = '[Post] Load Post Categories Fail',
 }
 
 export class LoadPosts implements Action {
@@ -77,4 +81,18 @@ export class AddAnswerFail implements Action {
     constructor(public payload: string) {}
 }
 
-export type PostActions = LoadPosts | LoadPostsSuccess | LoadPostsFail | LoadPostDetail | LoadPostDetailSuccess | LoadPostDetailFail | AddPost | AddPostSuccess | AddPostFail | AddAnswer | AddAnswerSuccess | AddAnswerFail;
+export class LoadPostCategories implements Action {
+    readonly type = PostActionTypes.LoadPostCategories;
+}
+
+export class LoadPostCategoriesSuccess implements Action {
+    readonly type = PostActionTypes.LoadPostCategoriesSuccess;
+    constructor(public payload: PostCategory[]) {}
+}
+
+export class LoadPostCategoriesFail implements Action {
+    readonly type = PostActionTypes.LoadPostCategoriesFail;
+    constructor(public payload: string) {}
+}
+
+export type PostActions = LoadPosts | LoadPostsSuccess | LoadPostsFail | LoadPostDetail | LoadPostDetailSuccess | LoadPostDetailFail | AddPost | AddPostSuccess | AddPostFail | AddAnswer | AddAnswerSuccess | AddAnswerFail | LoadPostCategories | LoadPostCategoriesSuccess | LoadPostCategoriesFail;

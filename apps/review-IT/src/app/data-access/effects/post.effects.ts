@@ -3,7 +3,7 @@ import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { PostService } from '../services/post.service';
 import { Post } from '../../models/post.model';
-import { AddAnswer, AddAnswerSuccess, AddPost, AddPostSuccess, LoadPostDetail, LoadPostDetailSuccess, PostActionTypes } from '../actions/post.actions';
+import { AddAnswer, AddAnswerSuccess, AddPost, AddPostSuccess, LoadPostCategories, LoadPostCategoriesSuccess, LoadPostDetail, LoadPostDetailSuccess, PostActionTypes } from '../actions/post.actions';
 import { LoadPosts, LoadPostsSuccess } from '../actions/post.actions';
 import { forkJoin } from 'rxjs';
 import { AnswerService } from '../services/answer.service';
@@ -54,6 +54,13 @@ export class PostEffects {
         concatLatestFrom(() => this.store.select(state => state.posts.selectedPost!.id)),
         map(([, postId]) => new LoadPostDetail(postId)),
     ));
+
+    loadPostCategories$ = createEffect(() => this.actions$.pipe(
+        ofType<LoadPostCategories>(PostActionTypes.LoadPostCategories),
+        switchMap(() => this.postService.getPostCategories()),
+        map((categories) => new LoadPostCategoriesSuccess(categories))
+    ));
+    
 
     constructor(
         private actions$: Actions,

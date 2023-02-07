@@ -18,3 +18,8 @@ export const selectAnswers = createSelector(
     selectPosts,
     (state: PostState) => state.answers
 );
+
+export const selectPostCategories = createSelector(
+    selectPosts,
+    (state: PostState) => state.postCategories
+);

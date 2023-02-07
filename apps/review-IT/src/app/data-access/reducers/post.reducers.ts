@@ -70,6 +70,23 @@ export function postReducer(state = initialState, action: PostActions) {
                 loading: false,
                 error: action.payload
             };
+        case PostActionTypes.LoadPostCategories:
+            return {
+                ...state,
+                loading: true
+            };
+        case PostActionTypes.LoadPostCategoriesSuccess:
+            return {
+                ...state,
+                loading: false,
+                postCategories: action.payload
+            };
+        case PostActionTypes.LoadPostCategoriesFail:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
         default:
             return state;
     }
