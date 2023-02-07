@@ -70,5 +70,6 @@ export class PostListContainerComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }
