@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Answer } from '../../../models/answer';
+import { Answer } from '../../../models/answer.model';
 import { MatDividerModule } from '@angular/material/divider';
 import { AnswerDetailComponent } from '../answer-detail/answer-detail.component';
 

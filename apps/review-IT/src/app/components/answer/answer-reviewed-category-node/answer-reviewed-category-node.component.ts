@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReviewCategoryNode } from '../../../models/post-category-node';
+import { ReviewCategoryNode } from '../../../models/post-category-node.model';
 
 @Component({
   selector: 'app-answer-reviewed-category-node',

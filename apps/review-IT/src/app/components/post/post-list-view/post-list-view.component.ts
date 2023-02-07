@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Post } from '../../../models/post';
+import { Post } from '../../../models/post.model';
 import { TagListComponent } from '../../tag/tag-list/tag-list.component';
 import { StarRankComponent } from '../../star-rank/star-rank.component';
 import { PostStatsComponent } from '../post-stats/post-stats.component';

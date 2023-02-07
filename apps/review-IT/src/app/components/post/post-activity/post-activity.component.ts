@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserInlineInfoComponent } from '../../user/user-inline-info/user-inline-info.component';
-import { User } from '../../../models/user';
+import { User } from '../../../models/user.model';
 import { TimeAgoPipe } from '../../../pipes/time-ago.pipe';
 @Component({
   selector: 'app-post-activity',

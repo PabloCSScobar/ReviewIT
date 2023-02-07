@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { User } from '../../../models/user';
+import { User } from '../../../models/user.model';
 
 @Component({
   selector: 'app-user-inline-info',

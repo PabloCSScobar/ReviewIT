@@ -8,16 +8,16 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { PostCategory } from '../../../models/post-category';
+import { PostCategory } from '../../../models/post-category.model';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { PostDetail } from '../../../models/post';
+import { PostDetail } from '../../../models/post.model';
 import { MatIconModule } from '@angular/material/icon';
 import { AnswerFormCategoryComponent } from './answer-form-category/answer-form-category.component';
 import { castAbstractControlToFormGroup } from '../../shared/form-utils/form-utils';
 import { MatButtonModule } from '@angular/material/button';
 import { AnswerService } from '../../../data-access/services/answer.service';
-import { AnswerCreate } from '../../../models/answer';
+import { AnswerCreate } from '../../../models/answer.model';
 
 @Component({
   selector: 'app-answer-form',

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PostsFilter } from '../../../models/post-filters';
+import { PostsFilter } from '../../../models/post-filters.model';
 
 @Component({
   selector: 'app-post-filters-bar',

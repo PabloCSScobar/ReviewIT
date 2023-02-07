@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Post, PostCreate, PostDetail } from '../../models/post';
+import { Post, PostCreate, PostDetail } from '../../models/post.model';
 import { environment as env } from '../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { PostCategory } from '../../models/post-category';
+import { PostCategory } from '../../models/post-category.model';
 
 @Injectable({
   providedIn: 'root',

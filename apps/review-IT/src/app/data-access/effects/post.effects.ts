@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs/operators';
 import { PostService } from '../services/post.service';
-import { Post } from '../../models/post';
+import { Post } from '../../models/post.model';
 import { LoadPostDetail, LoadPostDetailSuccess, PostActionTypes } from '../actions/post.actions';
 import { LoadPosts, LoadPostsSuccess } from '../actions/post.actions';
 import { forkJoin } from 'rxjs';

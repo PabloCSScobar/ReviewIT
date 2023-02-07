@@ -10,7 +10,7 @@ import {
 } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { Observable, tap } from 'rxjs';
-import { PostCategory } from '../../../models/post-category';
+import { PostCategory } from '../../../models/post-category.model';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';

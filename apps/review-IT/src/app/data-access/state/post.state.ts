@@ -1,5 +1,5 @@
-import { Answer } from '../../models/answer';
-import { Post, PostDetail } from '../../models/post';
+import { Answer } from '../../models/answer.model';
+import { Post, PostDetail } from '../../models/post.model';
 
 export type PostState = {
     posts: Post[];
