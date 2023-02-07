@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { PostService } from '../services/post.service';
 import { Post } from '../../models/post.model';
-import { LoadPostDetail, LoadPostDetailSuccess, PostActionTypes } from '../actions/post.actions';
+import { AddPost, AddPostSuccess, LoadPostDetail, LoadPostDetailSuccess, PostActionTypes } from '../actions/post.actions';
 import { LoadPosts, LoadPostsSuccess } from '../actions/post.actions';
 import { forkJoin } from 'rxjs';
 import { AnswerService } from '../services/answer.service';
+import { Router } from '@angular/router';
 
 
 @Injectable()
@@ -25,9 +26,26 @@ export class PostEffects {
         map(([post, answers]) => new LoadPostDetailSuccess(post, answers))
     ));
 
+    addPost$ = createEffect(() => this.actions$.pipe(
+        ofType<AddPost>(PostActionTypes.AddPost),
+        map(action => action.payload),
+        switchMap((post) => this.postService.createPost(post)),
+        map((post) => new AddPostSuccess(post))
+    ));
+
+    addPostSuccess$ = createEffect(() => this.actions$.pipe(
+        ofType<AddPostSuccess>(PostActionTypes.AddPostSuccess),
+        tap(action => {
+            this.router.navigate(['/posts', action.payload.id]);
+        })
+    ), { dispatch: false });
+    
+
+
     constructor(
         private actions$: Actions,
         private postService: PostService,
-        private answerService: AnswerService
+        private answerService: AnswerService,
+        private router: Router
     ) {}
 }
