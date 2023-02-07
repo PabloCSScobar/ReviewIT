@@ -2,7 +2,7 @@
   <div class="answer-header mat-h2">Add your review</div>
   <form [formGroup]="answerForm" (submit)="submit()">
     <!-- summary input  -->
-    <mat-form-field class="full-width-field">
+    <mat-form-field  appearance="outline" class="full-width-field">
       <mat-label>Summary</mat-label>
       <input
         formControlName="description"
@@ -19,7 +19,7 @@
     >
       <!-- categories list  -->
       <div class="row">
-        <mat-form-field class="full-width-field">
+        <mat-form-field class="full-width-field" appearance="outline">
           <mat-label>Add category to review.</mat-label>
           <mat-select
             #availableCategoriesSelect
