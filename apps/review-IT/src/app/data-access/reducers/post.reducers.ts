@@ -38,6 +38,39 @@ export function postReducer(state = initialState, action: PostActions) {
                 loading: false,
                 error: action.payload
             };
+        case PostActionTypes.AddPost:
+            return {
+                ...state,
+                loading: true
+            };
+        case PostActionTypes.AddPostSuccess:
+            return {
+                ...state,
+                loading: false,
+            };
+        case PostActionTypes.AddPostFail:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
+        case PostActionTypes.AddAnswer:
+            return {
+                ...state,
+                loading: true
+            };
+        case PostActionTypes.AddAnswerSuccess:
+            return {
+                ...state,
+                loading: false,
+                answers: [...state.answers || [], action.payload]
+            };
+        case PostActionTypes.AddAnswerFail:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
         default:
             return state;
     }
