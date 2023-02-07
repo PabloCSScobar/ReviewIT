@@ -15,7 +15,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { PostService } from '../../../data-access/services/post.service';
-import { Router } from '@angular/router';
+import { AppState } from '../../../data-access/state/app.state';
+import { Store } from '@ngrx/store';
+import { AddPost } from '../../../data-access/actions/post.actions';
+import { PostCreate } from '../../../models/post.model';
 
 @Component({
   selector: 'app-post-form',
@@ -36,7 +39,8 @@ import { Router } from '@angular/router';
 export class PostFormComponent {
   private postService = inject(PostService);
   private fb = inject(FormBuilder);
-  private router = inject(Router);
+  private store = inject(Store<AppState>)
+  
   postCategories$: Observable<PostCategory[]> = this.postService.getPostCategories();
 
   postForm: FormGroup = this.fb.group({
@@ -47,11 +51,8 @@ export class PostFormComponent {
     categories: [[], Validators.required],
   });
 
-  
-
   submit() {
-    this.postService.createPost(this.postForm.value).pipe(
-      tap(post => this.router.navigate(['posts', post.id]))
-    ).subscribe();
+    const post: PostCreate = this.postForm.value;
+    this.store.dispatch(new AddPost(post));
   }
 }
