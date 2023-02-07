@@ -29,8 +29,8 @@ export function postReducer(state = initialState, action: PostActions) {
             return {
                 ...state,
                 loading: false,
-                selectedPost: action.payload.post,
-                answers: action.payload.answers
+                selectedPost: action.post,
+                answers: action.answers
             };
         case PostActionTypes.LoadPostDetailFail:
             return {

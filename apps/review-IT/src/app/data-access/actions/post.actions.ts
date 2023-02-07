@@ -34,7 +34,7 @@ export class LoadPostDetail implements Action {
 
 export class LoadPostDetailSuccess implements Action {
     readonly type = PostActionTypes.LoadPostDetailSuccess;
-    constructor(public payload: {post: PostDetail, answers: Answer[]}) {}
+    constructor(public post: PostDetail, public answers: Answer[]) {}
 }
 
 export class LoadPostDetailFail implements Action {

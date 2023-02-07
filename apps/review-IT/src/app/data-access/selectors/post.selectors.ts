@@ -13,3 +13,8 @@ export const selectSelectedPost = createSelector(
     selectPosts,
     (state: PostState) => state.selectedPost
 );
+
+export const selectAnswers = createSelector(
+    selectPosts,
+    (state: PostState) => state.answers
+);
