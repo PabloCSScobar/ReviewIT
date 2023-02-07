@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
+import { filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { PostService } from '../services/post.service';
 import { Post } from '../../models/post.model';
 import { AddAnswer, AddAnswerSuccess, AddPost, AddPostSuccess, LoadPostDetail, LoadPostDetailSuccess, PostActionTypes } from '../actions/post.actions';
@@ -8,6 +8,8 @@ import { LoadPosts, LoadPostsSuccess } from '../actions/post.actions';
 import { forkJoin } from 'rxjs';
 import { AnswerService } from '../services/answer.service';
 import { Router } from '@angular/router';
+import { AppState } from '../state/app.state';
+import { Store } from '@ngrx/store';
 
 
 @Injectable()
@@ -44,14 +46,20 @@ export class PostEffects {
         ofType<AddAnswer>(PostActionTypes.AddAnswer),
         map(action => action.payload),
         switchMap(({answer, postId}) => this.answerService.createAnswer(answer, postId)),
-        map((answer) => new AddAnswerSuccess(answer))
+        map(() => new AddAnswerSuccess())
     ));
 
+    addAnswerSuccess$ = createEffect(() => this.actions$.pipe(
+        ofType<AddAnswerSuccess>(PostActionTypes.AddAnswerSuccess),
+        concatLatestFrom(() => this.store.select(state => state.posts.selectedPost!.id)),
+        map(([, postId]) => new LoadPostDetail(postId)),
+    ));
 
     constructor(
         private actions$: Actions,
         private postService: PostService,
         private answerService: AnswerService,
-        private router: Router
+        private router: Router,
+        private store: Store<AppState>
     ) {}
 }

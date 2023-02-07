@@ -63,7 +63,6 @@ export function postReducer(state = initialState, action: PostActions) {
             return {
                 ...state,
                 loading: false,
-                answers: [...state.answers || [], action.payload]
             };
         case PostActionTypes.AddAnswerFail:
             return {

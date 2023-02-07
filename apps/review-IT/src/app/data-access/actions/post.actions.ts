@@ -70,7 +70,6 @@ export class AddAnswer implements Action {
 
 export class AddAnswerSuccess implements Action {
     readonly type = PostActionTypes.AddAnswerSuccess;
-    constructor(public payload: Answer) {}
 }
 
 export class AddAnswerFail implements Action {
