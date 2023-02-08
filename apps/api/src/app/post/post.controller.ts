@@ -9,7 +9,7 @@ import {
   Request,
   Query,
 } from '@nestjs/common';
-import { PostService } from './post.service';
+import { PostService, PostsFilter } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { AnswerService } from './answer.service';
 import { CreateAnswerDto } from './dto/create-answer.dto';
@@ -33,7 +33,7 @@ export class PostController {
   }
 
   @Get()
-  findAll(@Query('searchedTerm') searchedTerm: string, @Query('postFilter') postFilter: string, @Query('categoryFilter') categoryFilter: string) {
+  findAll(@Query('searchedTerm') searchedTerm: string, @Query('postFilter') postFilter: PostsFilter, @Query('categoryFilter') categoryFilter: string) {
     return this.postService.findAll(searchedTerm, postFilter, categoryFilter);
   }
 

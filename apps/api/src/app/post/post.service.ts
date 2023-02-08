@@ -4,7 +4,18 @@ import { In, Like, Repository } from 'typeorm';
 import { PostCategory } from '../post-category/entities/post-category.entity';
 import { User } from '../user/entities/user.entity';
 import { CreatePostDto } from './dto/create-post.dto';
+import { Answer } from './entities/answer.entity';
 import { Post } from './entities/post.entity';
+import { ReviewedCategory } from './entities/reviewed-category.entity';
+
+export enum PostsFilter {
+  LATEST = 'latest',
+  HOT = 'hot',
+  HIGHEST_RANK = 'highest_rank',
+  MOST_VISITS = 'most_visits',
+  MOST_ANSWERS = 'most_answers',
+  NO_ANSWER = 'no_answer',
+}
 
 @Injectable()
 export class PostService {
@@ -40,7 +51,7 @@ export class PostService {
     return await this.postRepository.save(newPost);
   }
 
-  async findAll(searchedTerm: string, postFilter: string, categoryFilter: string) {
+  async findAll(searchedTerm: string, postFilter: PostsFilter, categoryFilter: string) {
     let query = this.postRepository.createQueryBuilder('post')
     .leftJoinAndSelect('post.author', 'author')
     .leftJoinAndSelect('post.categories', 'categories');
