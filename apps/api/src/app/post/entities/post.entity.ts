@@ -39,7 +39,7 @@ export class Post {
   @ManyToOne(() => User, (user) => user.posts)
   author: User;
 
-  @OneToMany(() => Answer, (answer) => answer.post, { eager: true })
+  @OneToMany(() => Answer, (answer) => answer.post)
   answers: Answer[];
 
   @ManyToMany(() => PostCategory, category => category.posts)
