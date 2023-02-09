@@ -56,7 +56,17 @@ export class PostService {
   async findAll(searchedTerm: string, postFilter: PostsFilter, categoryFilter: string) {
     let query = this.postRepository.createQueryBuilder('post')
     .leftJoinAndSelect('post.author', 'author')
-    .leftJoinAndSelect('post.categories', 'categories');
+    .leftJoinAndSelect('post.categories', 'categories')
+    .addSelect(
+      `(
+        SELECT COALESCE(AVG(reviewed_category.rank), 0)
+        FROM answer
+        LEFT JOIN reviewed_category ON reviewed_category."answerId" = answer.id
+        WHERE answer."postId" = post.id
+      ) as post_rank`
+    )
+    .addSelect(`(select count(*) from answer where answer."postId" = post.id) as post_answers_amount`)
+
 
     if (searchedTerm) {
       query = query.andWhere('(post.title LIKE :searchedTerm OR post.description LIKE :searchedTerm)', { searchedTerm: `%${searchedTerm}%` });
@@ -69,16 +79,17 @@ export class PostService {
       query = query.orderBy('post.created', 'DESC');
     } else if(postFilter === PostsFilter.HOT) {
       query = query.orderBy('post.visits * (select count(*) from answer where answer."postId" = post.id)', 'DESC');
+    } else if(postFilter === PostsFilter.HIGHEST_RANK) {
+      query = query.orderBy('post_rank', 'DESC');
     }
 
-    
-    const posts = await query.getMany();
-    await Promise.all(
-      posts.map(async (post) => {
-        post.hasTopAnswer = post.getHasTopAnswer();
-        post.answersAmount = await this.getAnswersCount(post.id);
-      })
-    );
+    const postRawAndEntities = await query.getRawAndEntities();
+    const posts = postRawAndEntities.entities.map((post) => {
+      const raw = postRawAndEntities.raw.find((raw) => raw.post_id === post.id);
+      post.rank = raw.post_rank ;
+      post.answersAmount = raw.post_answers_amount;
+      return post;
+    })
     return posts;
   }
 
