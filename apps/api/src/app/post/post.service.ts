@@ -55,13 +55,14 @@ export class PostService {
     let query = this.postRepository.createQueryBuilder('post')
     .leftJoinAndSelect('post.author', 'author')
     .leftJoinAndSelect('post.categories', 'categories');
+    
     if (searchedTerm) {
-      query = query.where('post.title LIKE :searchedTerm OR post.description LIKE :searchedTerm', { searchedTerm: `%${searchedTerm}%` });
+      query = query.andWhere('(post.title LIKE :searchedTerm OR post.description LIKE :searchedTerm)', { searchedTerm: `%${searchedTerm}%` });
     }
     if(categoryFilter) {
-      query = query.andWhere('categories.name LIKE :categoryFilter', { categoryFilter: `%${categoryFilter}%` });
+      query = query.andWhere('exists (select 1 from post_categories_post_category ppc left join post_category pc on ppc."postCategoryId" = pc.id where pc.name like :categoryFilter and post.id = ppc."postId")', { categoryFilter: `%${categoryFilter}%` });
     }
-
+    
     const posts = await query.getMany();
     posts.map((post) => {
       post.hasTopAnswer = post.getHasTopAnswer();
