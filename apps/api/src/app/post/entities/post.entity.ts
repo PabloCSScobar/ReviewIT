@@ -48,6 +48,8 @@ export class Post {
 
   answersAmount: number;
 
+  rank: number;
+
   hasTopAnswer: boolean;
 
   getHasTopAnswer(): boolean {
