@@ -64,6 +64,13 @@ export class PostService {
     if(categoryFilter) {
       query = query.andWhere('exists (select 1 from post_categories_post_category ppc left join post_category pc on ppc."postCategoryId" = pc.id where pc.name like :categoryFilter and post.id = ppc."postId")', { categoryFilter: `%${categoryFilter}%` });
     }
+
+    if(postFilter === PostsFilter.LATEST) {
+      query = query.orderBy('post.created', 'DESC');
+    } else if(postFilter === PostsFilter.HOT) {
+      query = query.orderBy('post.visits * (select count(*) from answer where answer."postId" = post.id)', 'DESC');
+    }
+
     
     const posts = await query.getMany();
     await Promise.all(
