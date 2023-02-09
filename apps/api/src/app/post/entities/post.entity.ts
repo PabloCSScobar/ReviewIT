@@ -50,12 +50,6 @@ export class Post {
 
   hasTopAnswer: boolean;
 
-  getAnswersAmount(): number {
-    const answers = this.answers;
-    if (!answers) return 0;
-    return answers.length;
-  }
-
   getHasTopAnswer(): boolean {
     const answers = this.answers;
     if (!answers) return false;

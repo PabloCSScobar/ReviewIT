@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { In, Like, Repository } from 'typeorm';
 import { PostCategory } from '../post-category/entities/post-category.entity';
 import { User } from '../user/entities/user.entity';
+import { AnswerService } from './answer.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { Answer } from './entities/answer.entity';
 import { Post } from './entities/post.entity';
@@ -21,9 +22,10 @@ export enum PostsFilter {
 export class PostService {
   constructor(
     @InjectRepository(Post) private postRepository: Repository<Post>,
+    @InjectRepository(Answer) private answerRepository: Repository<Answer>,
     @InjectRepository(User) private userRepository: Repository<User>,
     @InjectRepository(PostCategory)
-    private postCategoryRepository: Repository<PostCategory>
+    private postCategoryRepository: Repository<PostCategory>,
   ) {}
 
   async getPostById(id: number) {
@@ -55,7 +57,7 @@ export class PostService {
     let query = this.postRepository.createQueryBuilder('post')
     .leftJoinAndSelect('post.author', 'author')
     .leftJoinAndSelect('post.categories', 'categories');
-    
+
     if (searchedTerm) {
       query = query.andWhere('(post.title LIKE :searchedTerm OR post.description LIKE :searchedTerm)', { searchedTerm: `%${searchedTerm}%` });
     }
@@ -64,10 +66,12 @@ export class PostService {
     }
     
     const posts = await query.getMany();
-    posts.map((post) => {
-      post.hasTopAnswer = post.getHasTopAnswer();
-      post.answersAmount = post.getAnswersAmount();
-    });
+    await Promise.all(
+      posts.map(async (post) => {
+        post.hasTopAnswer = post.getHasTopAnswer();
+        post.answersAmount = await this.getAnswersCount(post.id);
+      })
+    );
     return posts;
   }
 
@@ -80,8 +84,14 @@ export class PostService {
     post.visits +=1;
     await this.postRepository.save(post);
     post.hasTopAnswer = post.getHasTopAnswer();
-    post.answersAmount = post.getAnswersAmount();
+    post.answersAmount = await this.getAnswersCount(post.id);
     return post;
+  }
+
+  async getAnswersCount(postId: number) {
+    return await this.answerRepository.count({
+      where: { post: { id: postId } },
+    });
   }
 
   remove(id: number) {
