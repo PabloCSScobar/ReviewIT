@@ -81,6 +81,12 @@ export class PostService {
       query = query.orderBy('post.visits * (select count(*) from answer where answer."postId" = post.id)', 'DESC');
     } else if(postFilter === PostsFilter.HIGHEST_RANK) {
       query = query.orderBy('post_rank', 'DESC');
+    } else if(postFilter === PostsFilter.MOST_VISITS) {
+      query = query.orderBy('post.visits', 'DESC');
+    } else if(postFilter === PostsFilter.MOST_ANSWERS) {
+      query = query.orderBy('post_answers_amount', 'DESC');
+    } else if(postFilter === PostsFilter.NO_ANSWER) {
+      query = query.andWhere('not exists (select 1 from answer where answer."postId" = post.id)');
     }
 
     const postRawAndEntities = await query.getRawAndEntities();
