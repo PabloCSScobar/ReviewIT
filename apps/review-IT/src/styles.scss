@@ -1,5 +1,5 @@
 @use "@angular/material" as mat;
-@use "./app/styles/app-theme";
+@use "./app/core/styles/app-theme";
 
 .theme-light {
   $primary: mat.define-palette(mat.$pink-palette);

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
-import { environment as env } from '../../environments/environment';
+import { environment as env } from '../../../environments/environment';
 import { Credentials, User } from '../models/user.model';
 
 export interface Token {
