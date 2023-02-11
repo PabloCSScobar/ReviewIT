@@ -100,16 +100,28 @@ export class PostService {
   }
 
   async findOne(id: number) {
-    const post = await this.postRepository.findOne({
-      where: { id },
-      relations: ['author', 'categories'],
-    });
-    if (!post) throw new HttpException('Post not found', HttpStatus.NOT_FOUND);
-    post.visits +=1;
-    await this.postRepository.save(post);
-    post.hasTopAnswer = post.getHasTopAnswer();
-    post.answersAmount = await this.getAnswersCount(post.id);
-    return post;
+    let query = this.postRepository.createQueryBuilder('post')
+    .leftJoinAndSelect('post.author', 'author')
+    .leftJoinAndSelect('post.categories', 'categories')
+    .addSelect(
+      `(
+        SELECT COALESCE(AVG(reviewed_category.rank), 0)
+        FROM answer
+        LEFT JOIN reviewed_category ON reviewed_category."answerId" = answer.id
+        WHERE answer."postId" = post.id
+      ) as post_rank`
+    )
+    .where('post.id = :id', { id });
+
+    const postRawAndEntity = await query.getRawAndEntities();
+    if(!postRawAndEntity.entities.length) throw new HttpException('Post not found', HttpStatus.NOT_FOUND);
+
+    const postEntity = postRawAndEntity.entities[0];
+    const raw = postRawAndEntity.raw[0];
+    postEntity.rank = raw.post_rank ;
+    postEntity.visits +=1;
+    await this.postRepository.save(postEntity);
+    return postEntity;
   }
 
   async getAnswersCount(postId: number) {
