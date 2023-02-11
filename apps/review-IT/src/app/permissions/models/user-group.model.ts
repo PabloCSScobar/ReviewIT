@@ -3,6 +3,5 @@ export const enum UserGroup {
     LOGGED_IN = 'logged_in',
     POST_AUTHOR = 'post_author',
     ANSWER_AUTHOR = 'answer_author',
-    BASIC = 'basic',
     ADMIN = 'admin',
 }
