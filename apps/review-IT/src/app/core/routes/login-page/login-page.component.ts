@@ -42,7 +42,7 @@ import { ThemeToggleComponent } from '../../components/theme/theme-toggle.compon
       .banner {
         display: flex;
         width: 100%;
-        background-image: url('../../../assets/auth-background.webp');
+        background-image: url('/assets/auth-background.webp');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
