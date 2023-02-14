@@ -4,7 +4,7 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { environment as env } from '../../../environments/environment';
-import { Credentials, User } from '../models/user.model';
+import { Credentials, User } from '../../core/models/user.model';
 
 export interface Token {
   access_token: string;
