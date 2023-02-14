@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { AuthService } from '../../../data-access/auth.service';
+import { AuthService } from '../../../../permissions/services/auth.service';
 
 @Component({
   selector: 'app-logout-button',

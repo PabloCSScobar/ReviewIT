@@ -1,5 +1,5 @@
 import { AfterViewChecked, ChangeDetectorRef, Directive, inject, OnInit, TemplateRef, ViewContainerRef } from "@angular/core";
-import { AuthService } from "../../core/data-access/auth.service";
+import { AuthService } from "../services/auth.service";
 
 @Directive({
     selector: "[IsLogged]",

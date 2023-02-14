@@ -6,7 +6,7 @@ import {
     TemplateRef,
     ViewContainerRef
 } from '@angular/core';
-import { AuthService } from '../../core/data-access/auth.service';
+import { AuthService } from '../services/auth.service';
 import { PermissionAreas } from '../models/permission-areas.model';
 import { PermissionsService } from '../services/permissions.service';
 

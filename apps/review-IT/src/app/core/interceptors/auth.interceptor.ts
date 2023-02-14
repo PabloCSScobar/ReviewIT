@@ -4,7 +4,7 @@ import {
   HttpInterceptor,
   HttpRequest
 } from '@angular/common/http';
-import { AuthService } from '../data-access/auth.service';
+import { AuthService } from '../../permissions/services/auth.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 

@@ -1,6 +1,6 @@
 import { inject, Injectable, InjectionToken } from '@angular/core';
 import { PermissionMatrix } from '../models/permission-matrix.model';
-import { AuthService } from '../../core/data-access/auth.service';
+import { AuthService } from './auth.service';
 
 export const PERMISSIONS_MATRIX_CONFIG =
   new InjectionToken<PermissionMatrix>('permissions-matrix-config');
