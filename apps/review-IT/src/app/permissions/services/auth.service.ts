@@ -2,7 +2,7 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { environment as env } from '../../../environments/environment';
 import { Credentials, User } from '../../core/models/user.model';
 
@@ -19,10 +19,16 @@ export class AuthService {
   API_URL = env.apiUrl;
   currentUser$ =new BehaviorSubject<User | null>(null);
 
+  get currentUser() {
+    return this.currentUser$.getValue();
+  }
+
   login(credentials: Credentials) {
     this.http.post<Token>(`${this.API_URL}auth/login`, credentials)
     .pipe(
       tap(token => this.setToken(token.access_token)),
+      switchMap(() => this.getMe()),
+      tap(user => this.currentUser$.next(user))
       ).subscribe(
       {
         complete: () =>this.router.navigate(['posts'])
@@ -45,5 +51,9 @@ export class AuthService {
 
   getToken() {
     return localStorage.getItem('Token');
+  }
+
+  getMe() {
+    return this.http.get<User>(`${this.API_URL}users/me`);
   }
 }
