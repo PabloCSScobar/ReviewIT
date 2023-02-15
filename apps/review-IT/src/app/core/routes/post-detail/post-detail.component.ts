@@ -10,6 +10,7 @@ import { select, Store } from '@ngrx/store';
 import { AppState } from '../../data-access/state/app.state';
 import { selectAnswers, selectSelectedPost } from '../../data-access/selectors/post.selectors';
 import { LoadPostDetail } from '../../data-access/actions/post.actions';
+import { HasLoggedUserCreatedAnswerDirective } from '../../../permissions/directives/has-logged-user-created-answer.directive';
 
 @Component({
   selector: 'app-post-detail',
@@ -20,14 +21,15 @@ import { LoadPostDetail } from '../../data-access/actions/post.actions';
     PostDetailViewComponent,
     AnswerListComponent,
     AnswerFormComponent,
+    HasLoggedUserCreatedAnswerDirective,
   ],
   template: ` <app-navigation>
     <div main-content *ngIf="post$ | async as post">
       <app-post-detail-view [post]="post"></app-post-detail-view>
       <ng-container *ngIf="answers$ | async as answers">
         <app-answer-list [answers]="answers"></app-answer-list>
+        <app-answer-form  *hasLoggedUserCreatedAnswer="answers" [post]="post"></app-answer-form>
       </ng-container>
-      <app-answer-form [post]="post"></app-answer-form>
     </div>
   </app-navigation>`,
   styles: [],
