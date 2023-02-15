@@ -12,10 +12,10 @@ export class HasLoggedUserCreatedAnswerDirective {
     private authService = inject(AuthService);
     private isDisplayed: boolean = false;
 
-    @Input() set answers(answers: Answer[]) {
+    @Input() set hasLoggedUserCreatedAnswer(answers: Answer[]) {
       const loggedUser = this.authService.currentUser
-      const loggedUsersAnswers = answers.find(answer => answer.author.id === loggedUser?.id);
-      if (loggedUsersAnswers && !this.isDisplayed) {
+      const hasAnswer = answers.find(answer => answer.author.id === loggedUser?.id);
+      if (!hasAnswer && !this.isDisplayed) {
         this.isDisplayed = true;
         this.viewContainer.createEmbeddedView(this.templateRef);
       } else {
