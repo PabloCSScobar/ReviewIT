@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { UserService } from '../../../data-access/user.service';
+import { AuthService } from '../../../../permissions/services/auth.service';
 
 @Component({
   selector: 'app-user-panel',
@@ -79,6 +79,6 @@ import { UserService } from '../../../data-access/user.service';
   ],
 })
 export class UserPanelComponent {
-  private userService = inject(UserService);
-  loggedUser$ = this.userService.getMe();
+  private auth = inject(AuthService);
+  loggedUser$ = this.auth.currentUser$;
 }
