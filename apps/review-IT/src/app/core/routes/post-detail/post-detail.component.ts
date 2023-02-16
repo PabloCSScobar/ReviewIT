@@ -28,11 +28,29 @@ import { HasLoggedUserCreatedAnswerDirective } from '../../../permissions/direct
       <app-post-detail-view [post]="post"></app-post-detail-view>
       <ng-container *ngIf="answers$ | async as answers">
         <app-answer-list [answers]="answers"></app-answer-list>
-        <app-answer-form  *hasLoggedUserCreatedAnswer="answers" [post]="post"></app-answer-form>
+
+        <div 
+          class="answer-provided-text"
+          *hasLoggedUserCreatedAnswer="answers;
+          notLogged notLoggedTemp;
+          else notProvidedTemp"
+          >
+          <p>You already provided answer</p>
+        </div>
+        <ng-template #notProvidedTemp>  
+          <app-answer-form  [post]="post"></app-answer-form>
+        </ng-template>
+        <ng-template class="not-logged-text" #notLoggedTemp>
+          <p>You need to be logged in to provide answer</p>
+        </ng-template>
       </ng-container>
     </div>
   </app-navigation>`,
-  styles: [],
+  styles: [`
+  .answer-provided-text, .not-logged-text {
+    padding: 2em;
+  }
+  `],
 })
 export class PostDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
