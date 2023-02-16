@@ -5,25 +5,35 @@ import { PostListContainerComponent } from './core/routes/post-list/post-list.co
 import { LoginPageComponent } from './core/routes/login-page/login-page.component';
 import { LoginFormComponent } from './core/components/auth/login-form/login-form.component';
 import { RegisterFormComponent } from './core/components/auth/register-form/register-form.component';
+import { LoggedUserResolver } from './core/data-access/resolvers/logged-user.resolver';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/posts',
-    pathMatch: 'full',
+    resolve: {
+      loggedUser: LoggedUserResolver,
+    },
+    children: [
+      {
+        path: 'posts',
+        component: PostListContainerComponent,
+      },
+      {
+        path: 'posts/new',
+        component: NewPostComponent,
+      },
+      {
+        path: 'posts/:id',
+        component: PostDetailComponent,
+      },
+      {
+        path: '',
+        redirectTo: '/posts',
+        pathMatch: 'full',
+      }
+    ]
   },
-  {
-    path: 'posts',
-    component: PostListContainerComponent,
-  },
-  {
-    path: 'posts/new',
-    component: NewPostComponent,
-  },
-  {
-    path: 'posts/:id',
-    component: PostDetailComponent,
-  },
+
   {
     path: 'auth',
     component: LoginPageComponent,
