@@ -40,8 +40,8 @@ import { HasLoggedUserCreatedAnswerDirective } from '../../../permissions/direct
         <ng-template #notProvidedTemp>  
           <app-answer-form  [post]="post"></app-answer-form>
         </ng-template>
-        <ng-template class="not-logged-text" #notLoggedTemp>
-          <p>You need to be logged in to provide answer</p>
+        <ng-template #notLoggedTemp>
+          <p class="not-logged-text">You need to be logged in to provide answer</p>
         </ng-template>
       </ng-container>
     </div>
