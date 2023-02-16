@@ -28,7 +28,6 @@ export class AuthService {
     .pipe(
       tap(token => this.setToken(token.access_token)),
       switchMap(() => this.getMe()),
-      tap(user => this.currentUser$.next(user))
       ).subscribe(
       {
         complete: () =>this.router.navigate(['posts'])
@@ -54,6 +53,9 @@ export class AuthService {
   }
 
   getMe() {
-    return this.http.get<User>(`${this.API_URL}users/me`);
+    return this.http.get<User>(`${this.API_URL}users/me`)
+    .pipe(
+      tap(user => this.currentUser$.next(user))
+      );
   }
 }
