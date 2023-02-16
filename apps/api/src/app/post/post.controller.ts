@@ -15,6 +15,7 @@ import { AnswerService } from './answer.service';
 import { CreateAnswerDto } from './dto/create-answer.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { RequestWithUser } from '../user/user-request.type';
+import { Public } from '../auth/public-endpoint';
 
 @Controller('posts')
 export class PostController {
@@ -32,11 +33,13 @@ export class PostController {
     return this.postService.create(createPostDto, authorId);
   }
 
+  @Public()
   @Get()
   findAll(@Query('searchedTerm') searchedTerm: string, @Query('postFilter') postFilter: PostsFilter, @Query('categoryFilter') categoryFilter: string) {
     return this.postService.findAll(searchedTerm, postFilter, categoryFilter);
   }
 
+  @Public()
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.postService.findOne(+id);
@@ -67,6 +70,7 @@ export class PostController {
     return this.answerService.deleteAnswer(+answerId);
   }
 
+  @Public()
   @Get(':id/answers')
   async getAnswers(@Param('id') id: string) {
     return await this.answerService.getAnswers(+id);
