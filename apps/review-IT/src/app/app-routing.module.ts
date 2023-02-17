@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { Router, Routes } from '@angular/router';
 import { NewPostComponent } from './core/routes/new-post/new-post.component';
 import { PostDetailComponent } from './core/routes/post-detail/post-detail.component';
 import { PostListContainerComponent } from './core/routes/post-list/post-list.component';
@@ -6,6 +6,10 @@ import { LoginPageComponent } from './core/routes/login-page/login-page.componen
 import { LoginFormComponent } from './core/components/auth/login-form/login-form.component';
 import { RegisterFormComponent } from './core/components/auth/register-form/register-form.component';
 import { LoggedUserResolver } from './core/data-access/resolvers/logged-user.resolver';
+import { inject } from '@angular/core';
+import { AuthService } from './permissions/services/auth.service';
+
+const isLoggedGuard = () => inject(AuthService).isLogged() ? true : inject(Router).navigate(['/auth/login']);
 
 export const routes: Routes = [
   {
@@ -20,6 +24,7 @@ export const routes: Routes = [
       },
       {
         path: 'posts/new',
+        canActivate: [isLoggedGuard],
         component: NewPostComponent,
       },
       {
@@ -33,7 +38,6 @@ export const routes: Routes = [
       }
     ]
   },
-
   {
     path: 'auth',
     component: LoginPageComponent,
@@ -53,4 +57,8 @@ export const routes: Routes = [
       },
     ],
   },
+  {
+    path: '**',
+    redirectTo: '/posts',
+  }
 ];
