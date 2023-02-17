@@ -7,7 +7,10 @@ import { LogoComponent } from '../logo/logo.component';
 import { ThemeToggleComponent } from '../../theme/theme-toggle.component';
 import { FlexSpacerComponent } from '../../shared/flex-spacer/flex-spacer.component';
 import { LogoutButtonComponent } from '../../auth/logout-button/logout-button.component';
+import { LoginButtonComponent } from '../../auth/login-button/login-button.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { IsLoggedDirective } from '../../../../permissions/directives/is-logged.directive';
+import { IsNotLoggedDirective } from '../../../../permissions/directives/is-not-logged.directive';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +24,10 @@ import { MatDividerModule } from '@angular/material/divider';
     ThemeToggleComponent,
     FlexSpacerComponent,
     LogoutButtonComponent,
-    MatDividerModule
+    LoginButtonComponent,
+    MatDividerModule,
+    IsLoggedDirective,
+    IsNotLoggedDirective
   ],
   template: ` <mat-toolbar class="main-header" color="primary">
     <div class="flex-row">
@@ -37,16 +43,13 @@ import { MatDividerModule } from '@angular/material/divider';
       <app-flex-spacer></app-flex-spacer>
       <app-theme-toggle></app-theme-toggle>
       <mat-divider></mat-divider>
-      <app-logout-button></app-logout-button>
+      <app-logout-button *IsLogged></app-logout-button>
+      <app-login-button *IsNotLogged></app-login-button>
     </div>
   </mat-toolbar>`,
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Input() menuIconVisible!: boolean | null;
   @Output() toggleSidenav = new EventEmitter<void>();
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }
