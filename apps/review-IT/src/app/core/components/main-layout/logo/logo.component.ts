@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -23,6 +23,9 @@ import { RouterModule } from '@angular/router';
     `
       .logo-wrapper {
         padding: 0 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .logo-wrapper a {
         text-decoration: none;
@@ -32,13 +35,11 @@ import { RouterModule } from '@angular/router';
       }
       .logo {
         display: flex;
-        align-items: center;
+        padding: 0;
+        margin: 0;
       }
     `,
   ],
 })
-export class LogoComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+export class LogoComponent {
 }
