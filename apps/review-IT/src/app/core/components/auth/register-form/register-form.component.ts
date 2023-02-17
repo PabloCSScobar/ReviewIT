@@ -10,12 +10,16 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-register-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, RouterModule, MatIconModule],
-  template: `
-    <form
-    [formGroup]="registerForm"
-    class="register-form theme-dark"
-  >
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    RouterModule,
+    MatIconModule,
+  ],
+  template: ` <form [formGroup]="registerForm" class="register-form theme-dark">
     <mat-form-field appearance="outline">
       <input
         matInput
@@ -37,7 +41,7 @@ import { RouterModule } from '@angular/router';
         formControlName="password"
       />
       <mat-icon matSuffix (click)="hide = !hide">{{
-        hide ? "visibility_off" : "visibility"
+        hide ? 'visibility_off' : 'visibility'
       }}</mat-icon>
     </mat-form-field>
     <mat-form-field appearance="outline">
@@ -51,48 +55,55 @@ import { RouterModule } from '@angular/router';
         formControlName="confirm_password"
       />
       <mat-icon matSuffix (click)="hide = !hide">{{
-        hide ? "visibility_off" : "visibility"
+        hide ? 'visibility_off' : 'visibility'
       }}</mat-icon>
     </mat-form-field>
-    <button class="submit-button" type="submit" mat-raised-button color="primary">
+    <button
+      class="submit-button"
+      type="submit"
+      mat-raised-button
+      color="primary"
+    >
       Create account
     </button>
     <p class="login-message">
-    Already have an account? <a class="login-link" [routerLink]="['/auth/login']">Sign in</a>
+      Already have an account?
+      <a class="login-link" [routerLink]="['/auth/login']">Sign in</a>
     </p>
   </form>`,
-  styles: [`
+  styles: [
+    `
       :host {
-      width: 100%;
-      display: flex;
-      justify-content:center;
-      color: white;
-    }
-    .register-form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      max-width: 400px;
-      justify-content: center;
-      padding: 2em;
-      margin:1em;
-      background-color: #161b22;
-      border-radius: 10px;
-    }  
-    .register-form mat-form-field, .register-form .submit-button {
-      width: 100%;
-    }
-    .login-message {
-      margin-top: 1em;
-
-    }
-    .login-link {
-      text-decoration: none;
-      color: #1976d2;
-    }
-
-  `],
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        color: white;
+      }
+      .register-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 400px;
+        justify-content: center;
+        padding: 2em;
+        margin: 1em;
+        background-color: #161b22;
+        border-radius: 10px;
+      }
+      .register-form mat-form-field,
+      .register-form .submit-button {
+        width: 100%;
+      }
+      .login-message {
+        margin-top: 1em;
+      }
+      .login-link {
+        text-decoration: none;
+        color: #1976d2;
+      }
+    `,
+  ],
 })
 export class RegisterFormComponent {
   private fb = inject(FormBuilder);

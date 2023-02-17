@@ -8,11 +8,9 @@ import { ThemeToggleComponent } from '../../components/theme/theme-toggle.compon
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `<div class="login-page">
-    <div class="banner">
-    </div>
+    <div class="banner"></div>
     <div class="content-wrapper">
-      <div class="top-bar">
-      </div>
+      <div class="top-bar"></div>
       <div class="header">
         <img
           class="logo-img"
@@ -75,9 +73,7 @@ import { ThemeToggleComponent } from '../../components/theme/theme-toggle.compon
         .banner {
           display: none;
         }
-
       }
-
     `,
   ],
 })

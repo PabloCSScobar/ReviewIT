@@ -8,9 +8,8 @@ describe('FlexSpacerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ FlexSpacerComponent ]
-    })
-    .compileComponents();
+      imports: [FlexSpacerComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FlexSpacerComponent);
     component = fixture.componentInstance;

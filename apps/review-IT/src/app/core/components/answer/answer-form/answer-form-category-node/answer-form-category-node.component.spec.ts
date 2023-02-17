@@ -8,9 +8,8 @@ describe('AnswerFormCategoryNodeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ AnswerFormCategoryNodeComponent ]
-    })
-    .compileComponents();
+      imports: [AnswerFormCategoryNodeComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AnswerFormCategoryNodeComponent);
     component = fixture.componentInstance;

@@ -8,9 +8,8 @@ describe('PostCategoryFiltersTabComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ PostCategoryFiltersTabComponent ]
-    })
-    .compileComponents();
+      imports: [PostCategoryFiltersTabComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PostCategoryFiltersTabComponent);
     component = fixture.componentInstance;

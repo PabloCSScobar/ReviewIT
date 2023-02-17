@@ -18,9 +18,9 @@ export class PostService {
     categoryFilter: string | null
   ): Observable<Post[]> {
     const params = new HttpParams()
-                  .set('searchedTerm', searchedTerm)
-                  .set('postFilter', postFilter)
-                  .set('categoryFilter', categoryFilter || '');
+      .set('searchedTerm', searchedTerm)
+      .set('postFilter', postFilter)
+      .set('categoryFilter', categoryFilter || '');
     return this.http.get<Post[]>(this.apiUrl + 'posts', { params });
   }
 
@@ -35,5 +35,4 @@ export class PostService {
   getPostCategories(): Observable<PostCategory[]> {
     return this.http.get<PostCategory[]>(`${this.apiUrl}post-categories`);
   }
-
 }

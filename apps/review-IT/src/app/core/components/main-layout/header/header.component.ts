@@ -27,7 +27,7 @@ import { IsNotLoggedDirective } from '../../../../permissions/directives/is-not-
     LoginButtonComponent,
     MatDividerModule,
     IsLoggedDirective,
-    IsNotLoggedDirective
+    IsNotLoggedDirective,
   ],
   template: ` <mat-toolbar class="main-header" color="primary">
     <div class="flex-row">

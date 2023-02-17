@@ -8,9 +8,8 @@ describe('PostFiltersBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ PostFiltersBarComponent ]
-    })
-    .compileComponents();
+      imports: [PostFiltersBarComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PostFiltersBarComponent);
     component = fixture.componentInstance;

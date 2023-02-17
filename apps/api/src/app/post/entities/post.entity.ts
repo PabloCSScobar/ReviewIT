@@ -42,7 +42,7 @@ export class Post {
   @OneToMany(() => Answer, (answer) => answer.post)
   answers: Answer[];
 
-  @ManyToMany(() => PostCategory, category => category.posts)
+  @ManyToMany(() => PostCategory, (category) => category.posts)
   @JoinTable()
   categories: PostCategory[];
 

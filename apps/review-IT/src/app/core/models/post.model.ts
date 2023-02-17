@@ -22,7 +22,7 @@ export type PostCreate = {
   pageUrl: string;
   repoUrl: string;
   categories: number[];
-}
+};
 
 export type PostDetail = Omit<Post, 'answers'> & {
   answers: Answer[];

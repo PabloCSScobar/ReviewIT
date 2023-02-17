@@ -8,9 +8,8 @@ describe('UserInlineInfoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ UserInlineInfoComponent ]
-    })
-    .compileComponents();
+      imports: [UserInlineInfoComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(UserInlineInfoComponent);
     component = fixture.componentInstance;

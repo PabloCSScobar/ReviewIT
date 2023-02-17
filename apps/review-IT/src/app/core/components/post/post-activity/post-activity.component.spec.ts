@@ -8,9 +8,8 @@ describe('PostActivityComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ PostActivityComponent ]
-    })
-    .compileComponents();
+      imports: [PostActivityComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PostActivityComponent);
     component = fixture.componentInstance;

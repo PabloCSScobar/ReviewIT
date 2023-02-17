@@ -8,9 +8,8 @@ describe('PostDetailViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ PostDetailViewComponent ]
-    })
-    .compileComponents();
+      imports: [PostDetailViewComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PostDetailViewComponent);
     component = fixture.componentInstance;

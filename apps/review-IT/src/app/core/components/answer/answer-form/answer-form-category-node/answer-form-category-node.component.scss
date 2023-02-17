@@ -21,7 +21,7 @@
   color: #f44336;
 }
 
-[type="radio"] {
+[type='radio'] {
   position: absolute;
   opacity: 0;
   width: 0;
@@ -29,7 +29,7 @@
 }
 
 /* IMAGE STYLES */
-[type="radio"] + span {
+[type='radio'] + span {
   cursor: pointer;
 }
 .node-type {

@@ -13,14 +13,10 @@ import { GITHUB_ICON } from '../assets/icons';
   imports: [CommonModule, RouterModule],
 })
 export class AppComponent {
-    constructor(
-    iconRegistry: MatIconRegistry,
-    sanitizer: DomSanitizer,
-  ) {
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIconLiteral(
       'github',
       sanitizer.bypassSecurityTrustHtml(GITHUB_ICON)
     );
   }
-
 }

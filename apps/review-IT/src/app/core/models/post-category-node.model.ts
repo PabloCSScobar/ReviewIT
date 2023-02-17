@@ -1,4 +1,4 @@
-import { FormControl } from "@angular/forms";
+import { FormControl } from '@angular/forms';
 
 export type ReviewCategoryNode = {
   id?: number;
@@ -10,4 +10,4 @@ export type ReviewCategoryNodeType = 'con' | 'pro';
 export type ReviewCategoryNodeCreateForm = {
   type: FormControl<ReviewCategoryNodeType>;
   description: FormControl<string>;
-}
+};

@@ -24,5 +24,4 @@ import { CommonModule } from '@angular/common';
     `,
   ],
 })
-export class PostStatsComponent {
-}
+export class PostStatsComponent {}

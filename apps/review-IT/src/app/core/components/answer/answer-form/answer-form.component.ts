@@ -43,7 +43,7 @@ export class AnswerFormComponent {
   private store = inject(Store<AppState>);
 
   _post: PostDetail;
-  categoriesToReview: PostCategory[];;
+  categoriesToReview: PostCategory[];
   availableCategories: PostCategory[];
   selectedCategories: PostCategory[] = [];
   answerForm = this.fb.nonNullable.group({
@@ -65,8 +65,8 @@ export class AnswerFormComponent {
     const answer: AnswerCreate = {
       description: this.answerForm.get('description')!.value,
       reviewedCategories: this.reviewedCategories.value,
-    }
-    this.store.dispatch(new AddAnswer({answer, postId: this._post.id}))
+    };
+    this.store.dispatch(new AddAnswer({ answer, postId: this._post.id }));
   }
 
   addCategoryToReview(categoryId: number) {

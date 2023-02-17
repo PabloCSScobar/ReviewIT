@@ -16,7 +16,7 @@ import { AuthService } from '../../../../permissions/services/auth.service';
       aria-label="Logout button"
       data-testid="logout-button"
     >
-    <mat-icon>logout</mat-icon>
+      <mat-icon>logout</mat-icon>
     </button>
   `,
   styles: [],

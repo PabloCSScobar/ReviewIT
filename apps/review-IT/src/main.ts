@@ -26,12 +26,12 @@ bootstrapApplication(AppComponent, {
       HttpClientModule,
       StoreModule.forRoot(appReducers),
       EffectsModule.forRoot([PostEffects]),
-      StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
+      StoreRouterConnectingModule.forRoot({ stateKey: 'router' })
     ),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-    }
+    },
   ],
 });

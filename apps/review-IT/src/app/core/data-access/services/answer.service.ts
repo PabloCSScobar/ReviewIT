@@ -10,12 +10,15 @@ import { Answer, AnswerCreate } from '../../models/answer.model';
 export class AnswerService {
   private http = inject(HttpClient);
   private apiUrl = env.apiUrl;
-  
+
   getAnswers(postId: number): Observable<Answer[]> {
     return this.http.get<Answer[]>(`${this.apiUrl}posts/${postId}/answers`);
   }
 
   createAnswer(newAnswer: AnswerCreate, postId: number): Observable<Answer> {
-    return this.http.post<Answer>(`${this.apiUrl}posts/${postId}/answers`, newAnswer);
+    return this.http.post<Answer>(
+      `${this.apiUrl}posts/${postId}/answers`,
+      newAnswer
+    );
   }
 }

@@ -16,7 +16,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AppState } from '../../../data-access/state/app.state';
 import { Store } from '@ngrx/store';
-import { AddPost, LoadPostCategories } from '../../../data-access/actions/post.actions';
+import {
+  AddPost,
+  LoadPostCategories,
+} from '../../../data-access/actions/post.actions';
 import { PostCreate } from '../../../models/post.model';
 import { selectPostCategories } from '../../../data-access/selectors/post.selectors';
 
@@ -38,13 +41,15 @@ import { selectPostCategories } from '../../../data-access/selectors/post.select
 })
 export class PostFormComponent {
   private fb = inject(FormBuilder);
-  private store = inject(Store<AppState>)
-  
-  postCategories$: Observable<PostCategory[]> = this.store.select(selectPostCategories).pipe(
-    tap(categories => {
-      if(!categories.length) this.store.dispatch(new LoadPostCategories());
-    })
-  )
+  private store = inject(Store<AppState>);
+
+  postCategories$: Observable<PostCategory[]> = this.store
+    .select(selectPostCategories)
+    .pipe(
+      tap((categories) => {
+        if (!categories.length) this.store.dispatch(new LoadPostCategories());
+      })
+    );
 
   postForm: FormGroup = this.fb.group({
     title: ['', Validators.required],

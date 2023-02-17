@@ -16,9 +16,8 @@ import { RouterModule } from '@angular/router';
       aria-label="login button"
       data-testid="login-button"
     >
-    <mat-icon>login</mat-icon>
+      <mat-icon>login</mat-icon>
     </button>
   `,
 })
-export class LoginButtonComponent {
-}
+export class LoginButtonComponent {}

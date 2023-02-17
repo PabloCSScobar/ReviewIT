@@ -12,7 +12,14 @@ import { PostSearchInputComponent } from '../../components/post/post-search-inpu
 import { PostFiltersBarComponent } from '../../components/post/post-filters-bar/post-filters-bar.component';
 import { PostsFilter } from '../../models/post-filters.model';
 import { Post } from '../../models/post.model';
-import { combineLatest, Observable, startWith, Subject, takeUntil, tap } from 'rxjs';
+import {
+  combineLatest,
+  Observable,
+  startWith,
+  Subject,
+  takeUntil,
+  tap,
+} from 'rxjs';
 import { PostCategoryFiltersTabComponent } from '../../components/post/post-category-filters-tab/post-category-filters-tab.component';
 import { AppState } from '../../data-access/state/app.state';
 import { select, Store } from '@ngrx/store';
@@ -28,7 +35,7 @@ import { LoadPosts } from '../../data-access/actions/post.actions';
     PostListComponent,
     PostSearchInputComponent,
     PostFiltersBarComponent,
-    PostCategoryFiltersTabComponent
+    PostCategoryFiltersTabComponent,
   ],
   template: `
     <app-navigation>

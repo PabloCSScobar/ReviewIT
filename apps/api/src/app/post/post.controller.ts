@@ -35,7 +35,11 @@ export class PostController {
 
   @Public()
   @Get()
-  findAll(@Query('searchedTerm') searchedTerm: string, @Query('postFilter') postFilter: PostsFilter, @Query('categoryFilter') categoryFilter: string) {
+  findAll(
+    @Query('searchedTerm') searchedTerm: string,
+    @Query('postFilter') postFilter: PostsFilter,
+    @Query('categoryFilter') categoryFilter: string
+  ) {
     return this.postService.findAll(searchedTerm, postFilter, categoryFilter);
   }
 

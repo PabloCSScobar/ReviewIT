@@ -8,7 +8,10 @@ import { AnswerListComponent } from '../../components/answer/answer-list/answer-
 import { AnswerFormComponent } from '../../components/answer/answer-form/answer-form.component';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../../data-access/state/app.state';
-import { selectAnswers, selectSelectedPost } from '../../data-access/selectors/post.selectors';
+import {
+  selectAnswers,
+  selectSelectedPost,
+} from '../../data-access/selectors/post.selectors';
 import { LoadPostDetail } from '../../data-access/actions/post.actions';
 import { HasLoggedUserCreatedAnswerDirective } from '../../../permissions/directives/has-logged-user-created-answer.directive';
 
@@ -29,28 +32,35 @@ import { HasLoggedUserCreatedAnswerDirective } from '../../../permissions/direct
       <ng-container *ngIf="answers$ | async as answers">
         <app-answer-list [answers]="answers"></app-answer-list>
 
-        <div 
+        <div
           class="answer-provided-text"
-          *hasLoggedUserCreatedAnswer="answers;
-          notLogged notLoggedTemp;
-          else notProvidedTemp"
-          >
+          *hasLoggedUserCreatedAnswer="
+            answers;
+            notLogged: notLoggedTemp;
+            else: notProvidedTemp
+          "
+        >
           <p>You already provided answer</p>
         </div>
-        <ng-template #notProvidedTemp>  
-          <app-answer-form  [post]="post"></app-answer-form>
+        <ng-template #notProvidedTemp>
+          <app-answer-form [post]="post"></app-answer-form>
         </ng-template>
         <ng-template #notLoggedTemp>
-          <p class="not-logged-text">You need to be logged in to provide answer</p>
+          <p class="not-logged-text">
+            You need to be logged in to provide answer
+          </p>
         </ng-template>
       </ng-container>
     </div>
   </app-navigation>`,
-  styles: [`
-  .answer-provided-text, .not-logged-text {
-    padding: 2em;
-  }
-  `],
+  styles: [
+    `
+      .answer-provided-text,
+      .not-logged-text {
+        padding: 2em;
+      }
+    `,
+  ],
 })
 export class PostDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
@@ -59,15 +69,17 @@ export class PostDetailComponent implements OnInit {
 
   post$ = this.store.pipe(select(selectSelectedPost));
   answers$ = this.store.pipe(select(selectAnswers));
-  
+
   ngOnInit(): void {
-    this.route.paramMap.pipe(
-      map((params) => +params.get('id')!),
-      tap((id) => this.store.dispatch(new LoadPostDetail(id))),
-      takeUntil(this.destroy$)
-      ).subscribe();
+    this.route.paramMap
+      .pipe(
+        map((params) => +params.get('id')!),
+        tap((id) => this.store.dispatch(new LoadPostDetail(id))),
+        takeUntil(this.destroy$)
+      )
+      .subscribe();
   }
-  
+
   ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.complete();

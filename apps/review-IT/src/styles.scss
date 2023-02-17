@@ -1,5 +1,5 @@
-@use "@angular/material" as mat;
-@use "./app/core/styles/app-theme";
+@use '@angular/material' as mat;
+@use './app/core/styles/app-theme';
 
 .theme-light {
   $primary: mat.define-palette(mat.$pink-palette);
@@ -33,5 +33,5 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }

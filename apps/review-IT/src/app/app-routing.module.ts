@@ -9,8 +9,12 @@ import { LoggedUserResolver } from './core/data-access/resolvers/logged-user.res
 import { inject } from '@angular/core';
 import { AuthService } from './permissions/services/auth.service';
 
-const isNotLoggedGuard = () => !inject(AuthService).isLogged() ? true : inject(Router).navigate(['/posts']);
-const isLoggedGuard = () => inject(AuthService).isLogged() ? true : inject(Router).navigate(['/auth/login']);
+const isNotLoggedGuard = () =>
+  !inject(AuthService).isLogged() ? true : inject(Router).navigate(['/posts']);
+const isLoggedGuard = () =>
+  inject(AuthService).isLogged()
+    ? true
+    : inject(Router).navigate(['/auth/login']);
 
 export const routes: Routes = [
   {
@@ -36,8 +40,8 @@ export const routes: Routes = [
         path: '',
         redirectTo: '/posts',
         pathMatch: 'full',
-      }
-    ]
+      },
+    ],
   },
   {
     path: 'auth',
@@ -62,5 +66,5 @@ export const routes: Routes = [
   {
     path: '**',
     redirectTo: '/posts',
-  }
+  },
 ];

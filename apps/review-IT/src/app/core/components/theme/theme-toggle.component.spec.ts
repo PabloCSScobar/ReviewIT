@@ -9,7 +9,7 @@ describe('ThemeToggleComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ThemeToggleComponent],
-      schemas: [NO_ERRORS_SCHEMA]
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
 

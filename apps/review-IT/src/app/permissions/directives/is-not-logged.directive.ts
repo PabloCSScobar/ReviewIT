@@ -1,9 +1,17 @@
-import { AfterViewChecked, ChangeDetectorRef, Directive, inject, OnInit, TemplateRef, ViewContainerRef } from "@angular/core";
-import { AuthService } from "../services/auth.service";
+import {
+  AfterViewChecked,
+  ChangeDetectorRef,
+  Directive,
+  inject,
+  OnInit,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Directive({
-  selector: "[IsNotLogged]",
-  standalone: true
+  selector: '[IsNotLogged]',
+  standalone: true,
 })
 export class IsNotLoggedDirective implements OnInit {
   private templateRef = inject(TemplateRef);

@@ -11,28 +11,28 @@ export interface Token {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
   API_URL = env.apiUrl;
-  currentUser$ =new BehaviorSubject<User | null>(null);
+  currentUser$ = new BehaviorSubject<User | null>(null);
 
   get currentUser() {
     return this.currentUser$.getValue();
   }
 
   login(credentials: Credentials) {
-    this.http.post<Token>(`${this.API_URL}auth/login`, credentials)
-    .pipe(
-      tap(token => this.setToken(token.access_token)),
-      switchMap(() => this.getMe()),
-      ).subscribe(
-      {
-        complete: () =>this.router.navigate(['posts'])
-      }
-    );
+    this.http
+      .post<Token>(`${this.API_URL}auth/login`, credentials)
+      .pipe(
+        tap((token) => this.setToken(token.access_token)),
+        switchMap(() => this.getMe())
+      )
+      .subscribe({
+        complete: () => this.router.navigate(['posts']),
+      });
   }
 
   logout() {
@@ -53,9 +53,8 @@ export class AuthService {
   }
 
   getMe() {
-    return this.http.get<User>(`${this.API_URL}users/me`)
-    .pipe(
-      tap(user => this.currentUser$.next(user))
-      );
+    return this.http
+      .get<User>(`${this.API_URL}users/me`)
+      .pipe(tap((user) => this.currentUser$.next(user)));
   }
 }

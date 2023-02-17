@@ -2,7 +2,7 @@
   <div class="answer-header mat-h2">Add your review</div>
   <form [formGroup]="answerForm" (submit)="submit()">
     <!-- summary input  -->
-    <mat-form-field  appearance="outline" class="full-width-field">
+    <mat-form-field appearance="outline" class="full-width-field">
       <mat-label>Summary</mat-label>
       <input
         formControlName="description"
@@ -13,10 +13,7 @@
     </mat-form-field>
 
     <!-- categories  -->
-    <div
-      class="reviewed_categories-wrapper"
-      formArrayName="reviewedCategories"
-    >
+    <div class="reviewed_categories-wrapper" formArrayName="reviewedCategories">
       <!-- categories list  -->
       <div class="row">
         <mat-form-field class="full-width-field" appearance="outline">
@@ -46,7 +43,8 @@
             color="primary"
             class="add-category-button"
             [disabled]="
-              availableCategories.length === 0 || !availableCategoriesSelect.value
+              availableCategories.length === 0 ||
+              !availableCategoriesSelect.value
             "
             (click)="addCategoryToReview(availableCategoriesSelect.value)"
           >
