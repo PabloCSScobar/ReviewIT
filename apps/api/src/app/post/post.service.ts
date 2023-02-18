@@ -18,15 +18,36 @@ export enum PostsFilter {
   NO_ANSWER = 'no_answer',
 }
 
+type PaginationOptions = {
+  page: number;
+  itemsPerPage: number;
+};
+
+type PaginateResponse<T> = {
+  results: T[];
+  pagination: {
+    total: number;
+    currentPage: number;
+    itemsPerPage: number;
+    totalPages: number;
+  };
+};
+
+
 @Injectable()
 export class PostService {
+  private readonly PAGINATION_OPTIONS: PaginationOptions = {
+    page: 1,
+    itemsPerPage: 10,
+  };
+
   constructor(
     @InjectRepository(Post) private postRepository: Repository<Post>,
     @InjectRepository(Answer) private answerRepository: Repository<Answer>,
     @InjectRepository(User) private userRepository: Repository<User>,
     @InjectRepository(PostCategory)
     private postCategoryRepository: Repository<PostCategory>
-  ) {}
+  ) { }
 
   async getPostById(id: number) {
     const post = await this.postRepository.findOneBy({ id });
@@ -56,7 +77,8 @@ export class PostService {
   async findAll(
     searchedTerm: string,
     postFilter: PostsFilter,
-    categoryFilter: string
+    categoryFilter: string,
+    page: number,
   ) {
     let query = this.postRepository
       .createQueryBuilder('post')
@@ -105,6 +127,14 @@ export class PostService {
         'not exists (select 1 from answer where answer."postId" = post.id)'
       );
     }
+    const postsCount = await query.getCount();
+
+
+    let currentPage = page ? page : this.PAGINATION_OPTIONS.page;
+    const lastPage = Math.ceil(postsCount / this.PAGINATION_OPTIONS.itemsPerPage);
+    if (currentPage > lastPage) currentPage = lastPage;
+
+    query = query.skip((currentPage - 1) * this.PAGINATION_OPTIONS.itemsPerPage).take(this.PAGINATION_OPTIONS.itemsPerPage);
 
     const postRawAndEntities = await query.getRawAndEntities();
     const posts = postRawAndEntities.entities.map((post) => {
@@ -113,7 +143,27 @@ export class PostService {
       post.answersAmount = raw.post_answers_amount;
       return post;
     });
-    return posts;
+
+    return this.paginateResponse(
+      posts,
+      postsCount,
+      {
+        page: currentPage,
+        itemsPerPage: this.PAGINATION_OPTIONS.itemsPerPage
+      });
+  }
+
+  paginateResponse<T>(results: T[], total: number, paginationOptions: PaginationOptions): PaginateResponse<T> {
+    return {
+      results,
+      pagination: {
+        total,
+        currentPage: paginationOptions.page,
+        itemsPerPage: paginationOptions.itemsPerPage,
+        totalPages: Math.ceil(total / paginationOptions.itemsPerPage)
+
+      }
+    }
   }
 
   async findOne(id: number) {
@@ -153,3 +203,5 @@ export class PostService {
     return this.postRepository.delete(id);
   }
 }
+
+

@@ -5,7 +5,6 @@ import {
   Body,
   Param,
   Delete,
-  UseGuards,
   Request,
   Query,
 } from '@nestjs/common';
@@ -22,7 +21,7 @@ export class PostController {
   constructor(
     private readonly postService: PostService,
     private answerService: AnswerService
-  ) {}
+  ) { }
 
   @Post()
   create(
@@ -38,9 +37,15 @@ export class PostController {
   findAll(
     @Query('searchedTerm') searchedTerm: string,
     @Query('postFilter') postFilter: PostsFilter,
-    @Query('categoryFilter') categoryFilter: string
+    @Query('categoryFilter') categoryFilter: string,
+    @Query('page') page: number
   ) {
-    return this.postService.findAll(searchedTerm, postFilter, categoryFilter);
+    return this.postService.findAll(
+      searchedTerm,
+      postFilter,
+      categoryFilter,
+      +page
+    );
   }
 
   @Public()
