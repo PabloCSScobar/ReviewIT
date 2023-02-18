@@ -8,11 +8,11 @@ import {
   Request,
   Query,
 } from '@nestjs/common';
-import { PostService, PostsFilter } from './post.service';
+import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { AnswerService } from './answer.service';
 import { CreateAnswerDto } from './dto/create-answer.dto';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { PostsFilter } from 'api-interfaces';
 import { RequestWithUser } from '../user/user-request.type';
 import { Public } from '../auth/public-endpoint';
 
