@@ -23,14 +23,17 @@ import {
 import { PostCategoryFiltersTabComponent } from '../../components/post/post-category-filters-tab/post-category-filters-tab.component';
 import { AppState } from '../../data-access/state/app.state';
 import { select, Store } from '@ngrx/store';
-import { selectPostList } from '../../data-access/selectors/post.selectors';
+import { selectPostList, selectPostPagination } from '../../data-access/selectors/post.selectors';
 import { LoadPosts } from '../../data-access/actions/post.actions';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { Pagination } from 'api-interfaces';
 
 @Component({
   selector: 'app-post-list-container',
   standalone: true,
   imports: [
     CommonModule,
+    MatPaginatorModule,
     NavigationComponent,
     PostListComponent,
     PostSearchInputComponent,
@@ -44,6 +47,12 @@ import { LoadPosts } from '../../data-access/actions/post.actions';
         <app-post-filters-bar></app-post-filters-bar>
         <app-post-category-filters-tab></app-post-category-filters-tab>
         <app-post-list [posts]="(posts$ | async)!"></app-post-list>
+        <mat-paginator
+          *ngIf="pagination$ | async as pagination"
+          [pageSize]="pagination.itemsPerPage"
+          [length]="pagination.total"
+          [pageIndex]="pagination.currentPage - 1"  
+        ></mat-paginator>
       </div>
     </app-navigation>
   `,
@@ -51,6 +60,7 @@ import { LoadPosts } from '../../data-access/actions/post.actions';
 export class PostListContainerComponent implements AfterViewInit, OnDestroy {
   private store = inject(Store<AppState>);
   posts$: Observable<Post[]> = this.store.pipe(select(selectPostList));
+  pagination$: Observable<Pagination> = this.store.pipe(select(selectPostPagination));
 
   @ViewChild(PostSearchInputComponent) searchInput: PostSearchInputComponent;
   @ViewChild(PostFiltersBarComponent) filterInput: PostFiltersBarComponent;
@@ -67,7 +77,7 @@ export class PostListContainerComponent implements AfterViewInit, OnDestroy {
       .pipe(
         tap(([searchedTerm, postFilter, categoryFilter]) =>
           this.store.dispatch(
-            new LoadPosts({ searchedTerm, postFilter, categoryFilter })
+            new LoadPosts({ searchedTerm, postFilter, categoryFilter, page: 1 })
           )
         ),
         takeUntil(this.destroy$)
