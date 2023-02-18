@@ -1,38 +1,12 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Like, Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { PostCategory } from '../post-category/entities/post-category.entity';
 import { User } from '../user/entities/user.entity';
-import { AnswerService } from './answer.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { Answer } from './entities/answer.entity';
 import { Post } from './entities/post.entity';
-import { ReviewedCategory } from './entities/reviewed-category.entity';
-
-export enum PostsFilter {
-  LATEST = 'latest',
-  HOT = 'hot',
-  HIGHEST_RANK = 'highest_rank',
-  MOST_VISITS = 'most_visits',
-  MOST_ANSWERS = 'most_answers',
-  NO_ANSWER = 'no_answer',
-}
-
-type PaginationOptions = {
-  page: number;
-  itemsPerPage: number;
-};
-
-type PaginateResponse<T> = {
-  results: T[];
-  pagination: {
-    total: number;
-    currentPage: number;
-    itemsPerPage: number;
-    totalPages: number;
-  };
-};
-
+import { PaginationOptions, PaginateResponse, PostsFilter } from 'api-interfaces';
 
 @Injectable()
 export class PostService {
