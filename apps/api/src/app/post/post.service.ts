@@ -12,7 +12,7 @@ import { PaginationOptions, PaginateResponse, PostsFilter } from 'api-interfaces
 export class PostService {
   private readonly PAGINATION_OPTIONS: PaginationOptions = {
     page: 1,
-    itemsPerPage: 10,
+    itemsPerPage: 2,
   };
 
   constructor(
