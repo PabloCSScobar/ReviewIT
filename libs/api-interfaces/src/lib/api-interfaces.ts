@@ -3,14 +3,16 @@ export type PaginationOptions = {
   itemsPerPage: number;
 };
 
+export type Pagination = {
+  total: number;
+  currentPage: number;
+  itemsPerPage: number;
+  totalPages: number;
+}
+
 export type PaginateResponse<T> = {
   results: T[];
-  pagination: {
-    total: number;
-    currentPage: number;
-    itemsPerPage: number;
-    totalPages: number;
-  };
+  pagination: Pagination;
 };
 
 export enum PostsFilter {
