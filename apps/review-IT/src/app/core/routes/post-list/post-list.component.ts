@@ -14,6 +14,7 @@ import { PostsFilter } from '../../models/post-filters.model';
 import { Post } from '../../models/post.model';
 import {
   combineLatest,
+  map,
   Observable,
   startWith,
   Subject,
@@ -25,7 +26,7 @@ import { AppState } from '../../data-access/state/app.state';
 import { select, Store } from '@ngrx/store';
 import { selectPostList, selectPostPagination } from '../../data-access/selectors/post.selectors';
 import { LoadPosts } from '../../data-access/actions/post.actions';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { Pagination } from 'api-interfaces';
 
 @Component({
@@ -62,6 +63,7 @@ export class PostListContainerComponent implements AfterViewInit, OnDestroy {
   posts$: Observable<Post[]> = this.store.pipe(select(selectPostList));
   pagination$: Observable<Pagination> = this.store.pipe(select(selectPostPagination));
 
+  @ViewChild(MatPaginator) postsPaginator: MatPaginator;
   @ViewChild(PostSearchInputComponent) searchInput: PostSearchInputComponent;
   @ViewChild(PostFiltersBarComponent) filterInput: PostFiltersBarComponent;
   @ViewChild(PostCategoryFiltersTabComponent)
@@ -73,11 +75,12 @@ export class PostListContainerComponent implements AfterViewInit, OnDestroy {
       this.searchInput.newSearch.pipe(startWith('')),
       this.filterInput.newFilter.pipe(startWith(PostsFilter.LATEST)),
       this.categoryInput.categoryChanged.pipe(startWith(null)),
+      this.postsPaginator.page.pipe(map(page => page.pageIndex + 1), startWith(1))
     ])
       .pipe(
-        tap(([searchedTerm, postFilter, categoryFilter]) =>
+        tap(([searchedTerm, postFilter, categoryFilter, pageIndex]) =>
           this.store.dispatch(
-            new LoadPosts({ searchedTerm, postFilter, categoryFilter, page: 1 })
+            new LoadPosts({ searchedTerm, postFilter, categoryFilter, page: pageIndex })
           )
         ),
         takeUntil(this.destroy$)
