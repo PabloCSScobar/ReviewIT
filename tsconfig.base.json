@@ -19,7 +19,9 @@
     "target": "es2020",
     "module": "es2020",
     "lib": ["es2020", "dom"],
-    "paths": {},
+    "paths": {
+      "api-interfaces": ["libs/api-interfaces/src/index.ts"]
+    },
     "rootDir": "."
   },
   "angularCompilerOptions": {
