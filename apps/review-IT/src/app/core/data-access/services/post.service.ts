@@ -4,7 +4,7 @@ import { Post, PostCreate, PostDetail } from '../../models/post.model';
 import { environment as env } from '../../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { PostCategory } from '../../models/post-category.model';
-
+import { PaginateResponse } from 'api-interfaces';
 @Injectable({
   providedIn: 'root',
 })
@@ -15,13 +15,15 @@ export class PostService {
   getPosts(
     searchedTerm: string,
     postFilter: string,
-    categoryFilter: string | null
-  ): Observable<Post[]> {
+    categoryFilter: string | null,
+    page: number
+  ): Observable<PaginateResponse<Post>> {
     const params = new HttpParams()
       .set('searchedTerm', searchedTerm)
       .set('postFilter', postFilter)
-      .set('categoryFilter', categoryFilter || '');
-    return this.http.get<Post[]>(this.apiUrl + 'posts', { params });
+      .set('categoryFilter', categoryFilter || '')
+      .set('page', page.toString());
+    return this.http.get<PaginateResponse<Post>>(this.apiUrl + 'posts', { params });
   }
 
   createPost(post: PostCreate): Observable<Post> {
