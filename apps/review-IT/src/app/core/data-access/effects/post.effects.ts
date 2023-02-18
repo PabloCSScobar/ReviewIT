@@ -20,6 +20,7 @@ import { AnswerService } from '../services/answer.service';
 import { Router } from '@angular/router';
 import { AppState } from '../state/app.state';
 import { Store } from '@ngrx/store';
+import { PaginateResponse } from 'api-interfaces';
 
 @Injectable()
 export class PostEffects {
@@ -31,10 +32,11 @@ export class PostEffects {
         this.postService.getPosts(
           p.searchedTerm,
           p.postFilter,
-          p.categoryFilter
+          p.categoryFilter,
+          p.page
         )
       ),
-      map((posts: Post[]) => new LoadPostsSuccess(posts))
+      map((posts: PaginateResponse<Post>) => new LoadPostsSuccess(posts))
     )
   );
 
@@ -107,5 +109,5 @@ export class PostEffects {
     private answerService: AnswerService,
     private router: Router,
     private store: Store<AppState>
-  ) {}
+  ) { }
 }

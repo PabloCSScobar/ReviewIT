@@ -9,6 +9,11 @@ export const selectPostList = createSelector(
   (state: PostState) => state.posts
 );
 
+export const selectPostPagination = createSelector(
+  selectPosts,
+  (state: PostState) => state.pagination
+);
+
 export const selectSelectedPost = createSelector(
   selectPosts,
   (state: PostState) => state.selectedPost

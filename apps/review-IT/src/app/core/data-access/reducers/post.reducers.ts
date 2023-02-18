@@ -12,7 +12,8 @@ export function postReducer(state = initialState, action: PostActions) {
       return {
         ...state,
         loading: false,
-        posts: action.payload,
+        posts: action.payload.results,
+        pagination: action.payload.pagination,
       };
     case PostActionTypes.LoadPostsFail:
       return {
