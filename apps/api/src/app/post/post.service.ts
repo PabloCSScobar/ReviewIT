@@ -7,14 +7,10 @@ import { CreatePostDto } from './dto/create-post.dto';
 import { Answer } from './entities/answer.entity';
 import { Post } from './entities/post.entity';
 import { PaginationOptions, PaginateResponse, PostsFilter } from 'api-interfaces';
+import { PAGINATION_OPTIONS, USER_REPUTATION_OPTIONS } from './config';
 
 @Injectable()
 export class PostService {
-  private readonly PAGINATION_OPTIONS: PaginationOptions = {
-    page: 1,
-    itemsPerPage: 2,
-  };
-
   constructor(
     @InjectRepository(Post) private postRepository: Repository<Post>,
     @InjectRepository(Answer) private answerRepository: Repository<Answer>,
@@ -45,6 +41,9 @@ export class PostService {
       author: author,
       categories,
     };
+
+    author.reputation += USER_REPUTATION_OPTIONS.addPost;
+    this.userRepository.save(author);
     return await this.postRepository.save(newPost);
   }
 
@@ -104,11 +103,11 @@ export class PostService {
     const postsCount = await query.getCount();
 
 
-    let currentPage = page ? page : this.PAGINATION_OPTIONS.page;
-    const lastPage = Math.ceil(postsCount / this.PAGINATION_OPTIONS.itemsPerPage);
+    let currentPage = page ? page : PAGINATION_OPTIONS.page;
+    const lastPage = Math.ceil(postsCount / PAGINATION_OPTIONS.itemsPerPage);
     if (currentPage > lastPage) currentPage = lastPage;
 
-    query = query.skip((currentPage - 1) * this.PAGINATION_OPTIONS.itemsPerPage).take(this.PAGINATION_OPTIONS.itemsPerPage);
+    query = query.skip((currentPage - 1) * PAGINATION_OPTIONS.itemsPerPage).take(PAGINATION_OPTIONS.itemsPerPage);
 
     const postRawAndEntities = await query.getRawAndEntities();
     const posts = postRawAndEntities.entities.map((post) => {
@@ -123,7 +122,7 @@ export class PostService {
       postsCount,
       {
         page: currentPage,
-        itemsPerPage: this.PAGINATION_OPTIONS.itemsPerPage
+        itemsPerPage: PAGINATION_OPTIONS.itemsPerPage
       });
   }
 

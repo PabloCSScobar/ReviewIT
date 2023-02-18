@@ -6,12 +6,11 @@ import { User } from '../user/entities/user.entity';
 import { CreateAnswerDto } from './dto/create-answer.dto';
 import { CreateReviewedCategory } from './dto/create-reviewed-category-node.dto';
 import { CreateReviewedCategoryNode } from './dto/create-reviewed-category.dto';
-import { UpdateAnswerDto } from './dto/update-answer.dto';
 import { Answer } from './entities/answer.entity';
-import { Post } from './entities/post.entity';
 import { ReviewedCategoryNode } from './entities/reviewed-category-node.entity';
 import { ReviewedCategory } from './entities/reviewed-category.entity';
 import { PostService } from './post.service';
+import { USER_REPUTATION_OPTIONS } from './config';
 
 @Injectable()
 export class AnswerService {
@@ -25,7 +24,7 @@ export class AnswerService {
     @InjectRepository(ReviewedCategoryNode)
     private rcnRepository: Repository<ReviewedCategoryNode>,
     private postService: PostService
-  ) {}
+  ) { }
 
   async create(
     postId: number,
@@ -48,6 +47,10 @@ export class AnswerService {
       reviewedCategories: categories,
     };
     const { id } = await this.answerRepository.save(newAnswer);
+
+    author.reputation += USER_REPUTATION_OPTIONS.addAnswer;
+    this.userRepository.save(author);
+
     return await this.answerRepository.findOne({
       where: { id },
     });
