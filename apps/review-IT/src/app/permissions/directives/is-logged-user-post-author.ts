@@ -25,7 +25,7 @@ export class IsLoggedUserPostAuthorDirective implements OnInit, OnDestroy {
   private permissionService = inject(PermissionsService);
   private isDisplayed: boolean = false;
   private store = inject(Store<AppState>);
-  destroy$: Subject<boolean>;
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   ngOnInit(): void {
     const post$ = this.store.pipe(select(selectSelectedPost));
