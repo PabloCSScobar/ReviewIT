@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Answer } from '../../../models/answer.model';
 import { PostActivityComponent } from '../../post/post-activity/post-activity.component';
 import { StarRankComponent } from '../../star-rank/star-rank.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { AnswerReviewedCategoryComponent } from '../answer-reviewed-category/answer-reviewed-category.component';
+import { IsLoggedUserPostAuthorDirective } from '../../../../permissions/directives/is-logged-user-post-author';
 
 @Component({
   selector: 'app-answer-detail',
@@ -15,12 +16,14 @@ import { AnswerReviewedCategoryComponent } from '../answer-reviewed-category/ans
     StarRankComponent,
     MatDividerModule,
     AnswerReviewedCategoryComponent,
+    IsLoggedUserPostAuthorDirective,
   ],
   template: `<div *ngIf="answer" class="answer-wrapper">
     <mat-divider></mat-divider>
     <div class="answer-header">
       <app-star-rank [rank]="answer.rank" label="Overall rank"></app-star-rank>
       <div *ngIf="answer.isTopAnswer" class="top-answer">Top Review</div>
+      <div *IsLoggedUserPostAuthor class="top-answer">Set as Top Review</div>
     </div>
     <div data-testid="answer-description" class="answer-description">
       {{ answer.description }}
