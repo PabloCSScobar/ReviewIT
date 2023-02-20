@@ -14,6 +14,7 @@ import {
 } from '../../data-access/selectors/post.selectors';
 import { LoadPostDetail } from '../../data-access/actions/post.actions';
 import { HasLoggedUserCreatedAnswerDirective } from '../../../permissions/directives/has-logged-user-created-answer.directive';
+import { IsLoggedUserNotPostAuthorDirective } from '../../../permissions/directives/is-logged-user-not-post-author.directive';
 
 @Component({
   selector: 'app-post-detail',
@@ -25,33 +26,35 @@ import { HasLoggedUserCreatedAnswerDirective } from '../../../permissions/direct
     AnswerListComponent,
     AnswerFormComponent,
     HasLoggedUserCreatedAnswerDirective,
+    IsLoggedUserNotPostAuthorDirective
   ],
   template: ` <app-navigation>
     <div main-content *ngIf="post$ | async as post">
       <app-post-detail-view [post]="post"></app-post-detail-view>
       <ng-container *ngIf="answers$ | async as answers">
         <app-answer-list [answers]="answers"></app-answer-list>
-
-        <div
-          class="answer-provided-text"
-          *hasLoggedUserCreatedAnswer="
-            answers;
-            notLogged: notLoggedTemp;
-            else: notProvidedTemp
-          "
-        >
-          <p>You already provided answer</p>
-        </div>
-        <ng-template #notProvidedTemp>
-          <app-answer-form [post]="post"></app-answer-form>
-        </ng-template>
-        <ng-template #notLoggedTemp>
-          <p class="not-logged-text">
-            You need to be logged in to provide answer
-          </p>
-        </ng-template>
+        <ng-container *IsLoggedUserNotPostAuthor>
+          <div
+            class="answer-provided-text"
+            *hasLoggedUserCreatedAnswer="
+              answers;
+              notLogged: notLoggedTemp;
+              else: notProvidedTemp
+            "
+          >
+            <p>You already provided answer</p>
+          </div>
+          <ng-template #notProvidedTemp>
+            <app-answer-form [post]="post"></app-answer-form>
+          </ng-template>
+          <ng-template #notLoggedTemp>
+            <p class="not-logged-text">
+              You need to be logged in to provide answer
+            </p>
+          </ng-template>
+        </ng-container>
       </ng-container>
-    </div>
+      </div>      
   </app-navigation>`,
   styles: [
     `
