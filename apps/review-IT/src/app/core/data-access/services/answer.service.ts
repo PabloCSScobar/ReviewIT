@@ -21,4 +21,11 @@ export class AnswerService {
       newAnswer
     );
   }
+
+  markAnswerAsTop(answerId: number, postId: number): Observable<void> {
+    return this.http.put<void>(
+      `${this.apiUrl}posts/${postId}/answers/${answerId}/mark_as_top`,
+      {}
+    );
+  }
 }
