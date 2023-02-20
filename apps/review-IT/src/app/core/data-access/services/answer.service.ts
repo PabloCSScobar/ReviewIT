@@ -28,4 +28,11 @@ export class AnswerService {
       {}
     );
   }
+
+  removeTopAnswer(answerId: number, postId: number): Observable<void> {
+    return this.http.put<void>(
+      `${this.apiUrl}posts/${postId}/answers/${answerId}/remove_top_answer`,
+      {}
+    );
+  }
 }
