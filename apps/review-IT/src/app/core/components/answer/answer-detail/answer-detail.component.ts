@@ -8,7 +8,7 @@ import { AnswerReviewedCategoryComponent } from '../answer-reviewed-category/ans
 import { IsLoggedUserPostAuthorDirective } from '../../../../permissions/directives/is-logged-user-post-author';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../data-access/state/app.state';
-import { MarkAnswerAsTop } from '../../../data-access/actions/post.actions';
+import { MarkAnswerAsTop, RemoveTopAnswer } from '../../../data-access/actions/post.actions';
 
 @Component({
   selector: 'app-answer-detail',
@@ -25,8 +25,8 @@ import { MarkAnswerAsTop } from '../../../data-access/actions/post.actions';
     <mat-divider></mat-divider>
     <div class="top-answer-actions">
       <div *IsLoggedUserPostAuthor>
-        <div *ngIf="!answer.isTopAnswer" class="set-top-answer" (click)="markAnswerAsTop()">Set as Top Review</div>  
-        <div *ngIf="answer.isTopAnswer" class="unset-top-answer">Change back Top Review</div>  
+        <div *ngIf="!answer.isTopAnswer" class="set-top-answer" (click)="markAnswerAsTop()">Mark as Top Review</div>  
+        <div *ngIf="answer.isTopAnswer" class="unset-top-answer" (click)="changeBackTopAnswer()">Change back Top Review</div>  
       </div>
     </div>
     <div class="answer-header">
@@ -97,5 +97,9 @@ export class AnswerDetailComponent {
 
   markAnswerAsTop() {
     this.store.dispatch(new MarkAnswerAsTop(this.answer.id));
+  }
+
+  changeBackTopAnswer() {
+    this.store.dispatch(new RemoveTopAnswer(this.answer.id));
   }
 }
