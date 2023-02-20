@@ -97,6 +97,10 @@ export class AnswerService {
     return await this.answerRepository.update(answerId, { isTopAnswer: true });
   }
 
+  async removeTopAnswer(answerId: number) {
+    await this.answerRepository.update(answerId, { isTopAnswer: false });
+  }
+
   async createReviewedCategories(reviewCategories: CreateReviewedCategory[]) {
     const categories = [];
     for (let i = 0; i < reviewCategories.length; i++) {

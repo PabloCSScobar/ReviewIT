@@ -75,6 +75,11 @@ export class PostController {
     return this.answerService.markAnswerAsTop(+answerId);
   }
 
+  @Put(':id/answers/:answerId/remove_top_answer')
+  removeTopAnswer(@Param('answerId') answerId: string) {
+    return this.answerService.removeTopAnswer(+answerId);
+  }
+
   @Delete(':id/answers/:answerId')
   deleteAnswer(@Param('answerId') answerId: string) {
     return this.answerService.deleteAnswer(+answerId);
