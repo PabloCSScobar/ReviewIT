@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Answer } from '../../../models/answer.model';
 import { PostActivityComponent } from '../../post/post-activity/post-activity.component';
@@ -6,6 +6,9 @@ import { StarRankComponent } from '../../star-rank/star-rank.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { AnswerReviewedCategoryComponent } from '../answer-reviewed-category/answer-reviewed-category.component';
 import { IsLoggedUserPostAuthorDirective } from '../../../../permissions/directives/is-logged-user-post-author';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../data-access/state/app.state';
+import { MarkAnswerAsTop } from '../../../data-access/actions/post.actions';
 
 @Component({
   selector: 'app-answer-detail',
@@ -22,7 +25,7 @@ import { IsLoggedUserPostAuthorDirective } from '../../../../permissions/directi
     <mat-divider></mat-divider>
     <div class="top-answer-actions">
       <div *IsLoggedUserPostAuthor>
-        <div *ngIf="!answer.isTopAnswer" class="set-top-answer">Set as Top Review</div>  
+        <div *ngIf="!answer.isTopAnswer" class="set-top-answer" (click)="markAnswerAsTop()">Set as Top Review</div>  
         <div *ngIf="answer.isTopAnswer" class="unset-top-answer">Change back Top Review</div>  
       </div>
     </div>
@@ -58,6 +61,9 @@ import { IsLoggedUserPostAuthorDirective } from '../../../../permissions/directi
         opacity: 1;
         transform: translateY(0);
       }
+      .top-answer-actions {
+        cursor: pointer;
+      } 
       .answer-header {
         display: flex;
         align-items: center;
@@ -86,5 +92,10 @@ import { IsLoggedUserPostAuthorDirective } from '../../../../permissions/directi
   ],
 })
 export class AnswerDetailComponent {
+  private store = inject(Store<AppState>);
   @Input() answer: Answer;
+
+  markAnswerAsTop() {
+    this.store.dispatch(new MarkAnswerAsTop(this.answer.id));
+  }
 }
