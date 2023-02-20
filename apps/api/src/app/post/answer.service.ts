@@ -90,15 +90,28 @@ export class AnswerService {
   }
 
   async markAnswerAsTop(answerId: number) {
+    const answer = await this.answerRepository.findOneBy({ id: answerId });
+    if (!answer) throw new HttpException('Answer Not found', HttpStatus.BAD_REQUEST);
+
     await this.answerRepository.update(
       { id: Not(answerId) },
       { isTopAnswer: false }
     );
-    return await this.answerRepository.update(answerId, { isTopAnswer: true });
+    await this.answerRepository.update(answerId, { isTopAnswer: true });
+    const author = await this.userRepository.findOneBy({ id: answer.author.id });
+    if (!author) throw new HttpException('User Not found', HttpStatus.BAD_REQUEST);
+    author.reputation += USER_REPUTATION_OPTIONS.bestAnswer;
+    await this.userRepository.save(author);
   }
 
   async removeTopAnswer(answerId: number) {
     await this.answerRepository.update(answerId, { isTopAnswer: false });
+    const answer = await this.answerRepository.findOneBy({ id: answerId });
+    if (!answer) throw new HttpException('Answer Not found', HttpStatus.BAD_REQUEST);
+    const author = await this.userRepository.findOneBy({ id: answer.author.id });
+    if (!author) throw new HttpException('User Not found', HttpStatus.BAD_REQUEST);
+    author.reputation -= USER_REPUTATION_OPTIONS.bestAnswer;
+    await this.userRepository.save(author);
   }
 
   async createReviewedCategories(reviewCategories: CreateReviewedCategory[]) {
