@@ -7,6 +7,7 @@ import {
   Delete,
   Request,
   Query,
+  Put,
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -69,7 +70,7 @@ export class PostController {
     return this.answerService.create(+id, createAnswerDto, authorId);
   }
 
-  @Post(':id/answers/:answerId/mark_as_top')
+  @Put(':id/answers/:answerId/mark_as_top')
   markAnswerAsTop(@Param('answerId') answerId: string) {
     return this.answerService.markAnswerAsTop(+answerId);
   }
