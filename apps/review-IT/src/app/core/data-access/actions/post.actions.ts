@@ -18,8 +18,7 @@ export enum PostActionTypes {
   AddAnswerSuccess = '[Post] Add Answer Success',
   AddAnswerFail = '[Post] Add Answer Fail',
   MarkAnswerAsTop = '[Post] Mark Answer As Top',
-  MarkAnswerAsTopSuccess = '[Post] Mark Answer As Top Success',
-  MarkAnswerAsTopFail = '[Post] Mark Answer As Top Fail',
+  RemoveTopAnswer = '[Post] Remove Top Answer',
   LoadPostCategories = '[Post] Load Post Categories',
   LoadPostCategoriesSuccess = '[Post] Load Post Categories Success',
   LoadPostCategoriesFail = '[Post] Load Post Categories Fail',
@@ -110,15 +109,10 @@ export class MarkAnswerAsTop implements Action {
   constructor(public payload: number) { }
 }
 
-export class MarkAnswerAsTopSuccess implements Action {
-  readonly type = PostActionTypes.MarkAnswerAsTopSuccess;
+export class RemoveTopAnswer implements Action {
+  readonly type = PostActionTypes.RemoveTopAnswer;
+  constructor(public payload: number) { }
 }
-
-export class MarkAnswerAsTopFail implements Action {
-  readonly type = PostActionTypes.MarkAnswerAsTopFail;
-  constructor(public payload: string) { }
-}
-
 
 export type PostActions =
   | LoadPosts
@@ -137,6 +131,5 @@ export type PostActions =
   | LoadPostCategoriesSuccess
   | LoadPostCategoriesFail
   | MarkAnswerAsTop
-  | MarkAnswerAsTopSuccess
-  | MarkAnswerAsTopFail;
+  | RemoveTopAnswer;
 

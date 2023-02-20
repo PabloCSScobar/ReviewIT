@@ -93,16 +93,10 @@ export function postReducer(state = initialState, action: PostActions) {
         ...state,
         loading: true,
       };
-    case PostActionTypes.MarkAnswerAsTopSuccess:
+    case PostActionTypes.RemoveTopAnswer:
       return {
         ...state,
-        loading: false,
-      };
-    case PostActionTypes.MarkAnswerAsTopFail:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
+        loading: true,
       };
     default:
       return state;

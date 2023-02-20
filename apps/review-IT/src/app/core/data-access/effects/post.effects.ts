@@ -8,6 +8,7 @@ import {
   AddAnswerSuccess,
   AddPost,
   AddPostSuccess,
+  RemoveTopAnswer,
   LoadPostCategories,
   LoadPostCategoriesSuccess,
   LoadPostDetail,
@@ -109,6 +110,21 @@ export class PostEffects {
       map(([, postId]) => new LoadPostDetail(postId))
     )
   );
+
+  removeTopAnswer$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType<RemoveTopAnswer>(PostActionTypes.RemoveTopAnswer),
+      concatLatestFrom(() =>
+        this.store.select((state) => state.posts.selectedPost!.id)
+      ),
+      switchMap(([action, postId]) => forkJoin([
+        this.answerService.removeTopAnswer(action.payload, postId),
+        of(postId)
+      ])),
+      map(([, postId]) => new LoadPostDetail(postId))
+    )
+  );
+
 
   loadPostCategories$ = createEffect(() =>
     this.actions$.pipe(
