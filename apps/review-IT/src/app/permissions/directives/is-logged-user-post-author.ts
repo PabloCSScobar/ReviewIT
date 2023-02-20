@@ -1,7 +1,6 @@
 import {
   Directive,
   inject,
-  Input,
   OnDestroy,
   OnInit,
   TemplateRef,
@@ -11,8 +10,6 @@ import { select, Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { selectSelectedPost } from '../../core/data-access/selectors/post.selectors';
 import { AppState } from '../../core/data-access/state/app.state';
-import { User } from '../../core/models/user.model';
-import { AuthService } from '../services/auth.service';
 import { PermissionsService } from '../services/permissions.service';
 
 @Directive({
