@@ -12,10 +12,11 @@ import {
   LoadPostCategoriesSuccess,
   LoadPostDetail,
   LoadPostDetailSuccess,
+  MarkAnswerAsTop,
   PostActionTypes,
 } from '../actions/post.actions';
 import { LoadPosts, LoadPostsSuccess } from '../actions/post.actions';
-import { forkJoin } from 'rxjs';
+import { forkJoin, of } from 'rxjs';
 import { AnswerService } from '../services/answer.service';
 import { Router } from '@angular/router';
 import { AppState } from '../state/app.state';
@@ -91,6 +92,20 @@ export class PostEffects {
       concatLatestFrom(() =>
         this.store.select((state) => state.posts.selectedPost!.id)
       ),
+      map(([, postId]) => new LoadPostDetail(postId))
+    )
+  );
+
+  markAnswerAsTop$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType<MarkAnswerAsTop>(PostActionTypes.MarkAnswerAsTop),
+      concatLatestFrom(() =>
+        this.store.select((state) => state.posts.selectedPost!.id)
+      ),
+      switchMap(([action, postId]) => forkJoin([
+        this.answerService.markAnswerAsTop(action.payload, postId),
+        of(postId)
+      ])),
       map(([, postId]) => new LoadPostDetail(postId))
     )
   );
