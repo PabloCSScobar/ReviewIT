@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ThemeToggleComponent } from '../../components/theme/theme-toggle.component';
 
 @Component({
   selector: 'app-login-page',
@@ -78,7 +77,7 @@ import { ThemeToggleComponent } from '../../components/theme/theme-toggle.compon
   ],
 })
 export class LoginPageComponent implements OnInit {
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }
