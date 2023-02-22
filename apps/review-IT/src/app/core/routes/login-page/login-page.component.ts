@@ -77,7 +77,7 @@ import { RouterModule } from '@angular/router';
   ],
 })
 export class LoginPageComponent implements OnInit {
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 }

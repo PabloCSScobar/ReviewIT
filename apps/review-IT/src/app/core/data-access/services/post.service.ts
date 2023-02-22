@@ -23,7 +23,9 @@ export class PostService {
       .set('postFilter', postFilter)
       .set('categoryFilter', categoryFilter || '')
       .set('page', page.toString());
-    return this.http.get<PaginateResponse<Post>>(this.apiUrl + 'posts', { params });
+    return this.http.get<PaginateResponse<Post>>(this.apiUrl + 'posts', {
+      params,
+    });
   }
 
   createPost(post: PostCreate): Observable<Post> {

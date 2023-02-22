@@ -33,52 +33,52 @@ export class LoadPosts implements Action {
       categoryFilter: string | null;
       page: number;
     }
-  ) { }
+  ) {}
 }
 
 export class LoadPostsSuccess implements Action {
   readonly type = PostActionTypes.LoadPostsSuccess;
-  constructor(public payload: PaginateResponse<Post>) { }
+  constructor(public payload: PaginateResponse<Post>) {}
 }
 
 export class LoadPostsFail implements Action {
   readonly type = PostActionTypes.LoadPostsFail;
-  constructor(public payload: string) { }
+  constructor(public payload: string) {}
 }
 
 export class LoadPostDetail implements Action {
   readonly type = PostActionTypes.LoadPostDetail;
-  constructor(public payload: number) { }
+  constructor(public payload: number) {}
 }
 
 export class LoadPostDetailSuccess implements Action {
   readonly type = PostActionTypes.LoadPostDetailSuccess;
-  constructor(public post: PostDetail, public answers: Answer[]) { }
+  constructor(public post: PostDetail, public answers: Answer[]) {}
 }
 
 export class LoadPostDetailFail implements Action {
   readonly type = PostActionTypes.LoadPostDetailFail;
-  constructor(public payload: string) { }
+  constructor(public payload: string) {}
 }
 
 export class AddPost implements Action {
   readonly type = PostActionTypes.AddPost;
-  constructor(public payload: PostCreate) { }
+  constructor(public payload: PostCreate) {}
 }
 
 export class AddPostSuccess implements Action {
   readonly type = PostActionTypes.AddPostSuccess;
-  constructor(public payload: Post) { }
+  constructor(public payload: Post) {}
 }
 
 export class AddPostFail implements Action {
   readonly type = PostActionTypes.AddPostFail;
-  constructor(public payload: string) { }
+  constructor(public payload: string) {}
 }
 
 export class AddAnswer implements Action {
   readonly type = PostActionTypes.AddAnswer;
-  constructor(public payload: { postId: number; answer: AnswerCreate }) { }
+  constructor(public payload: { postId: number; answer: AnswerCreate }) {}
 }
 
 export class AddAnswerSuccess implements Action {
@@ -87,7 +87,7 @@ export class AddAnswerSuccess implements Action {
 
 export class AddAnswerFail implements Action {
   readonly type = PostActionTypes.AddAnswerFail;
-  constructor(public payload: string) { }
+  constructor(public payload: string) {}
 }
 
 export class LoadPostCategories implements Action {
@@ -96,22 +96,22 @@ export class LoadPostCategories implements Action {
 
 export class LoadPostCategoriesSuccess implements Action {
   readonly type = PostActionTypes.LoadPostCategoriesSuccess;
-  constructor(public payload: PostCategory[]) { }
+  constructor(public payload: PostCategory[]) {}
 }
 
 export class LoadPostCategoriesFail implements Action {
   readonly type = PostActionTypes.LoadPostCategoriesFail;
-  constructor(public payload: string) { }
+  constructor(public payload: string) {}
 }
 
 export class MarkAnswerAsTop implements Action {
   readonly type = PostActionTypes.MarkAnswerAsTop;
-  constructor(public payload: number) { }
+  constructor(public payload: number) {}
 }
 
 export class RemoveTopAnswer implements Action {
   readonly type = PostActionTypes.RemoveTopAnswer;
-  constructor(public payload: number) { }
+  constructor(public payload: number) {}
 }
 
 export type PostActions =
@@ -132,4 +132,3 @@ export type PostActions =
   | LoadPostCategoriesFail
   | MarkAnswerAsTop
   | RemoveTopAnswer;
-

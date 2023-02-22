@@ -8,7 +8,10 @@ import { AnswerReviewedCategoryComponent } from '../answer-reviewed-category/ans
 import { IsLoggedUserPostAuthorDirective } from '../../../../permissions/directives/is-logged-user-post-author';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../data-access/state/app.state';
-import { MarkAnswerAsTop, RemoveTopAnswer } from '../../../data-access/actions/post.actions';
+import {
+  MarkAnswerAsTop,
+  RemoveTopAnswer,
+} from '../../../data-access/actions/post.actions';
 
 @Component({
   selector: 'app-answer-detail',
@@ -25,8 +28,20 @@ import { MarkAnswerAsTop, RemoveTopAnswer } from '../../../data-access/actions/p
     <mat-divider></mat-divider>
     <div class="top-answer-actions">
       <div *IsLoggedUserPostAuthor>
-        <div *ngIf="!answer.isTopAnswer" class="set-top-answer" (click)="markAnswerAsTop()">Mark as Top Review</div>  
-        <div *ngIf="answer.isTopAnswer" class="unset-top-answer" (click)="changeBackTopAnswer()">Change back Top Review</div>  
+        <div
+          *ngIf="!answer.isTopAnswer"
+          class="set-top-answer"
+          (click)="markAnswerAsTop()"
+        >
+          Mark as Top Review
+        </div>
+        <div
+          *ngIf="answer.isTopAnswer"
+          class="unset-top-answer"
+          (click)="changeBackTopAnswer()"
+        >
+          Change back Top Review
+        </div>
       </div>
     </div>
     <div class="answer-header">
@@ -63,28 +78,29 @@ import { MarkAnswerAsTop, RemoveTopAnswer } from '../../../data-access/actions/p
       }
       .top-answer-actions {
         cursor: pointer;
-      } 
+      }
       .answer-header {
         display: flex;
         align-items: center;
         gap: 1.4em;
       }
 
-      .top-answer, .set-top-answer {
+      .top-answer,
+      .set-top-answer {
         width: fit-content;
         padding: 1px 7px;
         border: 1px solid var(--top-answer-color);
         border-radius: 3px;
         color: var(--top-answer-color);
       }
-      .unset-top-answer { 
+      .unset-top-answer {
         width: fit-content;
         padding: 1px 7px;
         border: 1px solid var(--unset-top-answer-color);
         border-radius: 3px;
         color: rgb(245, 60, 122);
       }
-      
+
       .answer-description {
         margin-top: 1em;
       }

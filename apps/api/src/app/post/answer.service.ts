@@ -24,7 +24,7 @@ export class AnswerService {
     @InjectRepository(ReviewedCategoryNode)
     private rcnRepository: Repository<ReviewedCategoryNode>,
     private postService: PostService
-  ) { }
+  ) {}
 
   async create(
     postId: number,
@@ -91,15 +91,19 @@ export class AnswerService {
 
   async markAnswerAsTop(answerId: number) {
     const answer = await this.answerRepository.findOneBy({ id: answerId });
-    if (!answer) throw new HttpException('Answer Not found', HttpStatus.BAD_REQUEST);
+    if (!answer)
+      throw new HttpException('Answer Not found', HttpStatus.BAD_REQUEST);
 
     await this.answerRepository.update(
       { id: Not(answerId) },
       { isTopAnswer: false }
     );
     await this.answerRepository.update(answerId, { isTopAnswer: true });
-    const author = await this.userRepository.findOneBy({ id: answer.author.id });
-    if (!author) throw new HttpException('User Not found', HttpStatus.BAD_REQUEST);
+    const author = await this.userRepository.findOneBy({
+      id: answer.author.id,
+    });
+    if (!author)
+      throw new HttpException('User Not found', HttpStatus.BAD_REQUEST);
     author.reputation += USER_REPUTATION_OPTIONS.bestAnswer;
     await this.userRepository.save(author);
   }
@@ -107,9 +111,13 @@ export class AnswerService {
   async removeTopAnswer(answerId: number) {
     await this.answerRepository.update(answerId, { isTopAnswer: false });
     const answer = await this.answerRepository.findOneBy({ id: answerId });
-    if (!answer) throw new HttpException('Answer Not found', HttpStatus.BAD_REQUEST);
-    const author = await this.userRepository.findOneBy({ id: answer.author.id });
-    if (!author) throw new HttpException('User Not found', HttpStatus.BAD_REQUEST);
+    if (!answer)
+      throw new HttpException('Answer Not found', HttpStatus.BAD_REQUEST);
+    const author = await this.userRepository.findOneBy({
+      id: answer.author.id,
+    });
+    if (!author)
+      throw new HttpException('User Not found', HttpStatus.BAD_REQUEST);
     author.reputation -= USER_REPUTATION_OPTIONS.bestAnswer;
     await this.userRepository.save(author);
   }

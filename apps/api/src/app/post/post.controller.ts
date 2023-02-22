@@ -22,7 +22,7 @@ export class PostController {
   constructor(
     private readonly postService: PostService,
     private answerService: AnswerService
-  ) { }
+  ) {}
 
   @Post()
   create(

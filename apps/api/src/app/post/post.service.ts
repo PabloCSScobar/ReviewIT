@@ -6,7 +6,11 @@ import { User } from '../user/entities/user.entity';
 import { CreatePostDto } from './dto/create-post.dto';
 import { Answer } from './entities/answer.entity';
 import { Post } from './entities/post.entity';
-import { PaginationOptions, PaginateResponse, PostsFilter } from 'api-interfaces';
+import {
+  PaginationOptions,
+  PaginateResponse,
+  PostsFilter,
+} from 'api-interfaces';
 import { PAGINATION_OPTIONS, USER_REPUTATION_OPTIONS } from './config';
 
 @Injectable()
@@ -17,7 +21,7 @@ export class PostService {
     @InjectRepository(User) private userRepository: Repository<User>,
     @InjectRepository(PostCategory)
     private postCategoryRepository: Repository<PostCategory>
-  ) { }
+  ) {}
 
   async getPostById(id: number) {
     const post = await this.postRepository.findOneBy({ id });
@@ -51,7 +55,7 @@ export class PostService {
     searchedTerm: string,
     postFilter: PostsFilter,
     categoryFilter: string,
-    page: number,
+    page: number
   ) {
     let query = this.postRepository
       .createQueryBuilder('post')
@@ -102,12 +106,13 @@ export class PostService {
     }
     const postsCount = await query.getCount();
 
-
     let currentPage = page ? page : PAGINATION_OPTIONS.page;
     const lastPage = Math.ceil(postsCount / PAGINATION_OPTIONS.itemsPerPage);
     if (currentPage > lastPage) currentPage = lastPage;
 
-    query = query.skip((currentPage - 1) * PAGINATION_OPTIONS.itemsPerPage).take(PAGINATION_OPTIONS.itemsPerPage);
+    query = query
+      .skip((currentPage - 1) * PAGINATION_OPTIONS.itemsPerPage)
+      .take(PAGINATION_OPTIONS.itemsPerPage);
 
     const postRawAndEntities = await query.getRawAndEntities();
     const posts = postRawAndEntities.entities.map((post) => {
@@ -117,26 +122,26 @@ export class PostService {
       return post;
     });
 
-    return this.paginateResponse(
-      posts,
-      postsCount,
-      {
-        page: currentPage,
-        itemsPerPage: PAGINATION_OPTIONS.itemsPerPage
-      });
+    return this.paginateResponse(posts, postsCount, {
+      page: currentPage,
+      itemsPerPage: PAGINATION_OPTIONS.itemsPerPage,
+    });
   }
 
-  paginateResponse<T>(results: T[], total: number, paginationOptions: PaginationOptions): PaginateResponse<T> {
+  paginateResponse<T>(
+    results: T[],
+    total: number,
+    paginationOptions: PaginationOptions
+  ): PaginateResponse<T> {
     return {
       results,
       pagination: {
         total,
         currentPage: paginationOptions.page,
         itemsPerPage: paginationOptions.itemsPerPage,
-        totalPages: Math.ceil(total / paginationOptions.itemsPerPage)
-
-      }
-    }
+        totalPages: Math.ceil(total / paginationOptions.itemsPerPage),
+      },
+    };
   }
 
   async findOne(id: number) {
@@ -176,5 +181,3 @@ export class PostService {
     return this.postRepository.delete(id);
   }
 }
-
-

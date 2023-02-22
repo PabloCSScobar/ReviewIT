@@ -103,10 +103,12 @@ export class PostEffects {
       concatLatestFrom(() =>
         this.store.select((state) => state.posts.selectedPost!.id)
       ),
-      switchMap(([action, postId]) => forkJoin([
-        this.answerService.markAnswerAsTop(action.payload, postId),
-        of(postId)
-      ])),
+      switchMap(([action, postId]) =>
+        forkJoin([
+          this.answerService.markAnswerAsTop(action.payload, postId),
+          of(postId),
+        ])
+      ),
       map(([, postId]) => new LoadPostDetail(postId))
     )
   );
@@ -117,14 +119,15 @@ export class PostEffects {
       concatLatestFrom(() =>
         this.store.select((state) => state.posts.selectedPost!.id)
       ),
-      switchMap(([action, postId]) => forkJoin([
-        this.answerService.removeTopAnswer(action.payload, postId),
-        of(postId)
-      ])),
+      switchMap(([action, postId]) =>
+        forkJoin([
+          this.answerService.removeTopAnswer(action.payload, postId),
+          of(postId),
+        ])
+      ),
       map(([, postId]) => new LoadPostDetail(postId))
     )
   );
-
 
   loadPostCategories$ = createEffect(() =>
     this.actions$.pipe(
@@ -140,5 +143,5 @@ export class PostEffects {
     private answerService: AnswerService,
     private router: Router,
     private store: Store<AppState>
-  ) { }
+  ) {}
 }

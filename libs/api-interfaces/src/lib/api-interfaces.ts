@@ -8,7 +8,7 @@ export type Pagination = {
   currentPage: number;
   itemsPerPage: number;
   totalPages: number;
-}
+};
 
 export type PaginateResponse<T> = {
   results: T[];

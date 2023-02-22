@@ -10,7 +10,6 @@ export const PERMISSIONS_MATRIX_CONFIG = new InjectionToken<PermissionMatrix>(
 @Injectable({
   providedIn: 'root',
 })
-
 export class PermissionsService {
   private authService = inject(AuthService);
 
@@ -18,6 +17,4 @@ export class PermissionsService {
     const loggedUser = this.authService.currentUser;
     return loggedUser && loggedUser.id === postAuthor.id;
   }
-
-
 }

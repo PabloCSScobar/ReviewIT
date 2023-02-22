@@ -26,7 +26,7 @@ import { IsLoggedUserNotPostAuthorDirective } from '../../../permissions/directi
     AnswerListComponent,
     AnswerFormComponent,
     HasLoggedUserCreatedAnswerDirective,
-    IsLoggedUserNotPostAuthorDirective
+    IsLoggedUserNotPostAuthorDirective,
   ],
   template: ` <app-navigation>
     <div main-content *ngIf="post$ | async as post">
@@ -54,7 +54,7 @@ import { IsLoggedUserNotPostAuthorDirective } from '../../../permissions/directi
           </ng-template>
         </ng-container>
       </ng-container>
-      </div>      
+    </div>
   </app-navigation>`,
   styles: [
     `
