@@ -24,7 +24,7 @@ export class AnswerService {
     @InjectRepository(ReviewedCategoryNode)
     private rcnRepository: Repository<ReviewedCategoryNode>,
     private postService: PostService
-  ) {}
+  ) { }
 
   async create(
     postId: number,
@@ -90,7 +90,10 @@ export class AnswerService {
   }
 
   async markAnswerAsTop(answerId: number) {
-    const answer = await this.answerRepository.findOneBy({ id: answerId });
+    const answer = await this.answerRepository.findOne({
+      where: { id: answerId },
+      relations: ['author'],
+    });
     if (!answer)
       throw new HttpException('Answer Not found', HttpStatus.BAD_REQUEST);
 
@@ -110,7 +113,10 @@ export class AnswerService {
 
   async removeTopAnswer(answerId: number) {
     await this.answerRepository.update(answerId, { isTopAnswer: false });
-    const answer = await this.answerRepository.findOneBy({ id: answerId });
+    const answer = await this.answerRepository.findOne({
+      where: { id: answerId },
+      relations: ['author'],
+    });
     if (!answer)
       throw new HttpException('Answer Not found', HttpStatus.BAD_REQUEST);
     const author = await this.userRepository.findOneBy({
