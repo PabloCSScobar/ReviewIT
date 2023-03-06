@@ -11,7 +11,7 @@ import { PostCategory } from '../../../../models/post-category.model';
 import {
   castAbstractControlToFormArray,
   castAbstractControlToFormGroup,
-} from '../../../shared/form-utils/form-utils';
+} from '../../../../../form-utils/form-narrowing';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { AnswerFormCategoryNodeComponent } from '../answer-form-category-node/answer-form-category-node.component';
