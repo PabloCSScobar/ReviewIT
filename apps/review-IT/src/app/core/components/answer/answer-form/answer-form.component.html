@@ -10,6 +10,9 @@
         matInput
         required
       />
+      <mat-error>
+        <app-error-message [control]="answerForm.get('description')!"/>
+      </mat-error>
     </mat-form-field>
 
     <!-- categories  -->

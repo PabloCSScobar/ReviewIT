@@ -23,7 +23,7 @@
       </mat-icon>
     </label>
   </div>
-  <mat-form-field class="full-width-field">
+  <mat-form-field class="full-width-field" appearance="outline">
     <mat-label>Description</mat-label>
     <textarea
       formControlName="description"
@@ -32,6 +32,9 @@
       cdkAutosizeMinRows="1"
       cdkAutosizeMaxRows="5"
     ></textarea>
+    <mat-error>
+      <app-error-message [control]="categoryNodeForm.get('description')!"/>
+    </mat-error>
   </mat-form-field>
   <button
     data-testid="remove-category-node-button"

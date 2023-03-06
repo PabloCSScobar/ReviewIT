@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { ErrorMessageComponent } from '../../../../../form-utils/components/error-message.component';
 
 @Component({
   selector: 'app-answer-form-category-node',
@@ -16,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatInputModule,
     MatIconModule,
+    ErrorMessageComponent
   ],
   templateUrl: './answer-form-category-node.component.html',
   styleUrls: ['./answer-form-category-node.component.scss'],

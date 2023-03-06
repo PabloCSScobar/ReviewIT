@@ -16,11 +16,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { AnswerFormCategoryComponent } from './answer-form-category/answer-form-category.component';
 import { castAbstractControlToFormGroup } from '../../shared/form-utils/form-utils';
 import { MatButtonModule } from '@angular/material/button';
-import { AnswerService } from '../../../data-access/services/answer.service';
 import { AnswerCreate } from '../../../models/answer.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../data-access/state/app.state';
 import { AddAnswer } from '../../../data-access/actions/post.actions';
+import { ErrorMessageComponent } from '../../../../form-utils/components/error-message.component';
 
 @Component({
   selector: 'app-answer-form',
@@ -34,6 +34,7 @@ import { AddAnswer } from '../../../data-access/actions/post.actions';
     MatSelectModule,
     MatIconModule,
     AnswerFormCategoryComponent,
+    ErrorMessageComponent
   ],
   templateUrl: './answer-form.component.html',
   styleUrls: ['./answer-form.component.scss'],
