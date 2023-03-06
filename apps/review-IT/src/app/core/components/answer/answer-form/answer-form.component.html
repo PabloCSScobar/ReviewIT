@@ -57,9 +57,9 @@
       </div>
 
       <app-answer-form-category
-        *ngFor="let categoryForm of reviewedCategories.controls; let i = index"
+        *ngFor="let categoryForm of answerForm.controls.reviewedCategories.controls; let i = index"
         [category]="selectedCategories[i]"
-        [categoryForm]="castToGroup(categoryForm)"
+        [categoryForm]="categoryForm"
         (remove)="removeCategory(i, selectedCategories[i].id)"
       ></app-answer-form-category>
     </div>

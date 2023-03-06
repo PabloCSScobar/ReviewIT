@@ -4,6 +4,7 @@ import {
   AbstractControl,
   FormArray,
   FormBuilder,
+  FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -14,7 +15,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { PostDetail } from '../../../models/post.model';
 import { MatIconModule } from '@angular/material/icon';
 import { AnswerFormCategoryComponent } from './answer-form-category/answer-form-category.component';
-import { castAbstractControlToFormGroup } from '../../shared/form-utils/form-utils';
 import { MatButtonModule } from '@angular/material/button';
 import { AnswerCreate } from '../../../models/answer.model';
 import { Store } from '@ngrx/store';
@@ -49,7 +49,7 @@ export class AnswerFormComponent {
   selectedCategories: PostCategory[] = [];
   answerForm = this.fb.nonNullable.group({
     description: ['', Validators.required],
-    reviewedCategories: this.fb.array([]),
+    reviewedCategories: this.fb.array<FormGroup>([]),
   });
 
   @Input() set post(value: PostDetail) {
@@ -59,7 +59,7 @@ export class AnswerFormComponent {
   }
 
   get reviewedCategories() {
-    return this.answerForm.get('reviewedCategories') as FormArray;
+    return this.answerForm.controls.reviewedCategories;
   }
 
   submit() {
@@ -115,9 +115,5 @@ export class AnswerFormComponent {
 
   getCategoryFromId(categoryId: number) {
     return this.categoriesToReview.filter((item) => item.id === categoryId)[0];
-  }
-
-  castToGroup(control: AbstractControl) {
-    return castAbstractControlToFormGroup(control);
   }
 }
