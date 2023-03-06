@@ -20,7 +20,7 @@ import { AnswerCreate } from '../../../models/answer.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../data-access/state/app.state';
 import { AddAnswer } from '../../../data-access/actions/post.actions';
-import { ErrorMessageComponent } from '../../../../form-utils/components/error-message.component';
+import { ErrorMessageComponent } from '../../../../form-utils/error-message.component';
 
 @Component({
   selector: 'app-answer-form',

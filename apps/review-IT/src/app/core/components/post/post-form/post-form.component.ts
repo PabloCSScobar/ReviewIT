@@ -22,7 +22,7 @@ import {
 } from '../../../data-access/actions/post.actions';
 import { PostCreate } from '../../../models/post.model';
 import { selectPostCategories } from '../../../data-access/selectors/post.selectors';
-import { ErrorMessageComponent } from '../../../../form-utils/components/error-message.component';
+import { ErrorMessageComponent } from '../../../../form-utils/error-message.component';
 
 @Component({
   selector: 'app-post-form',
