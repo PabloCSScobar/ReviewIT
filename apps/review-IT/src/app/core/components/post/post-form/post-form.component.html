@@ -10,6 +10,9 @@
         matInput
         required
       />
+      <mat-error>
+        <app-error-message [control]="postForm.get('title')!"/>
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Description</mat-label>
@@ -19,6 +22,9 @@
         matInput
         required
       ></textarea>
+      <mat-error>
+        <app-error-message [control]="postForm.get('description')!"/>
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Website URL</mat-label>
@@ -29,6 +35,9 @@
         required
       />
       <mat-icon matSuffix>home</mat-icon>
+      <mat-error>
+        <app-error-message [control]="postForm.get('pageUrl')!"/>
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Repository URL</mat-label>
@@ -39,6 +48,9 @@
         required
       />
       <mat-icon svgIcon="github" matSuffix></mat-icon>
+      <mat-error>
+        <app-error-message [control]="postForm.get('repoUrl')!"/>
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Categories to be reviewed</mat-label>
@@ -54,6 +66,9 @@
           >{{ category.name }}</mat-option
         >
       </mat-select>
+      <mat-error>
+        <app-error-message [control]="postForm.get('categories')!"/>
+      </mat-error>
     </mat-form-field>
     <div class="actions">
       <button

@@ -22,6 +22,7 @@ import {
 } from '../../../data-access/actions/post.actions';
 import { PostCreate } from '../../../models/post.model';
 import { selectPostCategories } from '../../../data-access/selectors/post.selectors';
+import { ErrorMessageComponent } from '../../../../form-utils/components/error-message.component';
 
 @Component({
   selector: 'app-post-form',
@@ -35,6 +36,7 @@ import { selectPostCategories } from '../../../data-access/selectors/post.select
     MatButtonModule,
     ReactiveFormsModule,
     MatSelectModule,
+    ErrorMessageComponent,
   ],
   templateUrl: './post-form.component.html',
   styleUrls: ['./post-form.component.scss'],
