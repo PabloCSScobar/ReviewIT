@@ -32,9 +32,7 @@
       cdkAutosizeMinRows="1"
       cdkAutosizeMaxRows="5"
     ></textarea>
-    <mat-error>
-      <app-error-message [control]="categoryNodeForm.get('description')!"/>
-    </mat-error>
+    <app-error-message matError [control]="categoryNodeForm.get('description')!"/>
   </mat-form-field>
   <button
     data-testid="remove-category-node-button"
